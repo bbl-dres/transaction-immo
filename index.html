@@ -488,20 +488,11 @@
     .detail-info {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 24px;
-      background: var(--neutral-50);
-      border-radius: 8px;
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
+      gap: 32px;
+      padding: 24px 0;
     }
     .detail-info-section {
       padding: 0;
-      box-shadow: none;
-      background: transparent;
-    }
-    .detail-info-section:not(:last-child) {
-      border-right: 1px solid var(--neutral-200);
-      padding-right: 24px;
     }
 
     /* Title Section */
@@ -519,8 +510,7 @@
     .detail-areas {
       display: flex;
       gap: 24px;
-      padding-top: 16px;
-      border-top: 1px solid var(--neutral-200);
+      margin-top: 16px;
     }
     .detail-area {
       display: flex;
@@ -581,19 +571,15 @@
       font-size: 13px;
       color: var(--neutral-500);
       margin-bottom: 16px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--neutral-200);
     }
 
     /* Tabs */
     .detail-tabs {
       display: flex;
       gap: 0;
-      border-bottom: 2px solid var(--neutral-200);
+      border-bottom: 1px solid var(--neutral-200);
       margin-bottom: 24px;
-      background: var(--neutral-50);
-      border-radius: 8px 8px 0 0;
-      padding: 0 20px;
+      margin-top: 8px;
     }
     .detail-tab {
       padding: 16px 24px;
@@ -615,7 +601,7 @@
     .detail-tab.active::after {
       content: '';
       position: absolute;
-      bottom: -2px;
+      bottom: -1px;
       left: 0;
       right: 0;
       height: 2px;
@@ -628,10 +614,7 @@
 
     /* Tab Content */
     .detail-tab-content {
-      background: var(--neutral-50);
-      border-radius: 0 0 8px 8px;
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
+      padding: 0;
     }
     .detail-data-section {
       display: grid;
