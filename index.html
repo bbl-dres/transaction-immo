@@ -1852,7 +1852,7 @@
 
     fetch('data.json')
       .then(res => res.json())
-      .then(data => {
+      .then(async data => {
         properties = data;
         filteredProperties = [...data];
         extractFilterOptions();
@@ -1863,7 +1863,7 @@
         if (params.view === 'detail' && params.id) {
           const prop = properties.find(p => p.id === params.id);
           if (prop) {
-            renderDetailPage(prop);
+            await renderDetailPage(prop);
           }
         }
       })
