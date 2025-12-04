@@ -1299,7 +1299,7 @@
       const data = getDataToRender();
       document.getElementById('objectCount').textContent = data.length;
       grid.innerHTML = data.map(prop => `
-        <div class="card" onclick="openDetailPage('${prop.id}')">
+        <div class="card" data-id="${prop.id}">
           <div class="card-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')">
             <div class="image-tags">
               <span class="priority-tag ${getPriorityClass(prop.priority)}" data-filter="priority" data-value="${getPriorityValue(prop.priority)}">${getPriorityLabel(prop.priority, prop.priorityLabel)}</span>
@@ -1339,7 +1339,7 @@
 
       const tbody = document.getElementById('listTableBody');
       tbody.innerHTML = data.map(prop => `
-        <tr onclick="openDetailPage('${prop.id}')">
+        <tr data-id="${prop.id}">
           <td><span class="material-icons-outlined object-icon">home</span></td>
           <td>${prop.econUnit}/${prop.bldgNum}</td>
           <td>${prop.type} in ${prop.zip} ${prop.city}</td>
@@ -1359,7 +1359,7 @@
       
       // Neue Struktur: Bild-Container mit Tags (Overlay) -> Inhalt (Name + Preis)
       sidebar.innerHTML = data.map(prop => `
-        <div class="map-sidebar-item" data-id="${prop.id}" onclick="flyToProperty('${prop.id}')">
+        <div class="map-sidebar-item" data-id="${prop.id}">
           <div class="map-sidebar-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')">
             <div class="image-tags">
               <span class="priority-tag ${getPriorityClass(prop.priority)}" data-filter="priority" data-value="${getPriorityValue(prop.priority)}">${getPriorityLabel(prop.priority, prop.priorityLabel)}</span>
@@ -1831,39 +1831,59 @@
       alert('PDF Export - Wird später implementiert');
     }
 
-    // Handle clickable tags (event delegation)
-    function handleTagClick(event) {
-      const tag = event.target.closest('[data-filter]');
-      if (!tag) return;
+    // Unified click handler (event delegation for tags, cards, rows, sidebar items)
+    function handleContentClick(event) {
+      // First, check if clicked on a filter tag
+      const tag = event.target.closest('.priority-tag[data-filter], .year-tag[data-filter]');
+      if (tag) {
+        event.stopPropagation();
+        event.preventDefault();
 
-      // Check if this is a priority-tag or year-tag
-      if (!tag.classList.contains('priority-tag') && !tag.classList.contains('year-tag')) return;
+        const filterType = tag.dataset.filter;
+        const filterValue = tag.dataset.value;
+        const isDetailView = tag.dataset.detail === 'true';
 
-      event.stopPropagation();
-      event.preventDefault();
+        // Add the filter
+        advancedFilters[filterType].add(filterValue);
 
-      const filterType = tag.dataset.filter;
-      const filterValue = tag.dataset.value;
-      const isDetailView = tag.dataset.detail === 'true';
+        if (isDetailView) {
+          // Close detail view and go back to main with filter applied
+          closeDetailPage();
+        }
 
-      // Add the filter
-      advancedFilters[filterType].add(filterValue);
+        applyFilters();
 
-      if (isDetailView) {
-        // Close detail view and go back to main with filter applied
-        closeDetailPage();
+        // Update filter modal if it's open
+        if (document.getElementById('filterModalOverlay').classList.contains('active')) {
+          renderFilterModal();
+        }
+        return;
       }
 
-      applyFilters();
+      // Check if clicked on a gallery card
+      const card = event.target.closest('.card[data-id]');
+      if (card) {
+        openDetailPage(card.dataset.id);
+        return;
+      }
 
-      // Update filter modal if it's open
-      if (document.getElementById('filterModalOverlay').classList.contains('active')) {
-        renderFilterModal();
+      // Check if clicked on a list table row
+      const row = event.target.closest('#listTableBody tr[data-id]');
+      if (row) {
+        openDetailPage(row.dataset.id);
+        return;
+      }
+
+      // Check if clicked on a map sidebar item
+      const sidebarItem = event.target.closest('.map-sidebar-item[data-id]');
+      if (sidebarItem) {
+        flyToProperty(sidebarItem.dataset.id);
+        return;
       }
     }
 
-    // Set up event delegation for tag clicks
-    document.addEventListener('click', handleTagClick);
+    // Set up unified event delegation
+    document.addEventListener('click', handleContentClick);
 
     // Handle browser back/forward navigation
     window.addEventListener('popstate', (event) => {
