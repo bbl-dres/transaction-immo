@@ -22,8 +22,7 @@
       line-height: 1.5;
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
     }
 
     /* Header */
@@ -113,7 +112,6 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      overflow-y: auto;
       min-height: 0;
     }
 
@@ -919,6 +917,7 @@
     .map-container {
       display: none;
       flex: 1;
+      min-height: 0;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
