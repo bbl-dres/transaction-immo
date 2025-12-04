@@ -578,8 +578,9 @@
       gap: 8px;
     }
     .detail-price-row {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
       font-size: 14px;
     }
     .detail-price-row-label {
@@ -669,10 +670,12 @@
       padding: 20px;
       display: flex;
       flex-direction: column;
+      align-self: start;
     }
     .detail-map-svg {
-      flex: 1;
-      min-height: 280px;
+      width: 100%;
+      max-width: 350px;
+      aspect-ratio: 3 / 2;
     }
     .detail-map-svg svg {
       width: 100%;
