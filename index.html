@@ -70,7 +70,7 @@
 
     .header-right {
       display: flex;
-      gap: 12px;
+      gap: 16px;
     }
 
     .btn {
@@ -217,7 +217,7 @@
     }
 
     .filter-pill {
-      padding: 6px 14px;
+      padding: 8px 16px;
       border: 1px solid #ddd;
       border-radius: 20px;
       font-size: 13px;
@@ -297,7 +297,7 @@
       gap: 6px;
       padding: 8px 16px;
       border: 1px solid #ddd;
-      border-radius: 6px;
+      border-radius: 20px;
       background: white;
       font-size: 13px;
       color: #555;
@@ -448,8 +448,9 @@
     }
 
     .milestone-text {
-      font-size: 11px;
-      color: #666;
+      font-size: 13px;
+      color: #555;
+      font-weight: 500;
     }
 
     /* Modal */
@@ -830,11 +831,11 @@
           <button class="filter-pill" data-priority="2">Geringe Priorität (<span id="countPriority2">0</span>)<span class="material-icons-outlined close-icon">close</span></button>
           <button class="filter-pill" data-priority="3">Keine Priorität (<span id="countPriority3">0</span>)<span class="material-icons-outlined close-icon">close</span></button>
           <button class="filter-pill" data-priority="null">Keine Angabe<span class="material-icons-outlined close-icon">close</span></button>
-        </div>
-        <div class="filter-right">
           <button class="reset-filters" id="resetFilters" title="Alle Filter zurücksetzen">
             <span class="material-icons-outlined">replay</span>
           </button>
+        </div>
+        <div class="filter-right">
           <div class="stats-count"><span id="objectCount">0</span> Objekte</div>
           <button class="filter-btn">
             <span>Filter</span>
