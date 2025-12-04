@@ -518,11 +518,6 @@
       color: var(--neutral-900);
       margin-bottom: 4px;
     }
-    .detail-address {
-      font-size: 14px;
-      color: var(--neutral-500);
-      margin-bottom: 16px;
-    }
     .detail-areas {
       display: flex;
       gap: 28px;
@@ -560,30 +555,6 @@
       background: var(--accent-500);
     }
 
-    /* Status Section */
-    .detail-status-section .detail-status-item {
-      margin-bottom: 16px;
-    }
-    .detail-status-section .detail-status-item:last-child {
-      margin-bottom: 0;
-    }
-    .detail-status-section .detail-label {
-      font-size: 13px;
-      color: var(--neutral-500);
-      margin-bottom: 4px;
-    }
-    .detail-status-section .detail-value {
-      font-size: 15px;
-      color: var(--neutral-900);
-      font-weight: 500;
-    }
-
-    /* Price Section */
-    .detail-price-sqm {
-      font-size: 13px;
-      color: var(--neutral-500);
-      margin-bottom: 20px;
-    }
     .detail-price-cards {
       display: flex;
       gap: 24px;
@@ -670,9 +641,8 @@
       font-weight: 600;
     }
     .detail-data-label {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--neutral-500);
-      margin-top: 4px;
     }
 
     /* Switzerland Map */
@@ -1624,7 +1594,7 @@
             <!-- Title & Address -->
             <div class="detail-info-section detail-title-section">
               <h1>${prop.type} in ${prop.zip} ${prop.city}</h1>
-              <div class="detail-address">${prop.address} ${prop.zip} ${prop.city}</div>
+              <div class="detail-data-label">${prop.address} ${prop.zip} ${prop.city}</div>
               <div class="detail-areas">
                 <div class="detail-area">
                   <span class="material-icons-outlined detail-area-icon">square_foot</span>
@@ -1637,13 +1607,12 @@
                   <span class="detail-area-label">Grundstück</span>
                 </div>
               </div>
-              <button class="detail-pdf-btn" onclick="exportToPdf()">Als PDF exportieren</button>
             </div>
 
             <!-- Price -->
             <div class="detail-info-section detail-title-section">
               <h1>${formatPriceRange(prop.valueMin, prop.valueMax)}</h1>
-              <div class="detail-price-sqm">${formatCHF(pricePerSqm(prop.valueMin, prop.areaGF))} - ${formatCHF(pricePerSqm(prop.valueMax, prop.areaGF))} / m² GF</div>
+              <div class="detail-data-label">${formatCHF(pricePerSqm(prop.valueMin, prop.areaGF))} - ${formatCHF(pricePerSqm(prop.valueMax, prop.areaGF))} / m² GF</div>
               <div class="detail-price-cards">
                 <div class="detail-price-card">
                   <span class="detail-price-card-value">${formatCHF(prop.bookValue)}</span>
@@ -1657,14 +1626,10 @@
             </div>
 
             <!-- Status -->
-            <div class="detail-info-section detail-status-section">
-              <div class="detail-status-item">
-                <div class="detail-label">Meilenstein</div>
-                <div class="milestone-bar">
-                  <div class="milestone-progress" style="width: ${(prop.milestone.current / prop.milestone.total) * 100}%"></div>
-                </div>
-                <div class="detail-value">${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</div>
-              </div>
+            <div class="detail-info-section detail-title-section">
+              <h1>${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</h1>
+              <div class="detail-data-label">Meilenstein</div>
+              <button class="detail-pdf-btn" onclick="exportToPdf()">Als PDF exportieren</button>
             </div>
           </div>
         </div>
