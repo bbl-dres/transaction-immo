@@ -680,13 +680,32 @@
       width: 100%;
       height: auto;
     }
-    .detail-map-svg svg path {
+    /* Cantons (layer6) - outline only, dark stroke */
+    .detail-map-svg svg #layer6 path {
+      fill: var(--accent-100) !important;
+      stroke: var(--primary-900) !important;
+      stroke-width: 1.5px !important;
+    }
+    .detail-map-svg svg #layer6 path.highlighted {
+      fill: var(--accent-600) !important;
+    }
+    /* Rivers (layer4) - very light */
+    .detail-map-svg svg #layer4 path {
+      fill: transparent !important;
+      stroke: var(--accent-100) !important;
+      stroke-width: 0.5px !important;
+    }
+    /* Lakes (layer3) - very light fill */
+    .detail-map-svg svg #layer3 path {
+      fill: var(--accent-100) !important;
+      stroke: var(--accent-100) !important;
+      stroke-width: 0.5px !important;
+    }
+    /* Border (layer2) - dark outline */
+    .detail-map-svg svg #layer2 path {
       fill: transparent !important;
       stroke: var(--primary-900) !important;
       stroke-width: 2px !important;
-    }
-    .detail-map-svg svg path.highlighted {
-      fill: var(--accent-600) !important;
     }
     .detail-map-coords {
       margin-top: 12px;
