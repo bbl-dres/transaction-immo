@@ -1033,11 +1033,12 @@
       padding: 0;
       border-radius: 8px;
       overflow: hidden;
-      min-width: 200px;
+      min-width: 250px;
+      max-width: 280px;
     }
 
     .popup-image {
-      height: 100px;
+      height: 120px;
       background-size: cover;
       background-position: center;
     }
@@ -1058,10 +1059,47 @@
       margin-bottom: 8px;
     }
 
+    .popup-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 8px;
+      font-size: 12px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .popup-detail-label {
+      color: #888;
+    }
+
+    .popup-detail-value {
+      text-align: right;
+      font-weight: 500;
+    }
+
     .popup-price {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       color: #00838f;
+      margin-bottom: 12px;
+    }
+
+    .popup-link {
+      display: block;
+      text-align: center;
+      padding: 8px 12px;
+      background: #383E54;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .popup-link:hover {
+      background: #4a5168;
     }
 
     @media (max-width: 768px) {
@@ -1561,7 +1599,7 @@
       // Render sidebar
       const sidebar = document.getElementById('mapSidebar');
       sidebar.innerHTML = dataToRender.map(prop => `
-        <div class="map-sidebar-item" data-id="${prop.id}" onclick="openModal('${prop.id}')">
+        <div class="map-sidebar-item" data-id="${prop.id}" onclick="flyToProperty('${prop.id}')">
           <div class="map-sidebar-title">${prop.type} in ${prop.zip} ${prop.city}</div>
           <div class="map-sidebar-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')"></div>
           <div class="map-sidebar-details">
@@ -1578,6 +1616,41 @@
         updateMapMarkers(dataToRender);
       }
     }
+
+    // Fly to property on map and open popup
+    function flyToProperty(id) {
+      const prop = properties.find(p => p.id === id);
+      if (!prop || !prop.lat || !prop.lng) return;
+
+      // Highlight sidebar item
+      document.querySelectorAll('.map-sidebar-item').forEach(item => {
+        item.classList.remove('active');
+        if (item.dataset.id === id) {
+          item.classList.add('active');
+        }
+      });
+
+      // Fly to location with comfortable zoom
+      map.flyTo({
+        center: [prop.lng, prop.lat],
+        zoom: 13,
+        duration: 1500
+      });
+
+      // Find and open the marker popup
+      const markerData = markersMap.get(id);
+      if (markerData) {
+        // Close all other popups first
+        markers.forEach(m => m.getPopup()?.remove());
+        // Open this marker's popup after flying
+        setTimeout(() => {
+          markerData.marker.togglePopup();
+        }, 1600);
+      }
+    }
+
+    // Store markers by property ID for quick access
+    let markersMap = new Map();
 
     // Initialize Mapbox map
     function initializeMap(data) {
@@ -1600,6 +1673,7 @@
       // Remove existing markers
       markers.forEach(marker => marker.remove());
       markers = [];
+      markersMap.clear();
 
       // Add new markers
       const bounds = new mapboxgl.LngLatBounds();
@@ -1611,13 +1685,24 @@
           el.className = `marker marker-${prop.priority !== null ? prop.priority : 'null'}`;
           el.innerHTML = '<span class="material-icons">home</span>';
 
-          // Create popup
-          const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
+          // Create popup with detailed info
+          const popup = new mapboxgl.Popup({ offset: 25, maxWidth: '280px' }).setHTML(`
             <div class="popup-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')"></div>
             <div class="popup-content">
               <div class="popup-title">${prop.type}</div>
-              <div class="popup-location">${prop.zip} ${prop.city}</div>
-              <div class="popup-price">${formatCHF(prop.valueMin)}</div>
+              <div class="popup-location">${prop.address}, ${prop.zip} ${prop.city}</div>
+              <div class="popup-details">
+                <span class="popup-detail-label">ID:</span>
+                <span class="popup-detail-value">${prop.id}</span>
+                <span class="popup-detail-label">Fläche:</span>
+                <span class="popup-detail-value">${prop.areaGF} m² GF</span>
+                <span class="popup-detail-label">Jahr:</span>
+                <span class="popup-detail-value">${prop.year}</span>
+                <span class="popup-detail-label">Priorität:</span>
+                <span class="popup-detail-value">${prop.priorityLabel}</span>
+              </div>
+              <div class="popup-price">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
+              <div class="popup-link" onclick="openModal('${prop.id}')">Details anzeigen →</div>
             </div>
           `);
 
@@ -1627,20 +1712,15 @@
             .setPopup(popup)
             .addTo(map);
 
-          // Add click handler for opening modal
-          el.addEventListener('click', (e) => {
-            e.stopPropagation();
-            // Just show popup on first click, could add double-click for modal
-          });
-
           markers.push(marker);
+          markersMap.set(prop.id, { marker, prop });
           bounds.extend([prop.lng, prop.lat]);
         }
       });
 
-      // Fit map to bounds if we have markers
+      // Fit map to bounds if we have markers - more padding for better orientation
       if (markers.length > 0) {
-        map.fitBounds(bounds, { padding: 50, maxZoom: 10 });
+        map.fitBounds(bounds, { padding: 80, maxZoom: 9 });
       }
     }
 
