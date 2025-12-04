@@ -674,12 +674,11 @@
     }
     .detail-map-svg {
       width: 100%;
-      max-width: 350px;
-      aspect-ratio: 3 / 2;
+      max-width: 400px;
     }
     .detail-map-svg svg {
       width: 100%;
-      height: 100%;
+      height: auto;
     }
     .detail-map-coords {
       margin-top: 12px;
@@ -1489,22 +1488,24 @@
       });
     }
 
-    // Canton code mapping for SVG highlighting
+    // Canton code mapping for SVG highlighting (Wikipedia SVG uses canton codes directly)
     const cantonCodeMap = {
-      'AG': 'CH-AG', 'AI': 'CH-AI', 'AR': 'CH-AR', 'BE': 'CH-BE', 'BL': 'CH-BL',
-      'BS': 'CH-BS', 'FR': 'CH-FR', 'GE': 'CH-GE', 'GL': 'CH-GL', 'GR': 'CH-GR',
-      'JU': 'CH-JU', 'LU': 'CH-LU', 'NE': 'CH-NE', 'NW': 'CH-NW', 'OW': 'CH-OW',
-      'SG': 'CH-SG', 'SH': 'CH-SH', 'SO': 'CH-SO', 'SZ': 'CH-SZ', 'TG': 'CH-TG',
-      'TI': 'CH-TI', 'UR': 'CH-UR', 'VD': 'CH-VD', 'VS': 'CH-VS', 'ZG': 'CH-ZG', 'ZH': 'CH-ZH'
+      'AG': 'AG', 'AI': 'AI', 'AR': 'AR', 'BE': 'BE', 'BL': 'BL',
+      'BS': 'BS', 'FR': 'FR', 'GE': 'GE', 'GL': 'GL', 'GR': 'GR',
+      'JU': 'JU', 'LU': 'LU', 'NE': 'NE', 'NW': 'NW', 'OW': 'OW',
+      'SG': 'SG', 'SH': 'SH', 'SO': 'SO', 'SZ': 'SZ', 'TG': 'TG',
+      'TI': 'TI', 'UR': 'UR', 'VD': 'VD', 'VS': 'VS', 'ZG': 'ZG', 'ZH': 'ZH'
     };
 
-    // Convert lat/lng to SVG coordinates (approximate)
+    // Convert lat/lng to SVG coordinates for Wikipedia SVG
+    // SVG viewBox: 0 0 1052.361 744.094
     function latLngToSvg(lat, lng) {
-      // Switzerland bounds: lat 45.8-47.8, lng 5.9-10.5
-      const minLat = 45.8, maxLat = 47.8;
-      const minLng = 5.9, maxLng = 10.5;
-      const x = ((lng - minLng) / (maxLng - minLng)) * 560 + 20;
-      const y = ((maxLat - lat) / (maxLat - minLat)) * 360 + 20;
+      const minLat = 45.82, maxLat = 47.81;
+      const minLng = 5.95, maxLng = 10.49;
+      const svgWidth = 1052.361;
+      const svgHeight = 744.094;
+      const x = ((lng - minLng) / (maxLng - minLng)) * svgWidth;
+      const y = ((maxLat - lat) / (maxLat - minLat)) * svgHeight;
       return { x, y };
     }
 
@@ -1727,27 +1728,41 @@
       const svg = svgContainer.querySelector('svg');
       if (!svg) return;
 
-      // Remove previous highlights
-      svg.querySelectorAll('.canton').forEach(c => c.classList.remove('highlighted'));
+      // Reset all canton fills and remove previous highlights
+      svg.querySelectorAll('path[id]').forEach(path => {
+        path.style.fill = '';
+        path.classList.remove('highlighted');
+      });
 
       // Highlight current canton
       const cantonId = cantonCodeMap[canton];
       if (cantonId) {
         const cantonPath = svg.getElementById(cantonId);
         if (cantonPath) {
+          cantonPath.style.fill = '#0077B6';
           cantonPath.classList.add('highlighted');
         }
       }
 
-      // Position marker
+      // Position or create marker
       if (lat && lng) {
-        const marker = svg.getElementById('location-marker');
-        if (marker) {
-          const pos = latLngToSvg(lat, lng);
-          marker.setAttribute('cx', pos.x);
-          marker.setAttribute('cy', pos.y);
-          marker.style.display = 'block';
+        const pos = latLngToSvg(lat, lng);
+        let marker = svg.getElementById('location-marker');
+
+        if (!marker) {
+          // Create marker if it doesn't exist
+          marker = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          marker.setAttribute('id', 'location-marker');
+          marker.setAttribute('r', '12');
+          marker.setAttribute('fill', '#DC2626');
+          marker.setAttribute('stroke', '#fff');
+          marker.setAttribute('stroke-width', '3');
+          svg.appendChild(marker);
         }
+
+        marker.setAttribute('cx', pos.x);
+        marker.setAttribute('cy', pos.y);
+        marker.style.display = 'block';
       }
     }
 
