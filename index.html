@@ -325,6 +325,27 @@
         .search-row, .filter-row { flex-direction: column; align-items: stretch; }
         .grid { grid-template-columns: 1fr; }
     }
+
+    /* --- Footer --- */
+    .footer {
+      background-color: #383E54;
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-shrink: 0;
+    }
+    .footer-link {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      transition: opacity 0.2s;
+    }
+    .footer-link:hover {
+      opacity: 0.8;
+    }
   </style>
 </head>
 <body>
@@ -448,6 +469,11 @@
       </div>
     </div>
   </div>
+
+  <footer class="footer">
+    <a href="https://github.com/davras5/transaction-immo" class="footer-link" target="_blank" rel="noopener noreferrer">Quellcode</a>
+    <a href="https://www.admin.ch/gov/de/start/rechtliches.html" class="footer-link" target="_blank" rel="noopener noreferrer">Rechtliches</a>
+  </footer>
 
   <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2aWRyYXNuZXI1IiwiYSI6ImNtMm5yamVkdjA5MDcycXMyZ2I2MHRhamgifQ.m651j7WIX7MyxNh8KIQ1Gg';
