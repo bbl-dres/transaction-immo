@@ -1370,15 +1370,14 @@
     }
 
     function flyToProperty(id) {
-      const numId = Number(id);
-      const prop = properties.find(p => p.id === numId);
+      const prop = properties.find(p => p.id === id);
       if (!prop || !prop.lat || !prop.lng) return;
       document.querySelectorAll('.map-sidebar-item').forEach(item => {
         item.classList.remove('active');
-        if (Number(item.dataset.id) === numId) item.classList.add('active');
+        if (item.dataset.id === id) item.classList.add('active');
       });
       document.querySelectorAll('.marker').forEach(m => m.classList.remove('selected'));
-      const md = markersMap.get(numId);
+      const md = markersMap.get(id);
       if (md) {
         md.marker.getElement().classList.add('selected');
         map.flyTo({ center: [prop.lng, prop.lat], zoom: 13, duration: 1500 });
@@ -1557,8 +1556,7 @@
     }
 
     function openDetailPage(id) {
-      const numId = Number(id);
-      const prop = properties.find(p => p.id === numId);
+      const prop = properties.find(p => p.id === id);
       if (!prop) return;
 
       // Update URL
@@ -1831,7 +1829,7 @@
       const id = params.get('id');
 
       if (view === 'detail' && id) {
-        const prop = properties.find(p => p.id === Number(id));
+        const prop = properties.find(p => p.id === id);
         if (prop) {
           renderDetailPage(prop);
         }
@@ -1862,7 +1860,7 @@
         // Check if detail view should be opened from URL
         const params = getUrlParams();
         if (params.view === 'detail' && params.id) {
-          const prop = properties.find(p => p.id === Number(params.id));
+          const prop = properties.find(p => p.id === params.id);
           if (prop) {
             renderDetailPage(prop);
           }

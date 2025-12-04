@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "a1b2c3d4-1001-4000-8000-000000000001",
     "econUnit": "3103",
     "bldgNum": "SB",
     "title": "Au, Industriestrasse 40, Schopf",
@@ -33,7 +33,7 @@
     "lng": 9.64
   },
   {
-    "id": 2,
+    "id": "a1b2c3d4-1001-4000-8000-000000000002",
     "econUnit": "3103",
     "bldgNum": "WB",
     "title": "Zürich, Freilagerstrasse 12, EFH",
@@ -66,7 +66,7 @@
     "lng": 8.5417
   },
   {
-    "id": 3,
+    "id": "a1b2c3d4-1001-4000-8000-000000000003",
     "econUnit": "3179",
     "bldgNum": "DW",
     "title": "Dörflingen, Hauptstrasse 25, EFH",
@@ -99,7 +99,7 @@
     "lng": 8.7714
   },
   {
-    "id": 4,
+    "id": "a1b2c3d4-1001-4000-8000-000000000004",
     "econUnit": "3337",
     "bldgNum": "BA",
     "title": "Rafz, Bahnhofstrasse 8, EFH",
@@ -132,7 +132,7 @@
     "lng": 8.5378
   },
   {
-    "id": 5,
+    "id": "a1b2c3d4-1001-4000-8000-000000000005",
     "econUnit": "3337",
     "bldgNum": "BB",
     "title": "Rafz, Bahnhofstrasse 10, Sonderobjekt",
@@ -165,7 +165,7 @@
     "lng": 8.5381
   },
   {
-    "id": 6,
+    "id": "a1b2c3d4-1001-4000-8000-000000000006",
     "econUnit": "3337",
     "bldgNum": "GR",
     "title": "Rafz, Industrieweg 3, Technische Anlage",
@@ -198,7 +198,7 @@
     "lng": 8.5402
   },
   {
-    "id": 7,
+    "id": "a1b2c3d4-1001-4000-8000-000000000007",
     "econUnit": "3352",
     "bldgNum": "SB",
     "title": "Schaffhausen, Rheinweg 45, EFH",
@@ -231,7 +231,7 @@
     "lng": 8.6341
   },
   {
-    "id": 8,
+    "id": "a1b2c3d4-1001-4000-8000-000000000008",
     "econUnit": "3815",
     "bldgNum": "AA",
     "title": "Wasterkingen, Badener Landstrasse 101, EFH",
@@ -264,7 +264,7 @@
     "lng": 8.4694
   },
   {
-    "id": 9,
+    "id": "a1b2c3d4-1001-4000-8000-000000000009",
     "econUnit": "4001",
     "bldgNum": "HP",
     "title": "Basel, Steinenvorstadt 22, Bürogebäude",
@@ -297,7 +297,7 @@
     "lng": 7.5890
   },
   {
-    "id": 10,
+    "id": "a1b2c3d4-1001-4000-8000-000000000010",
     "econUnit": "4002",
     "bldgNum": "HP",
     "title": "Bern, Bundesgasse 15, Mehrfamilienhaus",
@@ -330,7 +330,7 @@
     "lng": 7.4474
   },
   {
-    "id": 11,
+    "id": "a1b2c3d4-1001-4000-8000-000000000011",
     "econUnit": "4003",
     "bldgNum": "HP",
     "title": "Luzern, Pilatusstrasse 8, Geschäftshaus",
