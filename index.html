@@ -487,12 +487,20 @@
     /* Info Row - 3 columns */
     .detail-info {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1.3fr 1fr 1.1fr;
       gap: 32px;
       padding: 24px 0;
     }
     .detail-info-section {
       padding: 0;
+    }
+    .detail-section-header {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--neutral-400);
+      margin-bottom: 12px;
+      font-weight: 500;
     }
 
     /* Title Section */
@@ -509,19 +517,19 @@
     }
     .detail-areas {
       display: flex;
-      gap: 24px;
+      gap: 28px;
       margin-top: 16px;
     }
     .detail-area {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      flex-direction: column;
+      gap: 2px;
     }
     .detail-area-icon {
-      color: var(--neutral-500);
-      font-size: 20px;
+      display: none;
     }
     .detail-area-value {
+      font-size: 16px;
       font-weight: 600;
       color: var(--neutral-900);
     }
@@ -545,50 +553,52 @@
     }
 
     /* Status Section */
+    .detail-status-section .detail-status-item {
+      margin-bottom: 16px;
+    }
+    .detail-status-section .detail-status-item:last-child {
+      margin-bottom: 0;
+    }
     .detail-status-section .detail-label {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--neutral-500);
       margin-bottom: 4px;
     }
     .detail-status-section .detail-value {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--neutral-900);
       font-weight: 500;
-      margin-bottom: 12px;
-    }
-    .detail-status-section .detail-value:last-child {
-      margin-bottom: 0;
     }
 
     /* Price Section */
     .detail-price-main {
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--neutral-900);
-      margin-bottom: 4px;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent-600);
+      margin-bottom: 6px;
     }
     .detail-price-sqm {
       font-size: 13px;
       color: var(--neutral-500);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
-    .detail-price-table {
+    .detail-price-cards {
+      display: flex;
+      gap: 24px;
+    }
+    .detail-price-card {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 2px;
     }
-    .detail-price-row {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 16px;
-      font-size: 14px;
-    }
-    .detail-price-row-label {
-      color: var(--neutral-500);
-    }
-    .detail-price-row-value {
+    .detail-price-card-value {
+      font-size: 16px;
+      font-weight: 600;
       color: var(--neutral-900);
-      font-weight: 500;
+    }
+    .detail-price-card-label {
+      font-size: 13px;
+      color: var(--neutral-500);
     }
 
     /* Tabs */
@@ -1616,26 +1626,33 @@
 
             <!-- Status -->
             <div class="detail-info-section detail-status-section">
-              <div class="detail-label">Meilenstein</div>
-              <div class="detail-value">${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</div>
-              <div class="detail-label">Geplanter Verkaufsjahr</div>
-              <div class="detail-value">${prop.year}</div>
-              <div class="detail-label">Priorisierung</div>
-              <div class="detail-value">${getPriorityLabel(prop.priority, prop.priorityLabel)}</div>
+              <div class="detail-status-item">
+                <div class="detail-label">Meilenstein</div>
+                <div class="detail-value">${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</div>
+              </div>
+              <div class="detail-status-item">
+                <div class="detail-label">Geplanter Verkaufsjahr</div>
+                <div class="detail-value">${prop.year}</div>
+              </div>
+              <div class="detail-status-item">
+                <div class="detail-label">Priorisierung</div>
+                <div class="detail-value">${getPriorityLabel(prop.priority, prop.priorityLabel)}</div>
+              </div>
             </div>
 
             <!-- Price -->
             <div class="detail-info-section">
+              <div class="detail-section-header">Bewertung</div>
               <div class="detail-price-main">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
               <div class="detail-price-sqm">${formatCHF(pricePerSqm(prop.valueMin, prop.areaGF))} - ${formatCHF(pricePerSqm(prop.valueMax, prop.areaGF))} / m² GF</div>
-              <div class="detail-price-table">
-                <div class="detail-price-row">
-                  <span class="detail-price-row-label">Aktueller Buchwert</span>
-                  <span class="detail-price-row-value">${formatCHF(prop.bookValue)}</span>
+              <div class="detail-price-cards">
+                <div class="detail-price-card">
+                  <span class="detail-price-card-value">${formatCHF(prop.bookValue)}</span>
+                  <span class="detail-price-card-label">Aktueller Buchwert</span>
                 </div>
-                <div class="detail-price-row">
-                  <span class="detail-price-row-label">Anschaffungswert</span>
-                  <span class="detail-price-row-value">${formatCHF(prop.acquisitionValue)}</span>
+                <div class="detail-price-card">
+                  <span class="detail-price-card-value">${formatCHF(prop.acquisitionValue)}</span>
+                  <span class="detail-price-card-label">Anschaffungswert</span>
                 </div>
               </div>
             </div>
