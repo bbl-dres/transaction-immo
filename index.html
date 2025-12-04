@@ -375,9 +375,9 @@
     <div class="view-container" id="listView">
       <div class="stats-boxes" id="statsBoxes">
         <div class="stats-box"><div class="stats-box-value" id="statsTotalObjects">0</div><div class="stats-box-label">Anzahl Objekte</div></div>
-        <div class="stats-box"><div class="stats-box-value" id="statsHighPriority">0</div><div class="stats-box-label">Hohe Priorität (0)</div></div>
-        <div class="stats-box"><div class="stats-box-value" id="statsNormalPriority">0</div><div class="stats-box-label">Normale Priorität (1)</div></div>
-        <div class="stats-box"><div class="stats-box-value" id="statsLowPriority">0</div><div class="stats-box-label">Geringe Priorität (2)</div></div>
+        <div class="stats-box"><div class="stats-box-value" id="statsHighPriority">0</div><div class="stats-box-label">Hohe Priorität</div></div>
+        <div class="stats-box"><div class="stats-box-value" id="statsNormalPriority">0</div><div class="stats-box-label">Normale Priorität</div></div>
+        <div class="stats-box"><div class="stats-box-value" id="statsLowPriority">0</div><div class="stats-box-label">Geringe Priorität</div></div>
         <div class="stats-box stats-box-download" onclick="exportToExcel()"><span class="material-icons-outlined">download</span><div class="stats-box-label">Excel Download</div></div>
       </div>
       <div class="list-table-container">
@@ -825,12 +825,16 @@
     function renderListView() {
       const data = getDataToRender();
       document.getElementById('objectCount').textContent = data.length;
-      const stats = { total: data.length, 0: 0, 1: 0, 2: 0 };
-      data.forEach(p => { if (stats.hasOwnProperty(p.priority)) stats[p.priority]++; });
+      const stats = { total: data.length, high: 0, normal: 0, low: 0 };
+      data.forEach(p => {
+        if (p.priorityLabel === 'Hohe Priorität') stats.high++;
+        else if (p.priorityLabel === 'Normale Priorität') stats.normal++;
+        else if (p.priorityLabel === 'Geringe Priorität') stats.low++;
+      });
       document.getElementById('statsTotalObjects').textContent = stats.total;
-      document.getElementById('statsHighPriority').textContent = stats[0];
-      document.getElementById('statsNormalPriority').textContent = stats[1];
-      document.getElementById('statsLowPriority').textContent = stats[2];
+      document.getElementById('statsHighPriority').textContent = stats.high;
+      document.getElementById('statsNormalPriority').textContent = stats.normal;
+      document.getElementById('statsLowPriority').textContent = stats.low;
 
       const tbody = document.getElementById('listTableBody');
       tbody.innerHTML = data.map(prop => `
