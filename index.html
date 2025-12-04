@@ -1867,6 +1867,9 @@
     });
 
     // --- INIT ---
+    // Save original URL params BEFORE they get overwritten by setView() -> updateUrlParams()
+    const initialParams = getUrlParams();
+
     setupFilterModal();
     setupSearch();
     setupViewToggle();
@@ -1881,10 +1884,9 @@
         extractFilterOptions();
         applyFilters();
 
-        // Check if detail view should be opened from URL
-        const params = getUrlParams();
-        if (params.view === 'detail' && params.id) {
-          const prop = properties.find(p => p.id === params.id);
+        // Check if detail view should be opened from URL (use saved params, not current URL)
+        if (initialParams.view === 'detail' && initialParams.id) {
+          const prop = properties.find(p => p.id === initialParams.id);
           if (prop) {
             await renderDetailPage(prop);
           }
