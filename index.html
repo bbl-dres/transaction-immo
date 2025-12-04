@@ -568,12 +568,6 @@
     }
 
     /* Price Section */
-    .detail-price-main {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--accent-600);
-      margin-bottom: 6px;
-    }
     .detail-price-sqm {
       font-size: 13px;
       color: var(--neutral-500);
@@ -660,14 +654,14 @@
       border-bottom: 1px solid var(--neutral-200);
     }
     .detail-data-label {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--neutral-500);
       margin-bottom: 4px;
     }
     .detail-data-value {
-      font-size: 14px;
+      font-size: 16px;
       color: var(--neutral-900);
-      font-weight: 500;
+      font-weight: 600;
     }
 
     /* Switzerland Map */
@@ -1625,8 +1619,8 @@
             </div>
 
             <!-- Price -->
-            <div class="detail-info-section">
-              <div class="detail-price-main">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
+            <div class="detail-info-section detail-title-section">
+              <h1>${formatPriceRange(prop.valueMin, prop.valueMax)}</h1>
               <div class="detail-price-sqm">${formatCHF(pricePerSqm(prop.valueMin, prop.areaGF))} - ${formatCHF(pricePerSqm(prop.valueMax, prop.areaGF))} / m² GF</div>
               <div class="detail-price-cards">
                 <div class="detail-price-card">
