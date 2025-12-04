@@ -905,9 +905,15 @@
             <div class="card-label">${prop.id} ${prop.type}</div>
             <div class="card-location">In ${prop.zip} ${prop.city}</div>
             <div class="card-price">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
+            <div class="card-price-sqm">CHF ${pricePerSqm(prop.valueMin, prop.areaGF)} - CHF ${pricePerSqm(prop.valueMax, prop.areaGF)} / m² GF</div>
             <div class="card-details">
-              <span class="card-detail-label">Jahr:</span><span class="card-detail-value">${prop.year}</span>
-              <span class="card-detail-label">Fläche:</span><span class="card-detail-value">${prop.areaGF} m²</span>
+              <span class="card-detail-label">Verkaufsjahr:</span><span class="card-detail-value">${prop.year}</span>
+              <span class="card-detail-label">Geschossfläche GF:</span><span class="card-detail-value">${prop.areaGF} m²</span>
+              <span class="card-detail-label">Buchwert:</span><span class="card-detail-value">${formatCHF(prop.bookValue)}</span>
+            </div>
+            <div class="card-milestone">
+              <div class="milestone-bar"><div class="milestone-progress" style="width: ${(prop.milestone.current / prop.milestone.total) * 100}%"></div></div>
+              <div class="milestone-text">Meilenstein ${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</div>
             </div>
           </div>
         </div>`).join('');
