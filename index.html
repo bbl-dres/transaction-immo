@@ -74,7 +74,11 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
       background-color: var(--neutral-100); color: var(--neutral-900); line-height: 1.5;
-      display: flex; flex-direction: column; height: 100%;
+      display: flex; flex-direction: column; min-height: 100%;
+    }
+    /* Map view: lock viewport height to prevent footer overlap */
+    body:has(.map-container.active) {
+      height: 100%; max-height: 100vh; overflow: hidden;
     }
 
     /* --- Header --- */
@@ -276,7 +280,7 @@
     /* --- MAP VIEW & SIDEBAR FIXES --- */
     .map-container {
         display: none; width: 100%;
-        height: calc(100vh - 180px); min-height: 500px;
+        flex: 1; min-height: 500px;
         background: var(--neutral-50); border-radius: 8px; overflow: hidden;
         box-shadow: var(--shadow-md);
     }
