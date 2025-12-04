@@ -914,18 +914,10 @@
       display: none;
       height: calc(100vh - 180px);
       min-height: 500px;
-      margin: -24px;
-      margin-top: 0;
     }
 
     .map-container.active {
       display: flex;
-    }
-
-    /* Full width for map view */
-    .main:has(.map-container.active) {
-      max-width: none;
-      padding: 0;
     }
 
     .map-sidebar {
@@ -1591,7 +1583,7 @@
     function initializeMap(data) {
       map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v12',
+        style: 'mapbox://styles/mapbox/light-v11',
         center: [8.2275, 46.8182], // Switzerland center
         zoom: 7
       });
