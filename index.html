@@ -917,28 +917,29 @@
       text-overflow: ellipsis;
     }
 
-    /* Map View */
+    /* Map View - CSS Grid Layout */
     .map-container {
       display: none;
       width: 100%;
       height: 800px;
+      background: white;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     .map-container.active {
-      display: flex;
+      display: grid;
+      grid-template-columns: 280px 1fr;
       width: 100%;
       height: 800px;
     }
 
     .map-sidebar {
-      width: 280px;
+      width: 100%;
       background: white;
       overflow-y: auto;
       border-right: 1px solid #e0e0e0;
-      flex-shrink: 0;
       scrollbar-width: thin;
       scrollbar-color: transparent transparent;
       transition: scrollbar-color 0.3s;
@@ -1021,8 +1022,8 @@
     }
 
     .map-area {
-      width: calc(100% - 280px);
       position: relative;
+      width: 100%;
       height: 100%;
     }
 
@@ -1157,7 +1158,8 @@
     }
 
     @media (max-width: 768px) {
-      .map-container {
+      .map-container.active {
+        display: flex;
         flex-direction: column;
         height: auto;
       }
@@ -1170,6 +1172,7 @@
       }
 
       .map-area {
+        width: 100%;
         height: 400px;
       }
     }
