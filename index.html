@@ -1660,6 +1660,9 @@
             <div class="detail-info-section detail-status-section">
               <div class="detail-status-item">
                 <div class="detail-label">Meilenstein</div>
+                <div class="milestone-bar">
+                  <div class="milestone-progress" style="width: ${(prop.milestone.current / prop.milestone.total) * 100}%"></div>
+                </div>
                 <div class="detail-value">${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</div>
               </div>
             </div>
@@ -1720,26 +1723,18 @@
                   <div class="detail-data-label">Baujahr</div>
                   <div class="detail-data-value">${prop.buildYear || '-'}</div>
                 </div>
-                <div class="detail-data-item">
-                  <div class="detail-data-label">WGS 1984 Breitengrad (LAT)</div>
-                  <div class="detail-data-value">${prop.lat || '-'}</div>
-                </div>
-                <div class="detail-data-item">
-                  <div class="detail-data-label">WGS 1984 Längengrad (LON)</div>
-                  <div class="detail-data-value">${prop.lng || '-'}</div>
-                </div>
               </div>
               <div class="detail-links">
-                <div class="detail-links-title">Verortung</div>
+                <div class="detail-data-label">Verortung</div>
                 <a href="https://www.google.com/maps?q=${prop.lat},${prop.lng}" target="_blank" rel="noopener" class="detail-link">
                   <span class="material-icons-outlined">open_in_new</span>
                   Google Maps
                 </a>
-                <a href="https://www.housing-stat.ch/de/query/egid.html?egid=${prop.egid}" target="_blank" rel="noopener" class="detail-link">
+                <a href="https://map.geo.admin.ch/#/map?lang=de&swisssearch=${prop.lng},${prop.lat}&swisssearch_autoselect=true&z=12&topic=ech&layers=ch.swisstopo.amtliches-strassenverzeichnis;ch.bfs.gebaeude_wohnungs_register&bgLayer=ch.swisstopo.swissimage" target="_blank" rel="noopener" class="detail-link">
                   <span class="material-icons-outlined">open_in_new</span>
                   Gebäude- und Wohnungsregister
                 </a>
-                <a href="https://oereblex.ch/" target="_blank" rel="noopener" class="detail-link">
+                <a href="https://map.geo.admin.ch/#/map?lang=de&swisssearch=${prop.lng},${prop.lat}&swisssearch_autoselect=true&z=12&topic=ech&layers=ch.swisstopo-vd.stand-oerebkataster&bgLayer=ch.swisstopo.swissimage" target="_blank" rel="noopener" class="detail-link">
                   <span class="material-icons-outlined">open_in_new</span>
                   ÖREB-Kataster
                 </a>
@@ -1828,7 +1823,7 @@
     }
 
     function exportToPdf() {
-      alert('PDF Export - Wird später implementiert');
+      window.print();
     }
 
     // Unified click handler (event delegation for tags, cards, rows, sidebar items)
