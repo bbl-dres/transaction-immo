@@ -20,6 +20,9 @@
       background-color: #f5f5f5;
       color: #333;
       line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     /* Header */
@@ -31,9 +34,7 @@
       align-items: center;
       justify-content: space-between;
       height: 64px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      flex-shrink: 0;
     }
 
     .header-left {
@@ -108,12 +109,17 @@
       max-width: 1440px;
       margin: 0 auto;
       padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
     }
 
     /* Search Section */
     .search-section {
       background: white;
       padding: 16px 0;
+      flex-shrink: 0;
     }
 
     .search-section-inner {
@@ -910,8 +916,8 @@
     /* Map View */
     .map-container {
       display: none;
-      height: calc(100vh - 210px);
-      min-height: 500px;
+      flex: 1;
+      min-height: 0;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
