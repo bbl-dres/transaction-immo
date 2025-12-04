@@ -15,9 +15,7 @@
       padding: 0;
     }
 
-    html {
-      height: 100%;
-    }
+    html { height: 100%; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
@@ -41,1187 +39,282 @@
       flex-shrink: 0;
     }
 
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+    .header-left { display: flex; align-items: center; gap: 16px; }
 
     .logo {
-      width: 32px;
-      height: 32px;
-      background: white;
-      color: #383E54;
+      width: 32px; height: 32px;
+      background: white; color: #383E54;
       border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: bold;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: bold;
     }
 
-    .header-title {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .header-title-main {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .header-title-sub {
-      font-size: 12px;
-      opacity: 0.9;
-    }
-
-    .header-right {
-      display: flex;
-      gap: 16px;
-    }
+    .header-title { display: flex; flex-direction: column; }
+    .header-title-main { font-size: 14px; font-weight: 600; }
+    .header-title-sub { font-size: 12px; opacity: 0.9; }
+    .header-right { display: flex; gap: 16px; }
 
     .btn {
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-size: 14px;
-      cursor: pointer;
-      border: none;
+      padding: 8px 16px; border-radius: 4px;
+      font-size: 14px; cursor: pointer; border: none;
       transition: background-color 0.2s;
     }
-
-    .btn-primary {
-      background-color: #097EAB;
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background-color: #0a8fc2;
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-    }
-
-    .btn-outline:hover {
-      background-color: rgba(255,255,255,0.1);
-    }
+    .btn-primary { background-color: #097EAB; color: white; }
+    .btn-primary:hover { background-color: #0a8fc2; }
+    .btn-outline { background-color: transparent; color: white; border: 1px solid white; }
+    .btn-outline:hover { background-color: rgba(255,255,255,0.1); }
 
     /* Main Content */
     .main {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 24px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-      width: 100%;
+      max-width: 1440px; margin: 0 auto; padding: 24px;
+      flex: 1; display: flex; flex-direction: column; min-height: 0; width: 100%;
     }
 
     /* Search Section */
-    .search-section {
-      background: white;
-      padding: 16px 0;
-      flex-shrink: 0;
-    }
+    .search-section { background: white; padding: 16px 0; flex-shrink: 0; }
+    .search-section-inner { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+    .search-row { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
 
-    .search-section-inner {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .search-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    .search-input-wrapper {
-      flex: 1;
-      position: relative;
-    }
-
+    .search-input-wrapper { flex: 1; position: relative; }
     .search-input-wrapper .material-icons-outlined {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #888;
-      font-size: 20px;
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: #888; font-size: 20px;
     }
-
     .search-input {
-      width: 100%;
-      padding: 12px 16px 12px 44px;
-      border: 1px solid #e0e0e0;
-      border-radius: 6px;
-      font-size: 14px;
+      width: 100%; padding: 12px 16px 12px 44px;
+      border: 1px solid #e0e0e0; border-radius: 6px; font-size: 14px;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
+    .search-input:focus { outline: none; border-color: #00838f; box-shadow: 0 0 0 3px rgba(0,131,143,0.1); }
 
-    .search-input:focus {
-      outline: none;
-      border-color: #00838f;
-      box-shadow: 0 0 0 3px rgba(0,131,143,0.1);
-    }
-
-    .search-input::placeholder {
-      color: #999;
-    }
-
-    .view-toggle {
-      display: flex;
-      background: #f5f5f5;
-      border-radius: 6px;
-      padding: 4px;
-    }
-
+    .view-toggle { display: flex; background: #f5f5f5; border-radius: 6px; padding: 4px; }
     .view-btn {
-      padding: 8px 12px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      border-radius: 4px;
-      color: #666;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 8px 12px; border: none; background: transparent; cursor: pointer;
+      border-radius: 4px; color: #666; display: flex; align-items: center; justify-content: center;
       transition: all 0.2s;
     }
-
-    .view-btn:hover {
-      color: #333;
-    }
-
-    .view-btn.active {
-      background: #383E54;
-      color: white;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    .view-btn .material-icons-outlined {
-      font-size: 20px;
-    }
-
-    .view-btn-label {
-      font-size: 13px;
-      font-weight: 500;
-      margin-left: 6px;
-    }
+    .view-btn:hover { color: #333; }
+    .view-btn.active { background: #383E54; color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .view-btn-label { font-size: 13px; font-weight: 500; margin-left: 6px; }
 
     /* Filter Pills */
-    .filter-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .filter-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
+    .filter-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .filter-pills { display: flex; flex-wrap: wrap; gap: 8px; }
     .filter-pill {
-      padding: 8px 16px;
-      border: 1px solid #e0e0e0;
-      border-radius: 20px;
-      font-size: 13px;
-      background: white;
-      color: #555;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      padding: 8px 16px; border: 1px solid #e0e0e0; border-radius: 20px;
+      font-size: 13px; background: white; color: #555; cursor: pointer;
+      transition: all 0.2s; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px;
     }
-
-    .filter-pill:hover {
-      border-color: #999;
-      background: #f5f5f5;
-    }
-
-    .filter-pill.active {
-      background: #e8e8e8;
-      border-color: #ccc;
-      color: #333;
-    }
-
-    .filter-pill .close-icon {
-      display: none;
-      font-size: 16px;
-      margin-left: 2px;
-      margin-right: -4px;
-    }
-
-    .filter-pill.active .close-icon {
-      display: inline;
-    }
+    .filter-pill:hover { border-color: #999; background: #f5f5f5; }
+    .filter-pill.active { background: #e8e8e8; border-color: #ccc; color: #333; }
+    .filter-pill .close-icon { display: none; font-size: 16px; margin-left: 2px; margin-right: -4px; }
+    .filter-pill.active .close-icon { display: inline; }
 
     .reset-filters {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 6px;
-      border: none;
-      background: transparent;
-      color: #666;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: all 0.2s;
+      display: none; align-items: center; justify-content: center; padding: 6px;
+      border: none; background: transparent; color: #666; cursor: pointer;
+      border-radius: 4px; transition: all 0.2s;
     }
-
-    .reset-filters:hover {
-      background: #f0f0f0;
-      color: #333;
-    }
-
-    .reset-filters.visible {
-      display: flex;
-    }
-
-    .reset-filters .material-icons-outlined {
-      font-size: 20px;
-    }
-
-    .filter-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .stats-count {
-      font-size: 14px;
-      color: #555;
-      font-weight: 600;
-    }
-
+    .reset-filters:hover { background: #f0f0f0; color: #333; }
+    .reset-filters.visible { display: flex; }
+    .filter-right { display: flex; align-items: center; gap: 16px; }
+    .stats-count { font-size: 14px; color: #555; font-weight: 600; }
     .filter-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      border: 1px solid #e0e0e0;
-      border-radius: 20px;
-      background: white;
-      font-size: 13px;
-      color: #555;
-      cursor: pointer;
-      transition: all 0.2s;
+      display: flex; align-items: center; gap: 6px; padding: 8px 16px;
+      border: 1px solid #e0e0e0; border-radius: 20px; background: white;
+      font-size: 13px; color: #555; cursor: pointer; transition: all 0.2s;
     }
-
-    .filter-btn:hover {
-      border-color: #00838f;
-      color: #00838f;
-    }
-
-    .filter-btn .material-icons-outlined {
-      font-size: 18px;
-    }
+    .filter-btn:hover { border-color: #00838f; color: #00838f; }
 
     /* Grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-
-    @media (max-width: 1200px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    @media (max-width: 1200px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
 
     /* Card */
     .card {
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      cursor: pointer;
+      background: white; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); cursor: pointer;
       transition: box-shadow 0.2s, transform 0.2s;
     }
-
-    .card:hover {
-      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-      transform: translateY(-2px);
-    }
-
-    .card-image {
-      position: relative;
-      height: 180px;
-      background-color: #e0e0e0;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .card-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    .card-content {
-      padding: 16px;
-    }
-
-    .card-label {
-      font-size: 15px;
-      font-weight: 600;
-      color: #222;
-      margin-bottom: 4px;
-    }
-
-    .card-location {
-      font-size: 13px;
-      color: #555;
-      margin-bottom: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .card-price {
-      font-size: 15px;
-      font-weight: 600;
-      color: #222;
-      margin-bottom: 2px;
-    }
-
-    .card-price-sqm {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .card-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px 8px;
-      font-size: 13px;
-      margin-bottom: 16px;
-    }
-
-    .card-detail-label {
-      color: #555;
-      font-weight: 500;
-    }
-
-    .card-detail-value {
-      color: #222;
-      text-align: right;
-      font-weight: 500;
-    }
-
-    .card-milestone {
-      padding-top: 12px;
-    }
-
-    .milestone-bar {
-      height: 6px;
-      background: #e0e0e0;
-      border-radius: 3px;
-      overflow: hidden;
-      margin-bottom: 8px;
-    }
-
-    .milestone-progress {
-      height: 100%;
-      background: linear-gradient(90deg, #00838f, #00acc1);
-      border-radius: 3px;
-      transition: width 0.3s;
-    }
-
-    .milestone-text {
-      font-size: 13px;
-      color: #555;
-      font-weight: 500;
-    }
+    .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-2px); }
+    .card-image { position: relative; height: 180px; background-color: #e0e0e0; background-size: cover; background-position: center; }
+    .card-badge { position: absolute; top: 12px; left: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .card-content { padding: 16px; }
+    .card-label { font-size: 15px; font-weight: 600; color: #222; margin-bottom: 4px; }
+    .card-location { font-size: 13px; color: #555; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+    .card-price { font-size: 15px; font-weight: 600; color: #222; margin-bottom: 2px; }
+    .card-price-sqm { font-size: 12px; color: #666; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+    .card-details { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 8px; font-size: 13px; margin-bottom: 16px; }
+    .card-detail-label { color: #555; font-weight: 500; }
+    .card-detail-value { color: #222; text-align: right; font-weight: 500; }
+    .card-milestone { padding-top: 12px; }
+    .milestone-bar { height: 6px; background: #e0e0e0; border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+    .milestone-progress { height: 100%; background: linear-gradient(90deg, #00838f, #00acc1); border-radius: 3px; transition: width 0.3s; }
+    .milestone-text { font-size: 13px; color: #555; font-weight: 500; }
 
     /* Modal */
     .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 40px 20px;
-      z-index: 1000;
-      overflow-y: auto;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5); display: flex; align-items: flex-start; justify-content: center;
+      padding: 40px 20px; z-index: 1000; overflow-y: auto; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
     }
-
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
+    .modal-overlay.active { opacity: 1; visibility: visible; }
     .modal {
-      background: white;
-      border-radius: 8px;
-      width: 100%;
-      max-width: 1000px;
-      max-height: none;
-      overflow: visible;
-      transform: translateY(20px);
-      transition: transform 0.3s;
+      background: white; border-radius: 8px; width: 100%; max-width: 1000px;
+      transform: translateY(20px); transition: transform 0.3s;
     }
-
-    .modal-overlay.active .modal {
-      transform: translateY(0);
-    }
-
+    .modal-overlay.active .modal { transform: translateY(0); }
     .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 24px;
-      border-bottom: 1px solid #eee;
-      background: #f9f9f9;
-      border-radius: 8px 8px 0 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; border-bottom: 1px solid #eee; background: #f9f9f9; border-radius: 8px 8px 0 0;
     }
-
     .modal-back {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: white;
-      border: 1px solid #e0e0e0;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      color: #333;
-    }
-
-    .modal-back:hover {
-      background: #f5f5f5;
-    }
-
-    .modal-breadcrumb {
-      font-size: 14px;
-      color: #666;
-    }
-
-    .modal-body {
-      padding: 24px;
-    }
-
-    /* Detail Layout */
-    .detail-top {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-
-    @media (max-width: 768px) {
-      .detail-top {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .detail-image {
-      height: 300px;
-      background: #e0e0e0;
-      border-radius: 8px;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .detail-summary {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .detail-title {
-      font-size: 24px;
-      font-weight: 600;
-      color: #333;
-    }
-
-    .detail-title span {
-      font-weight: 400;
-      color: #666;
-    }
-
-    .detail-address {
-      font-size: 14px;
-      color: #666;
-    }
-
-    .detail-status {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px;
-      background: #f5f5f5;
-      border-radius: 8px;
-    }
-
-    .detail-status-step {
-      font-size: 18px;
-      font-weight: 600;
-      color: #00838f;
-    }
-
-    .detail-status-info {
-      font-size: 13px;
-      color: #666;
-    }
-
-    .detail-areas {
-      display: flex;
-      gap: 24px;
-    }
-
-    .detail-area {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .detail-area-icon {
-      color: #888;
-    }
-
-    .detail-area-value {
-      font-weight: 600;
-    }
-
-    .detail-area-label {
-      font-size: 13px;
-      color: #666;
-    }
-
-    .detail-price {
-      font-size: 20px;
-      font-weight: 600;
-      color: #333;
-    }
-
-    .detail-price-sqm {
-      font-size: 13px;
-      color: #666;
-    }
-
-    /* Tabs */
-    .tabs {
-      display: flex;
-      border-bottom: 2px solid #eee;
-      margin-bottom: 24px;
-    }
-
-    .tab {
-      padding: 12px 20px;
-      font-size: 14px;
-      color: #666;
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    .tab:hover {
-      color: #333;
-    }
-
-    .tab.active {
-      color: #00838f;
-      border-bottom-color: #00838f;
-      font-weight: 500;
-    }
-
-    /* Detail Sections */
-    .detail-section {
-      margin-bottom: 32px;
-    }
-
-    .detail-section-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      color: #333;
-    }
-
-    .detail-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .detail-item {
-      padding: 12px 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    .detail-item-label {
-      font-size: 12px;
-      color: #888;
-      margin-bottom: 4px;
-    }
-
-    .detail-item-value {
-      font-size: 14px;
-      color: #333;
-      font-weight: 500;
-    }
-
-    /* Market Value */
-    .market-value {
-      background: #f9f9f9;
-      padding: 20px;
-      border-radius: 8px;
-    }
-
-    .market-value-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .market-value-display {
-      font-size: 24px;
-      font-weight: 600;
-      color: #00838f;
-      text-align: center;
-      margin-bottom: 16px;
-    }
-
-    .market-value-bar {
-      position: relative;
-      height: 8px;
-      background: linear-gradient(90deg, #e0e0e0, #00acc1, #00838f);
-      border-radius: 4px;
-      margin-bottom: 8px;
-    }
-
-    .market-value-marker {
-      position: absolute;
-      top: -4px;
-      width: 16px;
-      height: 16px;
-      background: white;
-      border: 3px solid #00838f;
-      border-radius: 50%;
-      transform: translateX(-50%);
-    }
-
-    .market-value-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: #888;
-    }
-
-    /* Placeholder Image */
-    .placeholder-img {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      font-size: 48px;
-    }
-
-    /* Priority Colors */
-    .priority-tag {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    .priority-0 {
-      background-color: #ffebee;
-      color: #c62828;
-    }
-
-    .priority-1 {
-      background-color: #e8f5e9;
-      color: #2e7d32;
-    }
-
-    .priority-2 {
-      background-color: #e3f2fd;
-      color: #1565c0;
-    }
-
-    .priority-3 {
-      background-color: #f5f5f5;
-      color: #616161;
-    }
-
-    .priority-null {
-      background-color: #fafafa;
-      color: #9e9e9e;
-      border: 1px solid #e0e0e0;
-    }
-
-    /* View Containers */
-    .view-container {
-      display: none;
-    }
-
-    .view-container.active {
-      display: block;
-    }
-
-    /* Statistics Boxes */
-    .stats-boxes {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .stats-box {
-      background: white;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    .stats-box-value {
-      font-size: 32px;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 4px;
-    }
-
-    .stats-box-label {
-      font-size: 13px;
-      color: #666;
-    }
-
-    .stats-box-download {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-
-    .stats-box-download:hover {
-      background-color: #f5f5f5;
-    }
-
-    .stats-box-download .material-icons-outlined {
-      font-size: 32px;
-      color: #666;
-      margin-bottom: 4px;
-    }
-
-    @media (max-width: 900px) {
-      .stats-boxes {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .stats-boxes {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* List View Table */
-    .list-table-container {
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    .list-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .list-table th {
-      background: #f9f9f9;
-      padding: 14px 16px;
-      text-align: left;
-      font-size: 13px;
-      font-weight: 600;
-      color: #555;
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    .list-table td {
-      padding: 14px 16px;
-      font-size: 14px;
-      color: #333;
-      border-bottom: 1px solid #e0e0e0;
-      vertical-align: middle;
-    }
-
-    .list-table tr {
-      cursor: pointer;
-      transition: background-color 0.15s;
-    }
-
-    .list-table tbody tr:hover {
-      background-color: #f5f5f5;
-    }
-
-    .list-table .object-cell {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .list-table .object-icon {
-      color: #888;
-      font-size: 20px;
-    }
-
-    .list-table .milestone-cell {
-      max-width: 180px;
-    }
-
-    .list-table .milestone-text-small {
-      font-size: 12px;
-      color: #666;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* Map View - CSS Grid Layout */
+      display: flex; align-items: center; gap: 8px; background: white; border: 1px solid #e0e0e0;
+      padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; color: #333;
+    }
+    .modal-back:hover { background: #f5f5f5; }
+    .modal-breadcrumb { font-size: 14px; color: #666; }
+    .modal-body { padding: 24px; }
+
+    /* Detail Styles */
+    .detail-top { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+    .detail-image { height: 300px; background: #e0e0e0; border-radius: 8px; background-size: cover; background-position: center; }
+    .detail-summary { display: flex; flex-direction: column; gap: 16px; }
+    .detail-title { font-size: 24px; font-weight: 600; color: #333; }
+    .detail-title span { font-weight: 400; color: #666; }
+    .detail-status { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f5f5f5; border-radius: 8px; }
+    .detail-areas { display: flex; gap: 24px; }
+    .detail-area { display: flex; align-items: center; gap: 8px; }
+    .tabs { display: flex; border-bottom: 2px solid #eee; margin-bottom: 24px; }
+    .tab { padding: 12px 20px; font-size: 14px; color: #666; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+    .tab.active { color: #00838f; border-bottom-color: #00838f; font-weight: 500; }
+    .detail-section { margin-bottom: 32px; }
+    .detail-section-title { font-size: 18px; font-weight: 600; margin-bottom: 16px; color: #333; }
+    .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .detail-item { padding: 12px 0; border-bottom: 1px solid #eee; }
+    .market-value { background: #f9f9f9; padding: 20px; border-radius: 8px; }
+    .market-value-display { font-size: 24px; font-weight: 600; color: #00838f; text-align: center; margin-bottom: 16px; }
+    .market-value-bar { position: relative; height: 8px; background: linear-gradient(90deg, #e0e0e0, #00acc1, #00838f); border-radius: 4px; margin-bottom: 8px; }
+    .market-value-marker { position: absolute; top: -4px; width: 16px; height: 16px; background: white; border: 3px solid #00838f; border-radius: 50%; transform: translateX(-50%); }
+    .market-value-labels { display: flex; justify-content: space-between; font-size: 12px; color: #888; }
+
+    /* Tags */
+    .priority-tag { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+    .priority-0 { background-color: #ffebee; color: #c62828; }
+    .priority-1 { background-color: #e8f5e9; color: #2e7d32; }
+    .priority-2 { background-color: #e3f2fd; color: #1565c0; }
+    .priority-3 { background-color: #f5f5f5; color: #616161; }
+    .priority-null { background-color: #fafafa; color: #9e9e9e; border: 1px solid #e0e0e0; }
+
+    /* Views */
+    .view-container { display: none; }
+    .view-container.active { display: block; }
+
+    /* List View */
+    .stats-boxes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 24px; }
+    .stats-box { background: white; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .stats-box-value { font-size: 32px; font-weight: 600; color: #333; margin-bottom: 4px; }
+    .stats-box-label { font-size: 13px; color: #666; }
+    .list-table-container { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .list-table { width: 100%; border-collapse: collapse; }
+    .list-table th { background: #f9f9f9; padding: 14px 16px; text-align: left; font-size: 13px; font-weight: 600; color: #555; border-bottom: 1px solid #e0e0e0; }
+    .list-table td { padding: 14px 16px; font-size: 14px; color: #333; border-bottom: 1px solid #e0e0e0; vertical-align: middle; }
+    .list-table tbody tr:hover { background-color: #f5f5f5; cursor: pointer; }
+
+    /* ========================================= */
+    /* === MAP VIEW FIXED (CSS GRID LÖSUNG) === */
+    /* ========================================= */
     .map-container {
-      display: none;
-      width: 100%;
-      height: calc(100vh - 180px);
-      min-height: 500px;
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        display: none;
+        width: 100%;
+        /* Höhe füllt den Bildschirm abzüglich Header/Search */
+        height: calc(100vh - 180px);
+        min-height: 500px;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     .map-container.active {
-      display: grid;
-      grid-template-columns: 280px 1fr;
+        /* GRID statt FLEX ist hier der Schlüssel! */
+        display: grid;
+        /* Spalte 1: 280px fix, Spalte 2: Rest */
+        grid-template-columns: 280px 1fr;
     }
 
     .map-sidebar {
-      width: 100%;
-      height: 100%;
-      background: white;
-      overflow-y: auto;
-      border-right: 1px solid #e0e0e0;
-      scrollbar-width: thin;
-      scrollbar-color: transparent transparent;
-      transition: scrollbar-color 0.3s;
-    }
-
-    .map-sidebar:hover {
-      scrollbar-color: rgba(0,0,0,0.3) transparent;
-    }
-
-    .map-sidebar::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .map-sidebar::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .map-sidebar::-webkit-scrollbar-thumb {
-      background-color: transparent;
-      border-radius: 3px;
-      transition: background-color 0.3s;
-    }
-
-    .map-sidebar:hover::-webkit-scrollbar-thumb {
-      background-color: rgba(0,0,0,0.3);
-    }
-
-    .map-sidebar-item {
-      padding: 12px;
-      border-bottom: 1px solid #e0e0e0;
-      cursor: pointer;
-      transition: background-color 0.15s;
-    }
-
-    .map-sidebar-item:hover {
-      background-color: #f5f5f5;
-    }
-
-    .map-sidebar-item.active {
-      background-color: #e3f2fd;
-    }
-
-    .map-sidebar-title {
-      font-size: 14px;
-      font-weight: 500;
-      color: #333;
-      margin-bottom: 8px;
-    }
-
-    .map-sidebar-image {
-      position: relative;
-      width: 100%;
-      height: 100px;
-      background-color: #e0e0e0;
-      background-size: cover;
-      background-position: center;
-      border-radius: 4px;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .map-sidebar-image .material-icons-outlined {
-      font-size: 40px;
-      color: #bbb;
-    }
-
-    .map-sidebar-image .priority-tag {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    .map-sidebar-price {
-      font-size: 13px;
-      font-weight: 600;
-      color: #333;
+        /* Breite wird durch Grid-Zelle bestimmt */
+        width: 100%;
+        height: 100%; /* Füllt die Höhe der Zelle */
+        background: white;
+        overflow-y: auto;
+        border-right: 1px solid #e0e0e0;
+        scrollbar-width: thin;
     }
 
     .map-area {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
+        position: relative;
+        /* Breite wird durch Grid-Zelle bestimmt */
+        width: 100%;
+        height: 100%;
+        background-color: #e0e0e0; /* Debug-Grau */
+        overflow: hidden;
     }
 
     #map {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        width: 100%;
+        height: 100%;
     }
 
-    /* Map Marker Colors */
+    /* Map Marker & Popup */
     .marker {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      border: 2px solid white;
+        width: 30px; height: 30px; border-radius: 50%; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3); border: 2px solid white;
     }
+    .marker-0 { background-color: #e53935; }
+    .marker-1 { background-color: #43a047; }
+    .marker-2 { background-color: #1e88e5; }
+    .marker-3 { background-color: #757575; }
+    .marker-null { background-color: #9e9e9e; }
+    .marker .material-icons { color: white; font-size: 16px; }
+    .marker.selected { border: 3px solid #383E54; transform: scale(1.15); z-index: 10; }
+    
+    .mapboxgl-popup-content { padding: 0; border-radius: 8px; overflow: hidden; min-width: 250px; }
+    .popup-image { height: 120px; background-size: cover; background-position: center; }
+    .popup-content { padding: 12px; }
+    .popup-link { display: block; text-align: center; padding: 8px 12px; background: #383E54; color: white; text-decoration: none; border-radius: 4px; margin-top: 8px; cursor: pointer; }
 
-    .marker-0 {
-      background-color: #e53935;
+    /* Responsive Map */
+    @media (max-width: 900px) {
+        .stats-boxes { grid-template-columns: repeat(3, 1fr); }
     }
-
-    .marker-1 {
-      background-color: #43a047;
-    }
-
-    .marker-2 {
-      background-color: #1e88e5;
-    }
-
-    .marker-3 {
-      background-color: #757575;
-    }
-
-    .marker-null {
-      background-color: #9e9e9e;
-    }
-
-    .marker .material-icons {
-      color: white;
-      font-size: 16px;
-    }
-
-    .marker.selected {
-      border: 3px solid #383E54;
-      box-shadow: 0 0 0 3px rgba(56, 62, 84, 0.3), 0 2px 8px rgba(0,0,0,0.4);
-      transform: scale(1.15);
-      z-index: 10;
-    }
-
-    /* Mapbox Popup */
-    .mapboxgl-popup-content {
-      padding: 0;
-      border-radius: 8px;
-      overflow: hidden;
-      min-width: 250px;
-      max-width: 280px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    }
-
-    .popup-image {
-      height: 120px;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .popup-content {
-      padding: 12px;
-    }
-
-    .popup-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .popup-location {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 8px;
-    }
-
-    .popup-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4px 8px;
-      font-size: 12px;
-      margin-bottom: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .popup-detail-label {
-      color: #888;
-    }
-
-    .popup-detail-value {
-      text-align: right;
-      font-weight: 500;
-    }
-
-    .popup-price {
-      font-size: 14px;
-      font-weight: 600;
-      color: #00838f;
-      margin-bottom: 12px;
-    }
-
-    .popup-link {
-      display: block;
-      text-align: center;
-      padding: 8px 12px;
-      background: #383E54;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      font-size: 13px;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-
-    .popup-link:hover {
-      background: #4a5168;
-    }
-
     @media (max-width: 768px) {
-      .map-container.active {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-      }
-
-      .map-sidebar {
-        width: 100%;
-        max-height: 200px;
-        border-right: none;
-        border-bottom: 1px solid #e0e0e0;
-      }
-
-      .map-area {
-        width: 100%;
-        height: 400px;
-      }
+        .detail-top { grid-template-columns: 1fr; }
+        
+        .map-container.active {
+            /* Mobile: Zurück zu Flex für untereinander */
+            display: flex; 
+            flex-direction: column;
+            height: auto;
+        }
+        .map-sidebar { width: 100%; max-height: 200px; border-right: none; border-bottom: 1px solid #e0e0e0; }
+        .map-area { height: 400px; width: 100%; }
     }
-
-    /* Responsive */
     @media (max-width: 640px) {
-      .header {
-        padding: 12px 16px;
-        height: auto;
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      .modal-body {
-        padding: 16px;
-      }
-
-      .search-section-inner {
-        padding: 0 16px;
-      }
-
-      .search-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .view-toggle {
-        justify-content: center;
-      }
-
-      .filter-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .filter-right {
-        justify-content: space-between;
-      }
-
-      .main {
-        padding: 16px;
-      }
+        .header { padding: 12px 16px; height: auto; flex-wrap: wrap; gap: 12px; }
+        .search-row, .filter-row { flex-direction: column; align-items: stretch; }
+        .grid { grid-template-columns: 1fr; }
+        .stats-boxes { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
     <div class="header-left">
       <div class="logo">C</div>
@@ -1236,7 +329,6 @@
     </div>
   </header>
 
-  <!-- Search & Filter Section -->
   <div class="search-section">
     <div class="search-section-inner">
       <div class="search-row">
@@ -1245,16 +337,9 @@
           <input type="text" class="search-input" id="searchInput" placeholder="Suche nach Bezeichnung, Adresse, oder Wirtschaftseinheit">
         </div>
         <div class="view-toggle">
-          <button class="view-btn" data-view="map" title="Karte">
-            <span class="material-icons-outlined">map</span>
-          </button>
-          <button class="view-btn" data-view="list" title="Liste">
-            <span class="material-icons-outlined">reorder</span>
-            <span class="view-btn-label">Liste</span>
-          </button>
-          <button class="view-btn active" data-view="gallery" title="Galerie">
-            <span class="material-icons-outlined">grid_view</span>
-          </button>
+          <button class="view-btn" data-view="map" title="Karte"><span class="material-icons-outlined">map</span></button>
+          <button class="view-btn" data-view="list" title="Liste"><span class="material-icons-outlined">reorder</span><span class="view-btn-label">Liste</span></button>
+          <button class="view-btn active" data-view="gallery" title="Galerie"><span class="material-icons-outlined">grid_view</span></button>
         </div>
       </div>
       <div class="filter-row">
@@ -1264,72 +349,37 @@
           <button class="filter-pill" data-priority="2">Geringe Priorität (<span id="countPriority2">0</span>)<span class="material-icons-outlined close-icon">close</span></button>
           <button class="filter-pill" data-priority="3">Keine Priorität (<span id="countPriority3">0</span>)<span class="material-icons-outlined close-icon">close</span></button>
           <button class="filter-pill" data-priority="null">Keine Angabe<span class="material-icons-outlined close-icon">close</span></button>
-          <button class="reset-filters" id="resetFilters" title="Alle Filter zurücksetzen">
-            <span class="material-icons-outlined">replay</span>
-          </button>
+          <button class="reset-filters" id="resetFilters" title="Alle Filter zurücksetzen"><span class="material-icons-outlined">replay</span></button>
         </div>
         <div class="filter-right">
           <div class="stats-count"><span id="objectCount">0</span> Objekte</div>
-          <button class="filter-btn">
-            <span>Filter</span>
-            <span class="material-icons-outlined">tune</span>
-          </button>
+          <button class="filter-btn"><span>Filter</span><span class="material-icons-outlined">tune</span></button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Main Content -->
   <main class="main">
-    <!-- Gallery View -->
     <div class="view-container active" id="galleryView">
       <div class="grid" id="objectGrid"></div>
     </div>
 
-    <!-- List View -->
     <div class="view-container" id="listView">
       <div class="stats-boxes" id="statsBoxes">
-        <div class="stats-box">
-          <div class="stats-box-value" id="statsTotalObjects">0</div>
-          <div class="stats-box-label">Anzahl Objekte</div>
-        </div>
-        <div class="stats-box">
-          <div class="stats-box-value" id="statsHighPriority">0</div>
-          <div class="stats-box-label">Anzahl Hohe Priorität (0)</div>
-        </div>
-        <div class="stats-box">
-          <div class="stats-box-value" id="statsNormalPriority">0</div>
-          <div class="stats-box-label">Anzahl Normale Priorität (1)</div>
-        </div>
-        <div class="stats-box">
-          <div class="stats-box-value" id="statsLowPriority">0</div>
-          <div class="stats-box-label">Anzahl Geringe Priorität (2)</div>
-        </div>
-        <div class="stats-box stats-box-download" onclick="exportToExcel()">
-          <span class="material-icons-outlined">download</span>
-          <div class="stats-box-label">Excel Download</div>
-        </div>
+        <div class="stats-box"><div class="stats-box-value" id="statsTotalObjects">0</div><div class="stats-box-label">Anzahl Objekte</div></div>
+        <div class="stats-box"><div class="stats-box-value" id="statsHighPriority">0</div><div class="stats-box-label">Hohe Priorität (0)</div></div>
+        <div class="stats-box"><div class="stats-box-value" id="statsNormalPriority">0</div><div class="stats-box-label">Normale Priorität (1)</div></div>
+        <div class="stats-box"><div class="stats-box-value" id="statsLowPriority">0</div><div class="stats-box-label">Geringe Priorität (2)</div></div>
+        <div class="stats-box stats-box-download" onclick="exportToExcel()"><span class="material-icons-outlined">download</span><div class="stats-box-label">Excel Download</div></div>
       </div>
       <div class="list-table-container">
         <table class="list-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>ID</th>
-              <th>Objekt</th>
-              <th>Verkaufsjahr</th>
-              <th>Priorisierung</th>
-              <th>Meilenstein</th>
-              <th>Objekt Fläche</th>
-              <th>Marktwert</th>
-            </tr>
-          </thead>
+          <thead><tr><th></th><th>ID</th><th>Objekt</th><th>Verkaufsjahr</th><th>Priorisierung</th><th>Meilenstein</th><th>Objekt Fläche</th><th>Marktwert</th></tr></thead>
           <tbody id="listTableBody"></tbody>
         </table>
       </div>
     </div>
 
-    <!-- Map View -->
     <div class="map-container" id="mapView">
       <div class="map-sidebar" id="mapSidebar"></div>
       <div class="map-area">
@@ -1338,13 +388,10 @@
     </div>
   </main>
 
-  <!-- Modal -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
       <div class="modal-header">
-        <button class="modal-back" onclick="closeModal()">
-          ← Zurück zur Übersicht
-        </button>
+        <button class="modal-back" onclick="closeModal()">← Zurück zur Übersicht</button>
         <span class="modal-breadcrumb" id="modalBreadcrumb"></span>
       </div>
       <div class="modal-body" id="modalBody"></div>
@@ -1352,10 +399,8 @@
   </div>
 
   <script>
-    // Mapbox Access Token
     mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2aWRyYXNuZXI1IiwiYSI6ImNtMm5yamVkdjA5MDcycXMyZ2I2MHRhamgifQ.m651j7WIX7MyxNh8KIQ1Gg';
 
-    // Data will be loaded from data.json
     let properties = [];
     let filteredProperties = [];
     let activeFilters = new Set();
@@ -1363,46 +408,25 @@
     let currentView = 'gallery';
     let map = null;
     let markers = [];
+    let markersMap = new Map();
 
-    // URL Parameter handling
     function getUrlParams() {
       const params = new URLSearchParams(window.location.search);
-      return {
-        priority: params.get('priority'),
-        search: params.get('q'),
-        view: params.get('view')
-      };
+      return { priority: params.get('priority'), search: params.get('q'), view: params.get('view') };
     }
 
     function updateUrlParams() {
       const params = new URLSearchParams();
-
-      if (currentView !== 'gallery') {
-        params.set('view', currentView);
-      }
-
-      if (activeFilters.size > 0) {
-        params.set('priority', Array.from(activeFilters).join(','));
-      }
-
-      if (searchQuery) {
-        params.set('q', searchQuery);
-      }
-
-      const newUrl = params.toString()
-        ? `${window.location.pathname}?${params.toString()}`
-        : window.location.pathname;
-
+      if (currentView !== 'gallery') params.set('view', currentView);
+      if (activeFilters.size > 0) params.set('priority', Array.from(activeFilters).join(','));
+      if (searchQuery) params.set('q', searchQuery);
+      const newUrl = params.toString() ? `${window.location.pathname}?${params.toString()}` : window.location.pathname;
       window.history.replaceState({}, '', newUrl);
     }
 
     function loadFiltersFromUrl() {
       const params = getUrlParams();
-
-      if (params.view && ['gallery', 'list', 'map'].includes(params.view)) {
-        currentView = params.view;
-      }
-
+      if (params.view && ['gallery', 'list', 'map'].includes(params.view)) currentView = params.view;
       if (params.priority) {
         params.priority.split(',').forEach(p => {
           activeFilters.add(p);
@@ -1410,182 +434,73 @@
           if (pill) pill.classList.add('active');
         });
       }
-
       if (params.search) {
         searchQuery = params.search;
         document.getElementById('searchInput').value = searchQuery;
       }
     }
 
-    // Get priority class for styling
-    function getPriorityClass(priority) {
-      if (priority === null || priority === undefined) return 'priority-null';
-      return `priority-${priority}`;
-    }
+    function getPriorityClass(priority) { return (priority === null || priority === undefined) ? 'priority-null' : `priority-${priority}`; }
+    function getPriorityLabel(priority, priorityLabel) { return (priority === null || priority === undefined) ? 'Keine Angabe' : `${priorityLabel} (${priority})`; }
+    function formatCHF(value) { return (!value) ? 'CHF 0' : 'CHF ' + value.toLocaleString('de-CH').replace(/,/g, "'"); }
+    function formatPriceRange(min, max) { return ((!min) && (!max)) ? 'CHF 0 - CHF 0' : formatCHF(min) + ' - ' + formatCHF(max); }
+    function pricePerSqm(price, area) { return (!price || !area) ? 0 : Math.round(price / area); }
 
-    // Get priority label
-    function getPriorityLabel(priority, priorityLabel) {
-      if (priority === null || priority === undefined) return 'Keine Angabe';
-      return `${priorityLabel} (${priority})`;
-    }
-
-    // Format currency with Swiss formatting
-    function formatCHF(value) {
-      if (!value || value === 0) return 'CHF 0';
-      return 'CHF ' + value.toLocaleString('de-CH').replace(/,/g, "'");
-    }
-
-    // Format price range
-    function formatPriceRange(min, max) {
-      if ((!min || min === 0) && (!max || max === 0)) return 'CHF 0 - CHF 0';
-      return formatCHF(min) + ' - ' + formatCHF(max);
-    }
-
-    // Calculate price per sqm
-    function pricePerSqm(price, area) {
-      if (!price || !area || area === 0) return 0;
-      return Math.round(price / area);
-    }
-
-    // Get Unsplash placeholder image based on property type
     function getPlaceholderImage(type, id) {
-      // Use consistent images based on property ID for variety
       const hash = id.split('').reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0);
-      const imageIndex = Math.abs(hash) % 10;
-
-      const imageCollections = {
-        'Einfamilienhaus': [
-          'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1598228723793-52759bba239c?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1449844908441-8829872d2607?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=400&h=300&fit=crop'
-        ],
-        'Sonderobjekt': [
-          'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop'
-        ],
-        'Technische Anlage': [
-          'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1518173946687-a4c036bc8bf6?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1565715101461-c8e04c4fd94d?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1595409577993-4e58dff12a6b?w=400&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400&h=300&fit=crop'
-        ]
-      };
-
-      const images = imageCollections[type] || imageCollections['Sonderobjekt'];
-      return images[imageIndex % images.length];
+      const imageIndex = Math.abs(hash) % 5;
+      // Kurze Liste für Stabilität
+      const images = ['https://images.unsplash.com/photo-1568605114967-8130f3a36994', 'https://images.unsplash.com/photo-1570129477492-45c003edd2be', 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6', 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab', 'https://images.unsplash.com/photo-1581094794329-c8112a89af12'];
+      return images[imageIndex] + '?w=400&h=300&fit=crop';
     }
 
-    // Update priority counts
     function updatePriorityCounts() {
       const counts = { 0: 0, 1: 0, 2: 0, 3: 0 };
-      properties.forEach(prop => {
-        if (counts.hasOwnProperty(prop.priority)) {
-          counts[prop.priority]++;
-        }
-      });
-
+      properties.forEach(prop => { if (counts.hasOwnProperty(prop.priority)) counts[prop.priority]++; });
       for (let i = 0; i <= 3; i++) {
         const el = document.getElementById(`countPriority${i}`);
         if (el) el.textContent = counts[i];
       }
     }
 
-    // Update reset button visibility
     function updateResetButtonVisibility() {
       const resetBtn = document.getElementById('resetFilters');
-      if (activeFilters.size > 0 || searchQuery) {
-        resetBtn.classList.add('visible');
-      } else {
-        resetBtn.classList.remove('visible');
-      }
+      (activeFilters.size > 0 || searchQuery) ? resetBtn.classList.add('visible') : resetBtn.classList.remove('visible');
     }
 
-    // Reset all filters
     function resetAllFilters() {
-      activeFilters.clear();
-      searchQuery = '';
+      activeFilters.clear(); searchQuery = '';
       document.getElementById('searchInput').value = '';
-      document.querySelectorAll('.filter-pill').forEach(pill => {
-        pill.classList.remove('active');
-      });
+      document.querySelectorAll('.filter-pill').forEach(pill => pill.classList.remove('active'));
       applyFilters();
     }
 
-    // Apply filters
     function applyFilters() {
       filteredProperties = properties.filter(prop => {
-        // Search filter
         if (searchQuery) {
           const query = searchQuery.toLowerCase();
-          const searchFields = [
-            prop.id,
-            prop.title,
-            prop.type,
-            prop.city,
-            prop.zip,
-            prop.address,
-            prop.canton
-          ].map(f => (f || '').toLowerCase());
-
-          if (!searchFields.some(field => field.includes(query))) {
-            return false;
-          }
+          const searchFields = [prop.id, prop.title, prop.type, prop.city, prop.zip, prop.address, prop.canton].map(f => (f || '').toLowerCase());
+          if (!searchFields.some(field => field.includes(query))) return false;
         }
-
-        // Priority filter
-        if (activeFilters.size > 0) {
-          return activeFilters.has(String(prop.priority));
-        }
-
+        if (activeFilters.size > 0) return activeFilters.has(String(prop.priority));
         return true;
       });
 
-      // Render based on current view
-      if (currentView === 'gallery') {
-        renderCards();
-      } else if (currentView === 'list') {
-        renderListView();
-      } else if (currentView === 'map') {
-        renderMapView();
-      }
+      if (currentView === 'gallery') renderCards();
+      else if (currentView === 'list') renderListView();
+      else if (currentView === 'map') renderMapView();
 
       updateUrlParams();
       updateResetButtonVisibility();
     }
 
-    // Get data to render based on filters
-    function getDataToRender() {
-      return filteredProperties.length > 0 || activeFilters.size > 0 || searchQuery ? filteredProperties : properties;
-    }
+    function getDataToRender() { return (filteredProperties.length > 0 || activeFilters.size > 0 || searchQuery) ? filteredProperties : properties; }
 
-    // Render gallery cards
     function renderCards() {
       const grid = document.getElementById('objectGrid');
-      const dataToRender = getDataToRender();
-      document.getElementById('objectCount').textContent = dataToRender.length;
-
-      grid.innerHTML = dataToRender.map(prop => `
+      const data = getDataToRender();
+      document.getElementById('objectCount').textContent = data.length;
+      grid.innerHTML = data.map(prop => `
         <div class="card" onclick="openModal('${prop.id}')">
           <div class="card-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')">
             <span class="card-badge priority-tag ${getPriorityClass(prop.priority)}">${getPriorityLabel(prop.priority, prop.priorityLabel)}</span>
@@ -1594,238 +509,130 @@
             <div class="card-label">${prop.id} ${prop.type}</div>
             <div class="card-location">In ${prop.zip} ${prop.city}</div>
             <div class="card-price">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
-            <div class="card-price-sqm">${formatCHF(pricePerSqm(prop.valueMin, prop.areaGF))} - ${formatCHF(pricePerSqm(prop.valueMax, prop.areaGF))} / m² GF</div>
             <div class="card-details">
-              <span class="card-detail-label">Verkaufsjahr:</span>
-              <span class="card-detail-value">${prop.year}</span>
-              <span class="card-detail-label">Geschossfläche GF:</span>
-              <span class="card-detail-value">${prop.areaGF} m²</span>
-              <span class="card-detail-label">Buchwert:</span>
-              <span class="card-detail-value">${formatCHF(prop.bookValue)}</span>
-            </div>
-            <div class="card-milestone">
-              <div class="milestone-bar">
-                <div class="milestone-progress" style="width: ${(prop.milestone.current / prop.milestone.total) * 100}%"></div>
-              </div>
-              <div class="milestone-text">Meilenstein ${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</div>
+              <span class="card-detail-label">Jahr:</span><span class="card-detail-value">${prop.year}</span>
+              <span class="card-detail-label">Fläche:</span><span class="card-detail-value">${prop.areaGF} m²</span>
             </div>
           </div>
-        </div>
-      `).join('');
+        </div>`).join('');
     }
 
-    // Render list view
     function renderListView() {
-      const dataToRender = getDataToRender();
-      document.getElementById('objectCount').textContent = dataToRender.length;
-
-      // Update stats boxes
-      const stats = { total: dataToRender.length, 0: 0, 1: 0, 2: 0 };
-      dataToRender.forEach(prop => {
-        if (stats.hasOwnProperty(prop.priority)) {
-          stats[prop.priority]++;
-        }
-      });
-
+      const data = getDataToRender();
+      document.getElementById('objectCount').textContent = data.length;
+      const stats = { total: data.length, 0: 0, 1: 0, 2: 0 };
+      data.forEach(p => { if (stats.hasOwnProperty(p.priority)) stats[p.priority]++; });
       document.getElementById('statsTotalObjects').textContent = stats.total;
       document.getElementById('statsHighPriority').textContent = stats[0];
       document.getElementById('statsNormalPriority').textContent = stats[1];
       document.getElementById('statsLowPriority').textContent = stats[2];
 
-      // Render table
       const tbody = document.getElementById('listTableBody');
-      tbody.innerHTML = dataToRender.map(prop => `
+      tbody.innerHTML = data.map(prop => `
         <tr onclick="openModal('${prop.id}')">
           <td><span class="material-icons-outlined object-icon">home</span></td>
           <td>${prop.id}</td>
-          <td class="object-cell">${prop.type} in ${prop.zip} ${prop.city}</td>
+          <td>${prop.type} in ${prop.zip} ${prop.city}</td>
           <td>${prop.year}</td>
           <td><span class="priority-tag ${getPriorityClass(prop.priority)}">${getPriorityLabel(prop.priority, prop.priorityLabel)}</span></td>
-          <td class="milestone-cell">
-            <div class="milestone-text-small">${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</div>
-          </td>
-          <td>GF ${prop.areaGF} m²</td>
+          <td>${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</td>
+          <td>${prop.areaGF} m²</td>
           <td>${formatPriceRange(prop.valueMin, prop.valueMax)}</td>
-        </tr>
-      `).join('');
+        </tr>`).join('');
     }
 
-    // Render map view
     function renderMapView() {
-      const dataToRender = getDataToRender();
-      document.getElementById('objectCount').textContent = dataToRender.length;
-
-      // Render sidebar
+      const data = getDataToRender();
+      document.getElementById('objectCount').textContent = data.length;
       const sidebar = document.getElementById('mapSidebar');
-      sidebar.innerHTML = dataToRender.map(prop => `
+      sidebar.innerHTML = data.map(prop => `
         <div class="map-sidebar-item" data-id="${prop.id}" onclick="flyToProperty('${prop.id}')">
-          <div class="map-sidebar-title">${prop.type} in ${prop.zip} ${prop.city}</div>
+          <div class="map-sidebar-title">${prop.type} in ${prop.city}</div>
           <div class="map-sidebar-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')">
-            <span class="priority-tag ${getPriorityClass(prop.priority)}">${getPriorityLabel(prop.priority, prop.priorityLabel)}</span>
+            <span class="priority-tag ${getPriorityClass(prop.priority)}">${prop.priorityLabel}</span>
           </div>
           <div class="map-sidebar-price">${formatCHF(prop.valueMin)}</div>
-        </div>
-      `).join('');
+        </div>`).join('');
 
-      // Initialize or update map
-      if (!map) {
-        initializeMap(dataToRender);
-      } else {
-        updateMapMarkers(dataToRender);
-      }
+      if (!map) initializeMap(data);
+      else updateMapMarkers(data);
     }
 
-    // Fly to property on map and open popup
     function flyToProperty(id) {
       const prop = properties.find(p => p.id === id);
       if (!prop || !prop.lat || !prop.lng) return;
-
-      // Highlight sidebar item
       document.querySelectorAll('.map-sidebar-item').forEach(item => {
         item.classList.remove('active');
-        if (item.dataset.id === id) {
-          item.classList.add('active');
-        }
+        if (item.dataset.id === id) item.classList.add('active');
       });
-
-      // Highlight marker on map
       document.querySelectorAll('.marker').forEach(m => m.classList.remove('selected'));
-      const markerData = markersMap.get(id);
-      if (markerData) {
-        markerData.marker.getElement().classList.add('selected');
-      }
-
-      // Fly to location with comfortable zoom
-      map.flyTo({
-        center: [prop.lng, prop.lat],
-        zoom: 13,
-        duration: 1500
-      });
-
-      // Find and open the marker popup
-      if (markerData) {
-        // Close all other popups first
-        markers.forEach(m => m.getPopup()?.remove());
-        // Open this marker's popup after flying
-        setTimeout(() => {
-          markerData.marker.togglePopup();
-        }, 1600);
+      const md = markersMap.get(id);
+      if (md) {
+        md.marker.getElement().classList.add('selected');
+        map.flyTo({ center: [prop.lng, prop.lat], zoom: 13, duration: 1500 });
+        setTimeout(() => { md.marker.togglePopup(); }, 1600);
       }
     }
 
-    // Store markers by property ID for quick access
-    let markersMap = new Map();
-
-    // Initialize Mapbox map
     function initializeMap(data) {
       map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v11',
-        center: [8.2275, 46.8182], // Switzerland center
-        zoom: 7
+        center: [8.2275, 46.8182], zoom: 7
       });
-
       map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
-      map.on('load', () => {
-        updateMapMarkers(data);
-      });
+      map.on('load', () => updateMapMarkers(data));
     }
 
-    // Update map markers
     function updateMapMarkers(data) {
-      // Remove existing markers
       markers.forEach(marker => marker.remove());
-      markers = [];
-      markersMap.clear();
-
-      // Add new markers
+      markers = []; markersMap.clear();
       const bounds = new mapboxgl.LngLatBounds();
-
       data.forEach(prop => {
         if (prop.lat && prop.lng) {
-          // Create marker element
           const el = document.createElement('div');
           el.className = `marker marker-${prop.priority !== null ? prop.priority : 'null'}`;
           el.innerHTML = '<span class="material-icons">home</span>';
-
-          // Add click handler for marker selection
           el.addEventListener('click', () => {
-            // Highlight this marker
             document.querySelectorAll('.marker').forEach(m => m.classList.remove('selected'));
             el.classList.add('selected');
-
-            // Highlight corresponding sidebar item
-            document.querySelectorAll('.map-sidebar-item').forEach(item => {
-              item.classList.remove('active');
-              if (item.dataset.id === prop.id) {
-                item.classList.add('active');
-                item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-              }
-            });
+            flyToProperty(prop.id); // Sync with sidebar
           });
 
-          // Create popup with detailed info
           const popup = new mapboxgl.Popup({ offset: 25, maxWidth: '280px' }).setHTML(`
             <div class="popup-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')"></div>
             <div class="popup-content">
               <div class="popup-title">${prop.type}</div>
-              <div class="popup-location">${prop.address}, ${prop.zip} ${prop.city}</div>
-              <div class="popup-details">
-                <span class="popup-detail-label">ID:</span>
-                <span class="popup-detail-value">${prop.id}</span>
-                <span class="popup-detail-label">Fläche:</span>
-                <span class="popup-detail-value">${prop.areaGF} m² GF</span>
-                <span class="popup-detail-label">Jahr:</span>
-                <span class="popup-detail-value">${prop.year}</span>
-                <span class="popup-detail-label">Priorität:</span>
-                <span class="popup-detail-value">${prop.priorityLabel}</span>
-              </div>
+              <div class="popup-location">${prop.address}, ${prop.city}</div>
               <div class="popup-price">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
-              <div class="popup-link" onclick="openModal('${prop.id}')">Details anzeigen →</div>
-            </div>
-          `);
+              <div class="popup-link" onclick="openModal('${prop.id}')">Details anzeigen</div>
+            </div>`);
 
-          // Create marker
-          const marker = new mapboxgl.Marker(el)
-            .setLngLat([prop.lng, prop.lat])
-            .setPopup(popup)
-            .addTo(map);
-
+          const marker = new mapboxgl.Marker(el).setLngLat([prop.lng, prop.lat]).setPopup(popup).addTo(map);
           markers.push(marker);
           markersMap.set(prop.id, { marker, prop });
           bounds.extend([prop.lng, prop.lat]);
         }
       });
-
-      // Fit map to bounds if we have markers - more padding for better orientation
-      if (markers.length > 0) {
-        map.fitBounds(bounds, { padding: 80, maxZoom: 9 });
-      }
+      if (markers.length > 0) map.fitBounds(bounds, { padding: 80, maxZoom: 10 });
     }
 
-    // Set view
     function setView(view) {
       currentView = view;
-
-      // Update buttons
       document.querySelectorAll('.view-btn').forEach(btn => {
         btn.classList.remove('active');
         const label = btn.querySelector('.view-btn-label');
         if (label) label.remove();
       });
-
       const activeBtn = document.querySelector(`.view-btn[data-view="${view}"]`);
       if (activeBtn) {
         activeBtn.classList.add('active');
-        const viewLabels = { gallery: 'Galerie', list: 'Liste', map: 'Karte' };
         const label = document.createElement('span');
         label.className = 'view-btn-label';
-        label.textContent = viewLabels[view];
+        label.textContent = { gallery: 'Galerie', list: 'Liste', map: 'Karte' }[view];
         activeBtn.appendChild(label);
       }
 
-      // Update view containers
       document.getElementById('galleryView').classList.remove('active');
       document.getElementById('listView').classList.remove('active');
       document.getElementById('mapView').classList.remove('active');
@@ -1839,16 +646,11 @@
       } else if (view === 'map') {
         document.getElementById('mapView').classList.add('active');
         renderMapView();
-        // Resize map after showing container (200ms for flex layout)
-        setTimeout(() => {
-          if (map) map.resize();
-        }, 200);
+        setTimeout(() => { if (map) map.resize(); }, 150);
       }
-
       updateUrlParams();
     }
 
-    // Setup view toggle
     function setupViewToggle() {
       document.querySelectorAll('.view-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1858,17 +660,12 @@
       });
     }
 
-    // Excel export placeholder
-    function exportToExcel() {
-      alert('Excel Export Funktion - Placeholder');
-    }
+    function exportToExcel() { alert('Excel Export Placeholder'); }
 
-    // Setup filter pills
     function setupFilterPills() {
       document.querySelectorAll('.filter-pill').forEach(pill => {
         pill.addEventListener('click', () => {
           const priority = pill.dataset.priority;
-
           if (activeFilters.has(priority)) {
             activeFilters.delete(priority);
             pill.classList.remove('active');
@@ -1876,20 +673,15 @@
             activeFilters.add(priority);
             pill.classList.add('active');
           }
-
           applyFilters();
         });
       });
-
-      // Setup reset button
       document.getElementById('resetFilters').addEventListener('click', resetAllFilters);
     }
 
-    // Setup search
     function setupSearch() {
       const searchInput = document.getElementById('searchInput');
       let debounceTimer;
-
       searchInput.addEventListener('input', (e) => {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
@@ -1899,189 +691,41 @@
       });
     }
 
-    // Open modal
     function openModal(id) {
       const prop = properties.find(p => p.id === id);
       if (!prop) return;
-
       document.getElementById('modalBreadcrumb').textContent = `Verkaufsjahr ${prop.year} / ${prop.id}`;
-
-      const body = document.getElementById('modalBody');
-      body.innerHTML = `
+      document.getElementById('modalBody').innerHTML = `
         <div class="detail-top">
           <div class="detail-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')"></div>
           <div class="detail-summary">
             <h1 class="detail-title">${prop.type} <span>in ${prop.zip} ${prop.city}</span></h1>
-            <p class="detail-address">${prop.address} ${prop.zip} ${prop.city}</p>
-
-            <div class="detail-status">
-              <div class="detail-status-step">${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</div>
-            </div>
-
-            <div class="detail-areas">
-              <div class="detail-area">
-                <span class="detail-area-icon">◫</span>
-                <span class="detail-area-value">${prop.areaGF} m²</span>
-                <span class="detail-area-label">Geschossfläche</span>
-              </div>
-              <div class="detail-area">
-                <span class="detail-area-icon">⊞</span>
-                <span class="detail-area-value">${prop.areaGSF} m²</span>
-                <span class="detail-area-label">Grundstück</span>
-              </div>
-            </div>
-
-            <div>
-              <div class="detail-price">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
-              <div class="detail-price-sqm">${formatCHF(pricePerSqm(prop.valueMin, prop.areaGF))} - ${formatCHF(pricePerSqm(prop.valueMax, prop.areaGF))} / m² GF</div>
-            </div>
+            <p class="detail-address">${prop.address}</p>
+            <div class="detail-status"><div class="detail-status-step">${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</div></div>
+            <div class="detail-price">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
           </div>
         </div>
-
-        <div class="tabs">
-          <div class="tab active">ÜBERSICHT</div>
-          <div class="tab">MEILENSTEINE</div>
-          <div class="tab">EREIGNISSE</div>
-          <div class="tab">DOKUMENTE</div>
-        </div>
-
         <div class="detail-section">
-          <h2 class="detail-section-title">Identifikation Objekt</h2>
           <div class="detail-grid">
-            <div class="detail-item">
-              <div class="detail-item-label">Technischer Platz Bund</div>
-              <div class="detail-item-value">${prop.techPlatz || 'N/A'}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Land, Region (Kanton)</div>
-              <div class="detail-item-value">Schweiz, ${prop.canton}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Objekt Bezeichnung</div>
-              <div class="detail-item-value">${prop.title}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Adresse</div>
-              <div class="detail-item-value">${prop.address} ${prop.zip} ${prop.city}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Teilportfolio Bund</div>
-              <div class="detail-item-value">${prop.portfolio || 'N/A'}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Objektart Verkauf</div>
-              <div class="detail-item-value">${prop.type}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">BFS EGID</div>
-              <div class="detail-item-value">${prop.egid || 'N/A'}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">BFS EGRID</div>
-              <div class="detail-item-value">${prop.egrid || 'N/A'}</div>
-            </div>
+            <div class="detail-item"><div class="detail-item-label">ID</div><div class="detail-item-value">${prop.id}</div></div>
+            <div class="detail-item"><div class="detail-item-label">Kanton</div><div class="detail-item-value">${prop.canton}</div></div>
+            <div class="detail-item"><div class="detail-item-label">Fläche</div><div class="detail-item-value">${prop.areaGF} m²</div></div>
           </div>
-        </div>
-
-        <div class="detail-section">
-          <h2 class="detail-section-title">Angaben zum Objekt</h2>
-          <div class="detail-grid">
-            <div class="detail-item">
-              <div class="detail-item-label">Jahr Verkauf</div>
-              <div class="detail-item-value">${prop.year}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Grundstücksfläche GSF</div>
-              <div class="detail-item-value">${prop.areaGSF} m²</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Eigentum Art</div>
-              <div class="detail-item-value">${prop.ownership || 'N/A'}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Geschossfläche GF</div>
-              <div class="detail-item-value">${prop.areaGF} m²</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Baujahr</div>
-              <div class="detail-item-value">${prop.buildYear || 'N/A'}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Anzahl Geschosse</div>
-              <div class="detail-item-value">${prop.floors || 'N/A'}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Zustand</div>
-              <div class="detail-item-value">${prop.condition || 'N/A'}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Ausbaustandard</div>
-              <div class="detail-item-value">${prop.standard || 'N/A'}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Aktueller Buchwert</div>
-              <div class="detail-item-value">${formatCHF(prop.bookValue)}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-item-label">Anschaffungswert</div>
-              <div class="detail-item-value">${formatCHF(prop.acquisitionValue)}</div>
-            </div>
-          </div>
-        </div>
-
-        ${prop.valueMean > 0 ? `
-        <div class="detail-section">
-          <h2 class="detail-section-title">Marktwert</h2>
-          <div class="market-value">
-            <div class="market-value-display">${formatCHF(prop.valueMean)}</div>
-            <div class="market-value-bar">
-              <div class="market-value-marker" style="left: 50%"></div>
-            </div>
-            <div class="market-value-labels">
-              <span>${formatCHF(prop.valueMin)}<br>Minimum</span>
-              <span>Mittelwert</span>
-              <span>${formatCHF(prop.valueMax)}<br>Maximum</span>
-            </div>
-          </div>
-        </div>
-        ` : ''}
-
-        <div class="detail-section">
-          <h2 class="detail-section-title">Standort</h2>
-          <div class="detail-grid">
-            <div class="detail-item">
-              <div class="detail-item-label">Koordinaten</div>
-              <div class="detail-item-value">${prop.lat?.toFixed(4)}°N ${prop.lng?.toFixed(4)}°E</div>
-            </div>
-          </div>
-        </div>
-      `;
-
+        </div>`;
       document.getElementById('modalOverlay').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    // Close modal
     function closeModal() {
       document.getElementById('modalOverlay').classList.remove('active');
       document.body.style.overflow = '';
     }
+    document.getElementById('modalOverlay').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-    // Close modal on overlay click
-    document.getElementById('modalOverlay').addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) {
-        closeModal();
-      }
-    });
-
-    // Close modal on ESC key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
-    });
-
-    // 1. UI initialisieren (auch ohne Daten)
+    // --- INITIALISIERUNG ---
+    
+    // 1. Erst UI Setup (damit Buttons auch ohne Daten gehen)
     setupFilterPills();
     setupSearch();
     setupViewToggle();
@@ -2099,12 +743,7 @@
       })
       .catch(err => {
         console.error('Error loading data:', err);
-        document.getElementById('objectGrid').innerHTML = `
-          <div style="grid-column: 1/-1; padding: 20px; text-align: center; background: #fff; border-radius: 8px;">
-            <h3>Daten konnten nicht geladen werden</h3>
-            <p>Wenn du die Datei lokal öffnest (file://), blockiert der Browser das Laden der JSON-Datei.</p>
-            <p>Nutze einen lokalen Server (z.B. VS Code Live Server Extension).</p>
-          </div>`;
+        document.getElementById('objectGrid').innerHTML = `<div style="grid-column: 1/-1; padding: 20px; text-align: center; background: white;">Fehler beim Laden. Starte via Live Server.</div>`;
       });
   </script>
 </body>
