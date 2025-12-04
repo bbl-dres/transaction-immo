@@ -276,11 +276,11 @@
     /* --- MAP VIEW & SIDEBAR FIXES --- */
     .map-container {
         display: none; width: 100%;
-        flex: 1; min-height: 500px;
+        flex: 1; min-height: 0;
         background: var(--neutral-50); border-radius: 8px; overflow: hidden;
         box-shadow: var(--shadow-md);
     }
-    .map-container.active { display: grid; grid-template-columns: 320px 1fr; } /* Sidebar etwas breiter: 320px */
+    .map-container.active { display: grid; grid-template-columns: 320px 1fr; grid-template-rows: 1fr; }
 
     .map-sidebar {
         width: 100%; height: 100%;
