@@ -905,7 +905,7 @@
             <div class="card-label">${prop.id} ${prop.type}</div>
             <div class="card-location">In ${prop.zip} ${prop.city}</div>
             <div class="card-price">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
-            <div class="card-price-sqm">CHF ${pricePerSqm(prop.valueMin, prop.areaGF)} - CHF ${pricePerSqm(prop.valueMax, prop.areaGF)} / m² GF</div>
+            <div class="card-price-sqm">${formatCHF(pricePerSqm(prop.valueMin, prop.areaGF))} - ${formatCHF(pricePerSqm(prop.valueMax, prop.areaGF))} / m² GF</div>
             <div class="card-details">
               <span class="card-detail-label">Verkaufsjahr:</span><span class="card-detail-value">${prop.year}</span>
               <span class="card-detail-label">Geschossfläche GF:</span><span class="card-detail-value">${prop.areaGF} m²</span>
