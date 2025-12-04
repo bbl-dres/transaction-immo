@@ -347,35 +347,9 @@
     .popup-title { font-weight: 600; margin-bottom: 4px; }
     .popup-link { display: block; text-align: center; padding: 8px 12px; background: var(--primary-900); color: var(--neutral-50); text-decoration: none; border-radius: 4px; margin-top: 8px; cursor: pointer; }
 
-    /* --- Modal --- */
-    .modal-overlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--overlay-bg); display: flex; align-items: flex-start; justify-content: center;
-      padding: 40px 20px; z-index: 1000; overflow-y: auto; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
-    }
-    .modal-overlay.active { opacity: 1; visibility: visible; }
-    .modal { background: var(--neutral-50); border-radius: 8px; width: 100%; max-width: 1000px; transform: translateY(20px); transition: transform 0.3s; }
-    .modal-overlay.active .modal { transform: translateY(0); }
-    .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid var(--neutral-200); background: var(--neutral-100); border-radius: 8px 8px 0 0; }
-    .modal-back { display: flex; align-items: center; gap: 8px; background: var(--neutral-50); border: 1px solid var(--neutral-200); padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; color: var(--neutral-900); }
-    .modal-back:hover { background: var(--neutral-100); }
-    .modal-body { padding: 24px; }
-
-    /* Detail Styles omitted for brevity but present in logic */
-    .detail-top { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
-    .detail-image { height: 300px; background: var(--neutral-200); border-radius: 8px; background-size: cover; background-position: center; }
-    .detail-summary { display: flex; flex-direction: column; gap: 16px; }
-    .detail-title { font-size: 24px; font-weight: 600; color: var(--neutral-900); }
-    .detail-section-title { font-size: 18px; font-weight: 600; margin-bottom: 16px; color: var(--neutral-900); }
-    .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-    .detail-item { padding: 12px 0; border-bottom: 1px solid var(--neutral-200); }
-    .detail-item-label { font-size: 12px; color: var(--neutral-500); }
-    .detail-item-value { font-size: 14px; font-weight: 500; }
-
     /* Responsive */
     @media (max-width: 900px) { .stats-boxes { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 768px) {
-        .detail-top { grid-template-columns: 1fr; }
         .map-container.active { display: flex; flex-direction: column; height: auto; }
         .map-sidebar { width: 100%; max-height: 250px; border-right: none; border-bottom: 1px solid var(--neutral-200); }
         .map-area { height: 400px; width: 100%; }
@@ -406,6 +380,364 @@
     }
     .footer-link:hover {
       opacity: 0.8;
+    }
+
+    /* --- Detail Page --- */
+    .detail-view {
+      display: none;
+      flex-direction: column;
+      min-height: 100%;
+    }
+    .detail-view.active {
+      display: flex;
+    }
+    .detail-header {
+      background: var(--neutral-50);
+      border-bottom: 1px solid var(--neutral-200);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .detail-back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--neutral-100);
+      border: 1px solid var(--neutral-200);
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--neutral-700);
+      transition: all 0.2s;
+    }
+    .detail-back-btn:hover {
+      background: var(--neutral-200);
+      color: var(--neutral-900);
+    }
+    .detail-breadcrumb {
+      font-size: 14px;
+      color: var(--neutral-500);
+    }
+
+    .detail-content {
+      flex: 1;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px;
+      width: 100%;
+    }
+
+    /* Hero Section with Gallery */
+    .detail-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .detail-gallery {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 12px;
+      height: 400px;
+    }
+    .detail-main-image {
+      grid-row: 1 / 3;
+      background: var(--neutral-200);
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+    }
+    .detail-thumb {
+      background: var(--neutral-200);
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .detail-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 119, 182, 0.85);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--neutral-50);
+      font-size: 13px;
+      text-align: center;
+      padding: 12px;
+      cursor: pointer;
+    }
+    .detail-thumb-overlay:hover {
+      background: rgba(0, 119, 182, 0.95);
+    }
+
+    /* Info Columns */
+    .detail-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .detail-info-section {
+      background: var(--neutral-50);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Title Section */
+    .detail-title-section h1 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin-bottom: 4px;
+    }
+    .detail-address {
+      font-size: 14px;
+      color: var(--neutral-500);
+      margin-bottom: 16px;
+    }
+    .detail-areas {
+      display: flex;
+      gap: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--neutral-200);
+    }
+    .detail-area {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .detail-area-icon {
+      color: var(--neutral-500);
+      font-size: 20px;
+    }
+    .detail-area-value {
+      font-weight: 600;
+      color: var(--neutral-900);
+    }
+    .detail-area-label {
+      color: var(--neutral-500);
+      font-size: 13px;
+    }
+    .detail-pdf-btn {
+      margin-top: 16px;
+      padding: 12px 24px;
+      background: var(--accent-600);
+      color: var(--neutral-50);
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .detail-pdf-btn:hover {
+      background: var(--accent-500);
+    }
+
+    /* Status Section */
+    .detail-status-section .detail-label {
+      font-size: 12px;
+      color: var(--neutral-500);
+      margin-bottom: 4px;
+    }
+    .detail-status-section .detail-value {
+      font-size: 14px;
+      color: var(--neutral-900);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .detail-status-section .detail-value:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Price Section */
+    .detail-price-main {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin-bottom: 4px;
+    }
+    .detail-price-sqm {
+      font-size: 13px;
+      color: var(--neutral-500);
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--neutral-200);
+    }
+
+    /* Tabs */
+    .detail-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--neutral-200);
+      margin-bottom: 24px;
+      background: var(--neutral-50);
+      border-radius: 8px 8px 0 0;
+      padding: 0 20px;
+    }
+    .detail-tab {
+      padding: 16px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-500);
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .detail-tab:hover:not(.disabled) {
+      color: var(--neutral-700);
+    }
+    .detail-tab.active {
+      color: var(--accent-600);
+    }
+    .detail-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent-600);
+    }
+    .detail-tab.disabled {
+      color: var(--neutral-300);
+      cursor: not-allowed;
+    }
+
+    /* Tab Content */
+    .detail-tab-content {
+      background: var(--neutral-50);
+      border-radius: 0 0 8px 8px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .detail-data-section {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 32px;
+    }
+    .detail-data-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 32px;
+    }
+    .detail-data-item {
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--neutral-200);
+    }
+    .detail-data-label {
+      font-size: 12px;
+      color: var(--neutral-500);
+      margin-bottom: 4px;
+    }
+    .detail-data-value {
+      font-size: 14px;
+      color: var(--neutral-900);
+      font-weight: 500;
+    }
+
+    /* Switzerland Map */
+    .detail-map-container {
+      background: var(--neutral-100);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+    .detail-map-container h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--neutral-700);
+      margin-bottom: 12px;
+    }
+    .detail-map-svg {
+      flex: 1;
+      min-height: 250px;
+    }
+    .detail-map-svg svg {
+      width: 100%;
+      height: 100%;
+    }
+    .detail-map-coords {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--neutral-500);
+    }
+
+    /* External Links */
+    .detail-links {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--neutral-200);
+    }
+    .detail-links-title {
+      font-size: 12px;
+      color: var(--neutral-500);
+      margin-bottom: 8px;
+    }
+    .detail-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-600);
+      text-decoration: none;
+      font-size: 13px;
+      margin-right: 16px;
+      margin-bottom: 8px;
+    }
+    .detail-link:hover {
+      text-decoration: underline;
+    }
+    .detail-link .material-icons-outlined {
+      font-size: 16px;
+    }
+
+    /* Hide list/search when detail view is active */
+    body.detail-active .search-section,
+    body.detail-active .main,
+    body.detail-active .footer {
+      display: none;
+    }
+
+    @media (max-width: 1200px) {
+      .detail-data-section {
+        grid-template-columns: 1fr;
+      }
+      .detail-map-container {
+        max-width: 500px;
+      }
+    }
+    @media (max-width: 900px) {
+      .detail-hero {
+        grid-template-columns: 1fr;
+      }
+      .detail-gallery {
+        height: 300px;
+      }
+    }
+    @media (max-width: 640px) {
+      .detail-gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: 200px auto;
+        height: auto;
+      }
+      .detail-main-image {
+        grid-row: auto;
+        min-height: 200px;
+      }
+      .detail-data-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -480,13 +812,17 @@
     </div>
   </main>
 
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <div class="modal-header">
-        <button class="modal-back" onclick="closeModal()">← Zurück zur Übersicht</button>
-        <span class="modal-breadcrumb" id="modalBreadcrumb"></span>
-      </div>
-      <div class="modal-body" id="modalBody"></div>
+  <!-- Detail View (Single Page) -->
+  <div class="detail-view" id="detailView">
+    <div class="detail-header">
+      <button class="detail-back-btn" onclick="closeDetailPage()">
+        <span class="material-icons-outlined">arrow_back</span>
+        Zurück zur Übersicht
+      </button>
+      <span class="detail-breadcrumb" id="detailBreadcrumb"></span>
+    </div>
+    <div class="detail-content" id="detailContent">
+      <!-- Content will be rendered by JavaScript -->
     </div>
   </div>
 
@@ -570,6 +906,7 @@
       const params = new URLSearchParams(window.location.search);
       return {
         view: params.get('view'),
+        id: params.get('id'),
         q: params.get('q'),
         type: params.get('type'),
         year: params.get('year'),
@@ -897,7 +1234,7 @@
       const data = getDataToRender();
       document.getElementById('objectCount').textContent = data.length;
       grid.innerHTML = data.map(prop => `
-        <div class="card" onclick="openModal('${prop.id}')">
+        <div class="card" onclick="openDetailPage('${prop.id}')">
           <div class="card-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')">
             <span class="card-badge priority-tag ${getPriorityClass(prop.priority)}">${getPriorityLabel(prop.priority, prop.priorityLabel)}</span>
           </div>
@@ -935,7 +1272,7 @@
 
       const tbody = document.getElementById('listTableBody');
       tbody.innerHTML = data.map(prop => `
-        <tr onclick="openModal('${prop.id}')">
+        <tr onclick="openDetailPage('${prop.id}')">
           <td><span class="material-icons-outlined object-icon">home</span></td>
           <td>${prop.id}</td>
           <td>${prop.type} in ${prop.zip} ${prop.city}</td>
@@ -1029,7 +1366,7 @@
               <div class="popup-title">${prop.type}</div>
               <div class="popup-location">${prop.address}, ${prop.city}</div>
               <div class="popup-price">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
-              <div class="popup-link" onclick="openModal('${prop.id}')">Details anzeigen</div>
+              <div class="popup-link" onclick="openDetailPage('${prop.id}')">Details anzeigen</div>
             </div>`);
 
           const marker = new mapboxgl.Marker(el).setLngLat([prop.lng, prop.lat]).setPopup(popup).addTo(map);
@@ -1101,13 +1438,13 @@
         resetAllFilters();
       });
 
-      // Close on Escape key (handles both modals)
+      // Close on Escape key (handles filter modal and detail view)
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           if (document.getElementById('filterModalOverlay').classList.contains('active')) {
             closeFilterModal();
-          } else if (document.getElementById('modalOverlay').classList.contains('active')) {
-            closeModal();
+          } else if (document.getElementById('detailView').classList.contains('active')) {
+            closeDetailPage();
           }
         }
       });
@@ -1125,42 +1462,297 @@
       });
     }
 
-    function openModal(id) {
-      const prop = properties.find(p => p.id === id);
-      if (!prop) return;
-      document.getElementById('modalBreadcrumb').textContent = `Verkaufsjahr ${prop.year} / ${prop.id}`;
-      document.getElementById('modalBody').innerHTML = `
-        <div class="detail-top">
-          <div class="detail-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')"></div>
-          <div class="detail-summary">
-            <h1 class="detail-title">${prop.type} <span>in ${prop.zip} ${prop.city}</span></h1>
-            <p class="detail-address">${prop.address}</p>
-            <div class="detail-status"><div class="detail-status-step">${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</div></div>
-            <div class="detail-areas">
-                <div class="detail-area"><span class="detail-area-icon">◫</span><span class="detail-area-value">${prop.areaGF} m²</span><span class="detail-area-label">GF</span></div>
-                <div class="detail-area"><span class="detail-area-icon">⊞</span><span class="detail-area-value">${prop.areaGSF} m²</span><span class="detail-area-label">GSF</span></div>
-            </div>
-            <div class="detail-price">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
-          </div>
-        </div>
-        <div class="detail-section">
-          <h2 class="detail-section-title">Daten</h2>
-          <div class="detail-grid">
-            <div class="detail-item"><div class="detail-item-label">ID</div><div class="detail-item-value">${prop.id}</div></div>
-            <div class="detail-item"><div class="detail-item-label">Kanton</div><div class="detail-item-value">${prop.canton}</div></div>
-            <div class="detail-item"><div class="detail-item-label">Buchwert</div><div class="detail-item-value">${formatCHF(prop.bookValue)}</div></div>
-          </div>
-        </div>`;
-      document.getElementById('modalOverlay').classList.add('active');
-      document.body.style.overflow = 'hidden';
+    // Canton code mapping for SVG highlighting
+    const cantonCodeMap = {
+      'AG': 'CH-AG', 'AI': 'CH-AI', 'AR': 'CH-AR', 'BE': 'CH-BE', 'BL': 'CH-BL',
+      'BS': 'CH-BS', 'FR': 'CH-FR', 'GE': 'CH-GE', 'GL': 'CH-GL', 'GR': 'CH-GR',
+      'JU': 'CH-JU', 'LU': 'CH-LU', 'NE': 'CH-NE', 'NW': 'CH-NW', 'OW': 'CH-OW',
+      'SG': 'CH-SG', 'SH': 'CH-SH', 'SO': 'CH-SO', 'SZ': 'CH-SZ', 'TG': 'CH-TG',
+      'TI': 'CH-TI', 'UR': 'CH-UR', 'VD': 'CH-VD', 'VS': 'CH-VS', 'ZG': 'CH-ZG', 'ZH': 'CH-ZH'
+    };
+
+    // Convert lat/lng to SVG coordinates (approximate)
+    function latLngToSvg(lat, lng) {
+      // Switzerland bounds: lat 45.8-47.8, lng 5.9-10.5
+      const minLat = 45.8, maxLat = 47.8;
+      const minLng = 5.9, maxLng = 10.5;
+      const x = ((lng - minLng) / (maxLng - minLng)) * 560 + 20;
+      const y = ((maxLat - lat) / (maxLat - minLat)) * 360 + 20;
+      return { x, y };
     }
 
-    function closeModal() {
-      document.getElementById('modalOverlay').classList.remove('active');
-      document.body.style.overflow = '';
+    let svgMapCache = null;
+
+    async function loadSvgMap() {
+      if (svgMapCache) return svgMapCache;
+      try {
+        const response = await fetch('switzerland.svg');
+        svgMapCache = await response.text();
+        return svgMapCache;
+      } catch (e) {
+        console.error('Error loading SVG map:', e);
+        return null;
+      }
     }
-    document.getElementById('modalOverlay').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal(); });
-    // Note: Escape key for detail modal is handled in setupFilterModal to avoid conflicts
+
+    function openDetailPage(id) {
+      const prop = properties.find(p => p.id === id);
+      if (!prop) return;
+
+      // Update URL
+      const params = new URLSearchParams(window.location.search);
+      params.set('view', 'detail');
+      params.set('id', id);
+      window.history.pushState({ view: 'detail', id }, '', `?${params.toString()}`);
+
+      renderDetailPage(prop);
+    }
+
+    async function renderDetailPage(prop) {
+      // Set breadcrumb
+      document.getElementById('detailBreadcrumb').textContent = `Verkaufsjahr ${prop.year} / ${prop.id}`;
+
+      // Get multiple placeholder images for gallery
+      const mainImage = getPlaceholderImage(prop.type, prop.id);
+      const thumbImages = [
+        getPlaceholderImage(prop.type, prop.id + '1'),
+        getPlaceholderImage(prop.type, prop.id + '2'),
+        getPlaceholderImage(prop.type, prop.id + '3'),
+        getPlaceholderImage(prop.type, prop.id + '4')
+      ];
+
+      // Load SVG map
+      const svgMap = await loadSvgMap();
+      const svgMapHtml = svgMap || '<div style="padding: 40px; text-align: center; color: #718096;">Karte nicht verfügbar</div>';
+
+      // Render content
+      document.getElementById('detailContent').innerHTML = `
+        <div class="detail-hero">
+          <!-- Gallery -->
+          <div class="detail-gallery">
+            <div class="detail-main-image" style="background-image: url('${mainImage}')"></div>
+            <div class="detail-thumb" style="background-image: url('${thumbImages[0]}')"></div>
+            <div class="detail-thumb" style="background-image: url('${thumbImages[1]}')">
+              <div class="detail-thumb-overlay">
+                <span>Alle 1 Bilder anzeigen.</span>
+                <span>Oder weitere Bilder hochladen.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info Sections -->
+          <div class="detail-info">
+            <!-- Title & Address -->
+            <div class="detail-info-section detail-title-section">
+              <h1>${prop.type} in ${prop.zip} ${prop.city}</h1>
+              <div class="detail-address">${prop.address} ${prop.zip} ${prop.city}</div>
+              <div class="detail-areas">
+                <div class="detail-area">
+                  <span class="material-icons-outlined detail-area-icon">square_foot</span>
+                  <span class="detail-area-value">${prop.areaGF} m²</span>
+                  <span class="detail-area-label">Geschossfläche</span>
+                </div>
+                <div class="detail-area">
+                  <span class="material-icons-outlined detail-area-icon">landscape</span>
+                  <span class="detail-area-value">${prop.areaGSF} m²</span>
+                  <span class="detail-area-label">Grundstück</span>
+                </div>
+              </div>
+              <button class="detail-pdf-btn" onclick="exportToPdf()">Als PDF exportieren</button>
+            </div>
+
+            <!-- Status -->
+            <div class="detail-info-section detail-status-section">
+              <div class="detail-label">Meilenstein</div>
+              <div class="detail-value">${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</div>
+              <div class="detail-label">Geplanter Verkaufsjahr</div>
+              <div class="detail-value">${prop.year}</div>
+              <div class="detail-label">Priorisierung</div>
+              <div class="detail-value">${getPriorityLabel(prop.priority, prop.priorityLabel)}</div>
+            </div>
+
+            <!-- Price -->
+            <div class="detail-info-section">
+              <div class="detail-price-main">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
+              <div class="detail-price-sqm">${formatCHF(pricePerSqm(prop.valueMin, prop.areaGF))} - ${formatCHF(pricePerSqm(prop.valueMax, prop.areaGF))} / m² GF</div>
+              <div class="detail-label">Aktueller Buchwert</div>
+              <div class="detail-value">${formatCHF(prop.bookValue)}</div>
+              <div class="detail-label">Anschaffungswert</div>
+              <div class="detail-value">${formatCHF(prop.acquisitionValue)}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="detail-tabs">
+          <button class="detail-tab active">ÜBERSICHT</button>
+          <button class="detail-tab disabled">MEILENSTEINE</button>
+          <button class="detail-tab disabled">EREIGNISSE</button>
+          <button class="detail-tab disabled">DOKUMENTE</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="detail-tab-content">
+          <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 20px; color: var(--neutral-900);">Identifikation Objekt</h2>
+          <div class="detail-data-section">
+            <div class="detail-data-grid">
+              <div class="detail-data-item">
+                <div class="detail-data-label">Technischer Platz Bund</div>
+                <div class="detail-data-value">${prop.techPlatz || '-'}</div>
+              </div>
+              <div class="detail-data-item">
+                <div class="detail-data-label">Land, Region (Kanton)</div>
+                <div class="detail-data-value">Schweiz, ${prop.canton}</div>
+              </div>
+              <div class="detail-data-item">
+                <div class="detail-data-label">Objekt Bezeichnung</div>
+                <div class="detail-data-value">${prop.city}, ${prop.address}</div>
+              </div>
+              <div class="detail-data-item">
+                <div class="detail-data-label">Adresse</div>
+                <div class="detail-data-value">${prop.address} ${prop.zip} ${prop.city}</div>
+              </div>
+              <div class="detail-data-item">
+                <div class="detail-data-label">Teilportfolio Bund</div>
+                <div class="detail-data-value">${prop.portfolio || '-'}</div>
+              </div>
+              <div class="detail-data-item">
+                <div class="detail-data-label">Objektart Verkauf</div>
+                <div class="detail-data-value">${prop.type}</div>
+              </div>
+              <div class="detail-data-item">
+                <div class="detail-data-label">BFS EGID (nur Schweiz)</div>
+                <div class="detail-data-value">${prop.egid || '-'}</div>
+              </div>
+              <div class="detail-data-item">
+                <div class="detail-data-label">BFS EGRID (nur Schweiz)</div>
+                <div class="detail-data-value">${prop.egrid || '-'}</div>
+              </div>
+              <div class="detail-data-item">
+                <div class="detail-data-label">Eigentum</div>
+                <div class="detail-data-value">${prop.ownership || '-'}</div>
+              </div>
+              <div class="detail-data-item">
+                <div class="detail-data-label">Baujahr</div>
+                <div class="detail-data-value">${prop.buildYear || '-'}</div>
+              </div>
+              <div class="detail-data-item">
+                <div class="detail-data-label">WGS 1984 Breitengrad (LAT)</div>
+                <div class="detail-data-value">${prop.lat || '-'}</div>
+              </div>
+              <div class="detail-data-item">
+                <div class="detail-data-label">WGS 1984 Längengrad (LON)</div>
+                <div class="detail-data-value">${prop.lng || '-'}</div>
+              </div>
+            </div>
+
+            <!-- Switzerland Map -->
+            <div class="detail-map-container">
+              <div class="detail-map-svg" id="detailMapSvg">${svgMapHtml}</div>
+              <div class="detail-map-coords">
+                lat: ${prop.lat || '-'}<br>
+                long: ${prop.lng || '-'}
+              </div>
+              <div class="detail-links">
+                <div class="detail-links-title">Verortung</div>
+                <a href="https://www.google.com/maps?q=${prop.lat},${prop.lng}" target="_blank" rel="noopener" class="detail-link">
+                  <span class="material-icons-outlined">open_in_new</span>
+                  Google Maps
+                </a>
+                <a href="https://www.housing-stat.ch/de/query/egid.html?egid=${prop.egid}" target="_blank" rel="noopener" class="detail-link">
+                  <span class="material-icons-outlined">open_in_new</span>
+                  Gebäude- und Wohnungsregister
+                </a>
+                <a href="https://oereblex.ch/" target="_blank" rel="noopener" class="detail-link">
+                  <span class="material-icons-outlined">open_in_new</span>
+                  ÖREB-Kataster
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Show detail view
+      document.body.classList.add('detail-active');
+      document.getElementById('detailView').classList.add('active');
+
+      // Highlight canton and position marker on map
+      setTimeout(() => {
+        highlightCantonOnMap(prop.canton, prop.lat, prop.lng);
+      }, 100);
+    }
+
+    function highlightCantonOnMap(canton, lat, lng) {
+      const svgContainer = document.getElementById('detailMapSvg');
+      if (!svgContainer) return;
+
+      const svg = svgContainer.querySelector('svg');
+      if (!svg) return;
+
+      // Remove previous highlights
+      svg.querySelectorAll('.canton').forEach(c => c.classList.remove('highlighted'));
+
+      // Highlight current canton
+      const cantonId = cantonCodeMap[canton];
+      if (cantonId) {
+        const cantonPath = svg.getElementById(cantonId);
+        if (cantonPath) {
+          cantonPath.classList.add('highlighted');
+        }
+      }
+
+      // Position marker
+      if (lat && lng) {
+        const marker = svg.getElementById('location-marker');
+        if (marker) {
+          const pos = latLngToSvg(lat, lng);
+          marker.setAttribute('cx', pos.x);
+          marker.setAttribute('cy', pos.y);
+          marker.style.display = 'block';
+        }
+      }
+    }
+
+    function closeDetailPage() {
+      document.body.classList.remove('detail-active');
+      document.getElementById('detailView').classList.remove('active');
+
+      // Update URL back to list view
+      const params = new URLSearchParams(window.location.search);
+      params.delete('id');
+      if (currentView !== 'gallery') {
+        params.set('view', currentView);
+      } else {
+        params.delete('view');
+      }
+      const newUrl = params.toString() ? `?${params.toString()}` : window.location.pathname;
+      window.history.pushState({ view: currentView }, '', newUrl);
+    }
+
+    function exportToPdf() {
+      alert('PDF Export - Wird später implementiert');
+    }
+
+    // Handle browser back/forward navigation
+    window.addEventListener('popstate', (event) => {
+      const params = new URLSearchParams(window.location.search);
+      const view = params.get('view');
+      const id = params.get('id');
+
+      if (view === 'detail' && id) {
+        const prop = properties.find(p => p.id === id);
+        if (prop) {
+          renderDetailPage(prop);
+        }
+      } else {
+        document.body.classList.remove('detail-active');
+        document.getElementById('detailView').classList.remove('active');
+        if (view && ['gallery', 'list', 'map'].includes(view)) {
+          setView(view);
+        }
+      }
+    });
 
     // --- INIT ---
     setupFilterModal();
@@ -1176,6 +1768,15 @@
         filteredProperties = [...data];
         extractFilterOptions();
         applyFilters();
+
+        // Check if detail view should be opened from URL
+        const params = getUrlParams();
+        if (params.view === 'detail' && params.id) {
+          const prop = properties.find(p => p.id === params.id);
+          if (prop) {
+            renderDetailPage(prop);
+          }
+        }
       })
       .catch(err => {
         console.error('Error loading data:', err);

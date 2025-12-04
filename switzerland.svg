@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" id="switzerland-map">
+  <style>
+    .canton { fill: #E2E8F0; stroke: #fff; stroke-width: 1; transition: fill 0.2s; }
+    .canton:hover { fill: #CBD5E0; }
+    .canton.highlighted { fill: #0077B6; }
+    .marker { fill: #DC2626; stroke: #fff; stroke-width: 2; }
+    .lake { fill: #CAF0F8; stroke: none; }
+  </style>
+
+  <!-- Swiss Cantons - Simplified paths -->
+  <!-- Geneva (GE) -->
+  <path id="CH-GE" class="canton" d="M45,320 L55,310 L70,315 L75,330 L65,340 L50,335 Z"/>
+
+  <!-- Vaud (VD) -->
+  <path id="CH-VD" class="canton" d="M70,315 L100,290 L130,285 L150,300 L140,330 L110,340 L75,330 Z"/>
+
+  <!-- Valais (VS) -->
+  <path id="CH-VS" class="canton" d="M100,290 L150,300 L200,310 L250,340 L200,370 L130,360 L100,340 L110,310 Z"/>
+
+  <!-- Fribourg (FR) -->
+  <path id="CH-FR" class="canton" d="M130,285 L170,260 L200,270 L190,300 L150,300 Z"/>
+
+  <!-- Neuchatel (NE) -->
+  <path id="CH-NE" class="canton" d="M130,240 L165,230 L170,260 L130,285 L115,270 Z"/>
+
+  <!-- Jura (JU) -->
+  <path id="CH-JU" class="canton" d="M115,200 L145,190 L165,210 L165,230 L130,240 L115,220 Z"/>
+
+  <!-- Bern (BE) -->
+  <path id="CH-BE" class="canton" d="M165,210 L200,200 L250,210 L280,250 L260,290 L200,310 L150,300 L190,300 L200,270 L170,260 L165,230 Z"/>
+
+  <!-- Solothurn (SO) -->
+  <path id="CH-SO" class="canton" d="M200,200 L235,185 L260,200 L250,210 Z"/>
+
+  <!-- Basel-Stadt (BS) -->
+  <path id="CH-BS" class="canton" d="M205,160 L220,155 L225,170 L210,175 Z"/>
+
+  <!-- Basel-Landschaft (BL) -->
+  <path id="CH-BL" class="canton" d="M180,170 L205,160 L210,175 L225,170 L235,185 L200,200 L180,190 Z"/>
+
+  <!-- Aargau (AG) -->
+  <path id="CH-AG" class="canton" d="M235,185 L280,170 L310,185 L300,210 L250,210 L260,200 Z"/>
+
+  <!-- Zurich (ZH) -->
+  <path id="CH-ZH" class="canton" d="M310,185 L350,170 L380,180 L385,210 L350,230 L300,210 Z"/>
+
+  <!-- Schaffhausen (SH) -->
+  <path id="CH-SH" class="canton" d="M350,140 L390,135 L400,155 L380,170 L350,160 Z"/>
+
+  <!-- Thurgau (TG) -->
+  <path id="CH-TG" class="canton" d="M380,170 L400,155 L450,160 L460,185 L420,200 L385,190 Z"/>
+
+  <!-- St. Gallen (SG) -->
+  <path id="CH-SG" class="canton" d="M420,200 L460,185 L510,200 L520,250 L480,280 L430,260 L400,230 Z"/>
+
+  <!-- Appenzell Ausserrhoden (AR) -->
+  <path id="CH-AR" class="canton" d="M460,185 L480,175 L495,190 L480,205 L460,200 Z"/>
+
+  <!-- Appenzell Innerrhoden (AI) -->
+  <path id="CH-AI" class="canton" d="M480,205 L495,190 L510,200 L500,215 Z"/>
+
+  <!-- Glarus (GL) -->
+  <path id="CH-GL" class="canton" d="M400,230 L430,260 L420,290 L380,280 L370,250 Z"/>
+
+  <!-- Schwyz (SZ) -->
+  <path id="CH-SZ" class="canton" d="M350,230 L385,210 L400,230 L370,250 L340,260 Z"/>
+
+  <!-- Zug (ZG) -->
+  <path id="CH-ZG" class="canton" d="M330,230 L350,230 L340,260 L320,255 Z"/>
+
+  <!-- Luzern (LU) -->
+  <path id="CH-LU" class="canton" d="M280,250 L330,230 L320,255 L340,260 L330,290 L290,300 L260,290 Z"/>
+
+  <!-- Nidwalden (NW) -->
+  <path id="CH-NW" class="canton" d="M330,290 L360,280 L365,310 L340,320 Z"/>
+
+  <!-- Obwalden (OW) -->
+  <path id="CH-OW" class="canton" d="M290,300 L330,290 L340,320 L310,340 L280,320 Z"/>
+
+  <!-- Uri (UR) -->
+  <path id="CH-UR" class="canton" d="M340,260 L370,250 L380,280 L390,320 L350,360 L310,340 L340,320 L365,310 L360,280 L330,290 Z"/>
+
+  <!-- Graubunden (GR) -->
+  <path id="CH-GR" class="canton" d="M380,280 L420,290 L480,280 L550,300 L570,350 L500,380 L420,370 L350,360 L390,320 Z"/>
+
+  <!-- Ticino (TI) -->
+  <path id="CH-TI" class="canton" d="M310,340 L350,360 L420,370 L400,395 L320,390 L280,360 L280,320 Z"/>
+
+  <!-- Lakes -->
+  <ellipse class="lake" cx="95" cy="305" rx="15" ry="8"/> <!-- Lake Geneva -->
+  <ellipse class="lake" cx="320" cy="275" rx="12" ry="6"/> <!-- Lake Lucerne -->
+  <ellipse class="lake" cx="360" cy="200" rx="10" ry="5"/> <!-- Lake Zurich -->
+  <ellipse class="lake" cx="170" cy="250" rx="8" ry="4"/> <!-- Lake Neuchatel -->
+  <ellipse class="lake" cx="485" cy="235" rx="10" ry="5"/> <!-- Lake Constance -->
+
+  <!-- Marker placeholder - will be positioned via JavaScript -->
+  <circle id="location-marker" class="marker" cx="0" cy="0" r="8" style="display:none;"/>
+
+  <!-- Coordinates label -->
+  <text id="coord-label" x="10" y="390" font-size="11" fill="#718096" font-family="sans-serif"></text>
+</svg>
