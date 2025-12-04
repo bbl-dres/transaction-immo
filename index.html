@@ -40,7 +40,15 @@
     }
 
     .logo {
-      font-size: 24px;
+      width: 32px;
+      height: 32px;
+      background: white;
+      color: #00838f;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
       font-weight: bold;
     }
 
@@ -67,7 +75,8 @@
       background-color: rgba(255,255,255,0.15);
       padding: 8px 16px;
       border-radius: 4px;
-      font-size: 13px;
+      font-size: 12px;
+      line-height: 1.4;
     }
 
     .header-badge strong {
@@ -110,35 +119,199 @@
 
     /* Main Content */
     .main {
-      max-width: 1400px;
+      max-width: 1440px;
       margin: 0 auto;
       padding: 24px;
     }
 
-    /* Stats Bar */
-    .stats-bar {
+    /* Search Section */
+    .search-section {
+      background: white;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .search-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 24px;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .search-input-wrapper {
+      flex: 1;
+      position: relative;
+    }
+
+    .search-input-wrapper svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      width: 18px;
+      height: 18px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px 12px 44px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: #00838f;
+      box-shadow: 0 0 0 3px rgba(0,131,143,0.1);
+    }
+
+    .search-input::placeholder {
+      color: #999;
+    }
+
+    .view-toggle {
+      display: flex;
+      background: #f5f5f5;
+      border-radius: 6px;
+      padding: 4px;
+    }
+
+    .view-btn {
+      padding: 8px 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 4px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .view-btn:hover {
+      color: #333;
+    }
+
+    .view-btn.active {
+      background: white;
+      color: #00838f;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .view-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .view-btn-label {
+      font-size: 13px;
+      font-weight: 500;
+      margin-left: 6px;
+    }
+
+    /* Filter Pills */
+    .filter-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-pill {
+      padding: 6px 14px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      font-size: 13px;
+      background: white;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .filter-pill:hover {
+      border-color: #00838f;
+      color: #00838f;
+    }
+
+    .filter-pill.active {
+      background: #00838f;
+      border-color: #00838f;
+      color: white;
+    }
+
+    .filter-right {
+      display: flex;
+      align-items: center;
       gap: 16px;
     }
 
     .stats-count {
       font-size: 14px;
-      color: #666;
+      color: #00838f;
+      font-weight: 600;
     }
 
-    .stats-count strong {
-      color: #333;
+    .filter-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: white;
+      font-size: 13px;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      border-color: #00838f;
+      color: #00838f;
+    }
+
+    .filter-btn svg {
+      width: 16px;
+      height: 16px;
     }
 
     /* Grid */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 1200px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Card */
@@ -555,12 +728,26 @@
         width: 100%;
       }
 
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
       .modal-body {
         padding: 16px;
+      }
+
+      .search-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .view-toggle {
+        justify-content: center;
+      }
+
+      .filter-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .filter-right {
+        justify-content: space-between;
       }
     }
   </style>
@@ -577,8 +764,8 @@
     </div>
     <div class="header-center">
       <div class="header-badge">
-        <strong>Demo-Umgebung</strong>
-        Open Source Prototyp - Keine echten Daten
+        <strong>Testumgebung – Mockup</strong>
+        Inhalte sind nicht vollständig und dienen ausschliesslich Demonstrationszwecken. Die Darstellung und Funktionen können sich ändern.
       </div>
     </div>
     <div class="header-right">
@@ -589,9 +776,51 @@
 
   <!-- Main Content -->
   <main class="main">
-    <div class="stats-bar">
-      <div class="stats-count">
-        <strong id="objectCount">0</strong> Objekte
+    <!-- Search & Filter Section -->
+    <div class="search-section">
+      <div class="search-row">
+        <div class="search-input-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input type="text" class="search-input" id="searchInput" placeholder="Suche nach Bezeichnung, Adresse, oder Wirtschaftseinheit">
+        </div>
+        <div class="view-toggle">
+          <button class="view-btn" title="Statistiken">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </button>
+          <button class="view-btn" title="Liste">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+            </svg>
+          </button>
+          <button class="view-btn active" title="Galerie">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            </svg>
+            <span class="view-btn-label">Galerie</span>
+          </button>
+        </div>
+      </div>
+      <div class="filter-row">
+        <div class="filter-pills">
+          <button class="filter-pill" data-priority="0">Hohe Priorität (<span id="countPriority0">0</span>)</button>
+          <button class="filter-pill" data-priority="1">Normale Priorität (<span id="countPriority1">0</span>)</button>
+          <button class="filter-pill" data-priority="2">Geringe Priorität (<span id="countPriority2">0</span>)</button>
+          <button class="filter-pill" data-priority="3">Keine Priorität (<span id="countPriority3">0</span>)</button>
+          <button class="filter-pill" data-priority="null">Keine Angabe</button>
+        </div>
+        <div class="filter-right">
+          <div class="stats-count"><span id="objectCount">0</span> Objekte</div>
+          <button class="filter-btn">
+            <span>Filter</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -615,11 +844,14 @@
   <script>
     // Data will be loaded from data.json
     let properties = [];
+    let filteredProperties = [];
+    let activeFilters = new Set();
+    let searchQuery = '';
 
-    // Format currency
+    // Format currency with Swiss formatting
     function formatCHF(value) {
       if (!value || value === 0) return 'CHF 0';
-      return 'CHF ' + value.toLocaleString('de-CH');
+      return 'CHF ' + value.toLocaleString('de-CH').replace(/,/g, "'");
     }
 
     // Format price range
@@ -634,32 +866,118 @@
       return Math.round(price / area);
     }
 
-    // Get placeholder image
-    function getPlaceholderImage(type) {
-      const colors = {
-        'Einfamilienhaus': '4a9079',
-        'Sonderobjekt': '7a8b99',
-        'Technische Anlage': '8b7355'
+    // Get Unsplash placeholder image based on property type
+    function getPlaceholderImage(type, id) {
+      // Use consistent images based on property ID for variety
+      const hash = id.split('').reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0);
+      const imageIndex = Math.abs(hash) % 10;
+
+      const imageCollections = {
+        'Einfamilienhaus': [
+          'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1598228723793-52759bba239c?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1449844908441-8829872d2607?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=400&h=300&fit=crop'
+        ],
+        'Sonderobjekt': [
+          'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop'
+        ],
+        'Technische Anlage': [
+          'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1518173946687-a4c036bc8bf6?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1565715101461-c8e04c4fd94d?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1595409577993-4e58dff12a6b?w=400&h=300&fit=crop',
+          'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400&h=300&fit=crop'
+        ]
       };
-      const color = colors[type] || '667788';
-      return `https://placehold.co/400x300/${color}/ffffff?text=${encodeURIComponent(type)}`;
+
+      const images = imageCollections[type] || imageCollections['Sonderobjekt'];
+      return images[imageIndex % images.length];
+    }
+
+    // Update priority counts
+    function updatePriorityCounts() {
+      const counts = { 0: 0, 1: 0, 2: 0, 3: 0 };
+      properties.forEach(prop => {
+        if (counts.hasOwnProperty(prop.priority)) {
+          counts[prop.priority]++;
+        }
+      });
+
+      for (let i = 0; i <= 3; i++) {
+        const el = document.getElementById(`countPriority${i}`);
+        if (el) el.textContent = counts[i];
+      }
+    }
+
+    // Apply filters
+    function applyFilters() {
+      filteredProperties = properties.filter(prop => {
+        // Search filter
+        if (searchQuery) {
+          const query = searchQuery.toLowerCase();
+          const searchFields = [
+            prop.id,
+            prop.title,
+            prop.type,
+            prop.city,
+            prop.zip,
+            prop.address,
+            prop.canton
+          ].map(f => (f || '').toLowerCase());
+
+          if (!searchFields.some(field => field.includes(query))) {
+            return false;
+          }
+        }
+
+        // Priority filter
+        if (activeFilters.size > 0) {
+          return activeFilters.has(String(prop.priority));
+        }
+
+        return true;
+      });
+
+      renderCards();
     }
 
     // Render cards
     function renderCards() {
       const grid = document.getElementById('objectGrid');
-      document.getElementById('objectCount').textContent = properties.length;
+      const dataToRender = filteredProperties.length > 0 || activeFilters.size > 0 || searchQuery ? filteredProperties : properties;
+      document.getElementById('objectCount').textContent = dataToRender.length;
 
-      grid.innerHTML = properties.map(prop => `
+      grid.innerHTML = dataToRender.map(prop => `
         <div class="card" onclick="openModal('${prop.id}')">
-          <div class="card-image" style="background-image: url('${getPlaceholderImage(prop.type)}')">
+          <div class="card-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')">
             <span class="card-badge">${prop.priorityLabel} (${prop.priority})</span>
           </div>
           <div class="card-content">
             <div class="card-label">${prop.id} ${prop.type}</div>
             <div class="card-location">In ${prop.zip} ${prop.city}</div>
             <div class="card-price">${formatPriceRange(prop.valueMin, prop.valueMax)}</div>
-            <div class="card-price-sqm">${formatCHF(pricePerSqm(prop.valueMean, prop.areaGF))} / m² GF</div>
+            <div class="card-price-sqm">${formatCHF(pricePerSqm(prop.valueMin, prop.areaGF))} - ${formatCHF(pricePerSqm(prop.valueMax, prop.areaGF))} / m² GF</div>
             <div class="card-details">
               <span class="card-detail-label">Verkaufsjahr:</span>
               <span class="card-detail-value">${prop.year}</span>
@@ -679,6 +997,39 @@
       `).join('');
     }
 
+    // Setup filter pills
+    function setupFilterPills() {
+      document.querySelectorAll('.filter-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          const priority = pill.dataset.priority;
+
+          if (activeFilters.has(priority)) {
+            activeFilters.delete(priority);
+            pill.classList.remove('active');
+          } else {
+            activeFilters.add(priority);
+            pill.classList.add('active');
+          }
+
+          applyFilters();
+        });
+      });
+    }
+
+    // Setup search
+    function setupSearch() {
+      const searchInput = document.getElementById('searchInput');
+      let debounceTimer;
+
+      searchInput.addEventListener('input', (e) => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          searchQuery = e.target.value.trim();
+          applyFilters();
+        }, 300);
+      });
+    }
+
     // Open modal
     function openModal(id) {
       const prop = properties.find(p => p.id === id);
@@ -689,7 +1040,7 @@
       const body = document.getElementById('modalBody');
       body.innerHTML = `
         <div class="detail-top">
-          <div class="detail-image" style="background-image: url('${getPlaceholderImage(prop.type)}')"></div>
+          <div class="detail-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')"></div>
           <div class="detail-summary">
             <h1 class="detail-title">${prop.type} <span>in ${prop.zip} ${prop.city}</span></h1>
             <p class="detail-address">${prop.address} ${prop.zip} ${prop.city}</p>
@@ -866,6 +1217,10 @@
       .then(res => res.json())
       .then(data => {
         properties = data;
+        filteredProperties = [...data];
+        updatePriorityCounts();
+        setupFilterPills();
+        setupSearch();
         renderCards();
       })
       .catch(err => {
