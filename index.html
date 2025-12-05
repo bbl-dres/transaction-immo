@@ -2390,23 +2390,21 @@
       color: var(--neutral-900);
       margin-bottom: 24px;
     }
+    .sales-form-rating-icons,
+    .sales-form-rating-track,
+    .sales-form-rating-labels {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
     .sales-form-rating-icons {
-      display: flex;
-      justify-content: space-between;
       align-items: flex-end;
       margin-bottom: 8px;
-      padding: 0 4px;
     }
     .sales-form-rating-icon {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 80px;
-    }
-    .sales-form-rating-icon img {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
+      justify-content: flex-end;
     }
     .sales-form-rating-icon .material-icons-outlined {
       font-size: 40px;
@@ -2415,22 +2413,19 @@
     .sales-form-rating-track {
       position: relative;
       height: 20px;
-      display: flex;
       align-items: center;
-      padding: 0 4px;
     }
     .sales-form-rating-track-line {
       position: absolute;
-      left: 44px;
-      right: 44px;
+      left: 10%;
+      right: 10%;
       height: 2px;
       background: var(--neutral-300);
     }
-    .sales-form-rating-dots {
-      position: relative;
-      width: 100%;
+    .sales-form-rating-dot-wrapper {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
       z-index: 1;
     }
     .sales-form-rating-dot {
@@ -2450,13 +2445,9 @@
       border-color: var(--accent-500);
     }
     .sales-form-rating-labels {
-      display: flex;
-      justify-content: space-between;
       margin-top: 8px;
-      padding: 0 4px;
     }
     .sales-form-rating-label-item {
-      width: 80px;
       text-align: center;
       font-size: 12px;
       color: var(--neutral-600);
@@ -5334,13 +5325,13 @@
                   <span class="material-icons-outlined">real_estate_agent</span>
                 </div>
               </div>
-              <div class="sales-form-rating-track">
+              <div class="sales-form-rating-track" id="conditionDots">
                 <div class="sales-form-rating-track-line"></div>
-                <div class="sales-form-rating-dots" id="conditionDots">
-                  ${[1,2,3,4,5].map(val => `
+                ${[1,2,3,4,5].map(val => `
+                  <div class="sales-form-rating-dot-wrapper">
                     <span class="sales-form-rating-dot ${salesFormData.condition === val ? 'active' : ''}" data-value="${val}" data-target="condition"></span>
-                  `).join('')}
-                </div>
+                  </div>
+                `).join('')}
               </div>
               <div class="sales-form-rating-labels">
                 <div class="sales-form-rating-label-item">Sanierungsreif (1)</div>
@@ -5372,13 +5363,13 @@
                   <span class="material-icons-outlined">villa</span>
                 </div>
               </div>
-              <div class="sales-form-rating-track">
+              <div class="sales-form-rating-track" id="standardDots">
                 <div class="sales-form-rating-track-line"></div>
-                <div class="sales-form-rating-dots" id="standardDots">
-                  ${[1,2,3,4,5].map(val => `
+                ${[1,2,3,4,5].map(val => `
+                  <div class="sales-form-rating-dot-wrapper">
                     <span class="sales-form-rating-dot ${salesFormData.standard === val ? 'active' : ''}" data-value="${val}" data-target="standard"></span>
-                  `).join('')}
-                </div>
+                  </div>
+                `).join('')}
               </div>
               <div class="sales-form-rating-labels">
                 <div class="sales-form-rating-label-item">Einfach (1)</div>
