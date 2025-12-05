@@ -344,7 +344,7 @@
     .marker-2 { background-color: var(--priority-low-marker); }
     .marker-3 { background-color: var(--priority-none-marker); }
     .marker-null { background-color: var(--priority-null-marker); }
-    .marker .material-icons { color: var(--neutral-50); font-size: 16px; }
+    .marker .material-icons-outlined { color: var(--neutral-50); font-size: 16px; }
     .marker.selected { border: 3px solid var(--accent-600); transform: scale(1.15); z-index: 10; }
 
     .mapboxgl-popup-content { padding: 0; border-radius: 8px; overflow: hidden; min-width: 250px; }
@@ -1161,30 +1161,28 @@
       display: block;
     }
 
-    /* --- Documents Tab Styles --- */
-    .documents-container {
-      padding: 0;
-    }
-    .documents-header {
+    /* --- Shared Tab Container Styles --- */
+    .tab-container { padding: 0; }
+    .tab-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 0 16px 0;
     }
-    .documents-title {
+    .tab-title {
       font-size: 18px;
       font-weight: 600;
       color: var(--neutral-900);
       margin: 0;
     }
-    .documents-toolbar {
+    .tab-toolbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 0 16px 0;
       gap: 16px;
     }
-    .documents-search {
+    .tab-search {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -1194,11 +1192,11 @@
       padding: 8px 12px;
       min-width: 240px;
     }
-    .documents-search .material-icons-outlined {
+    .tab-search .material-icons-outlined {
       color: var(--neutral-400);
       font-size: 20px;
     }
-    .documents-search input {
+    .tab-search input {
       border: none;
       outline: none;
       font-size: 14px;
@@ -1206,40 +1204,38 @@
       background: transparent;
       width: 100%;
     }
-    .documents-search input::placeholder {
-      color: var(--neutral-400);
-    }
-    .documents-actions {
+    .tab-search input::placeholder { color: var(--neutral-400); }
+    .tab-actions {
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .doc-action-btn {
+
+    /* --- Shared Table Action Button Styles --- */
+    .table-action-btn {
       display: flex;
       align-items: center;
       gap: 6px;
       padding: 8px 14px;
       border: none;
       background: transparent;
-      color: var(--neutral-300);
+      color: var(--neutral-400);
       font-size: 14px;
       font-weight: 500;
       border-radius: 6px;
       cursor: not-allowed;
       transition: all 0.2s;
     }
-    .doc-action-btn .material-icons-outlined {
-      font-size: 18px;
-    }
-    .doc-action-btn.active {
+    .table-action-btn .material-icons-outlined { font-size: 18px; }
+    .table-action-btn.active {
       color: var(--neutral-600);
       cursor: pointer;
     }
-    .doc-action-btn.active:hover {
+    .table-action-btn.active:hover {
       background: var(--neutral-100);
       color: var(--neutral-900);
     }
-    .doc-toolbar-btn-outline {
+    .table-btn-outline {
       display: flex;
       align-items: center;
       gap: 6px;
@@ -1253,69 +1249,70 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .doc-toolbar-btn-outline:hover {
+    .table-btn-outline:hover {
       background: var(--neutral-100);
       border-color: var(--neutral-400);
     }
-    .doc-toolbar-btn-outline .material-icons-outlined {
-      font-size: 18px;
-    }
-    .documents-table {
+    .table-btn-outline .material-icons-outlined { font-size: 18px; }
+
+    /* --- Shared Data Table Styles --- */
+    .data-table {
       width: 100%;
       border-collapse: collapse;
     }
-    .documents-table th,
-    .documents-table td {
+    .data-table th,
+    .data-table td {
       padding: 12px 16px;
       text-align: left;
       border-bottom: 1px solid var(--neutral-200);
     }
-    .documents-table th {
+    .data-table th {
       font-size: 12px;
       font-weight: 600;
       color: var(--neutral-500);
-      text-transform: none;
       background: var(--neutral-100);
       white-space: nowrap;
     }
-    .documents-table th.sortable {
+    .data-table td {
+      font-size: 14px;
+      color: var(--neutral-700);
+    }
+    .data-table tbody tr:hover td { background: var(--neutral-100); }
+    .data-table tbody tr.selected td { background: var(--accent-50); }
+    .data-table th.sortable {
       cursor: pointer;
       user-select: none;
     }
-    .documents-table th.sortable:hover {
-      color: var(--neutral-700);
-    }
-    .documents-table th .sort-icon {
+    .data-table th.sortable:hover { color: var(--neutral-700); }
+    .data-table th .sort-icon {
       font-size: 16px;
       vertical-align: middle;
       margin-left: 2px;
       opacity: 0.5;
     }
-    .documents-table th.sortable:hover .sort-icon {
-      opacity: 1;
-    }
-    .documents-table td {
-      font-size: 14px;
-      color: var(--neutral-700);
-    }
-    .documents-table tbody tr:hover td {
-      background: var(--neutral-100);
-    }
-    .documents-table tbody tr.selected td {
-      background: var(--accent-50);
-    }
-    .doc-checkbox {
-      width: 48px;
-    }
-    .doc-checkbox input[type="checkbox"] {
+    .data-table th.sortable:hover .sort-icon { opacity: 1; }
+    .data-table-checkbox { width: 48px; }
+    .data-table-checkbox input[type="checkbox"] {
       width: 18px;
       height: 18px;
       cursor: pointer;
       accent-color: var(--accent-600);
     }
-    .doc-title {
-      font-weight: 500;
+
+    /* --- Shared Empty State --- */
+    .tab-empty {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--neutral-500);
     }
+    .tab-empty .material-icons-outlined {
+      font-size: 48px;
+      color: var(--neutral-300);
+      margin-bottom: 16px;
+    }
+
+    /* --- Documents Tab Specific --- */
+    .doc-title { font-weight: 500; }
     .doc-title a {
       color: var(--neutral-900);
       text-decoration: none;
@@ -1325,166 +1322,18 @@
       color: var(--accent-600);
       text-decoration: underline;
     }
-    .doc-type {
-      color: var(--neutral-600);
-    }
-    .doc-format {
-      color: var(--neutral-600);
-      font-weight: 500;
-    }
-    .doc-uploaded {
-      color: var(--neutral-500);
-      font-size: 13px;
-    }
-    .doc-size {
-      color: var(--neutral-600);
-      text-align: right;
-      white-space: nowrap;
-    }
-    .documents-empty {
-      text-align: center;
-      padding: 48px 24px;
-      color: var(--neutral-500);
-    }
-    .documents-empty .material-icons-outlined {
-      font-size: 48px;
-      color: var(--neutral-300);
-      margin-bottom: 16px;
-    }
+    .doc-type { color: var(--neutral-600); }
+    .doc-format { color: var(--neutral-600); font-weight: 500; }
+    .doc-uploaded { color: var(--neutral-500); font-size: 13px; }
+    .doc-size { color: var(--neutral-600); text-align: right; white-space: nowrap; }
 
-    /* --- Events Tab Styles --- */
-    .tab-content-ereignisse {
-      display: none;
-    }
-    .tab-content-ereignisse.active {
-      display: block;
-    }
-    .events-container {
-      padding: 0;
-    }
-    .events-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 0 16px 0;
-    }
-    .events-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--neutral-900);
-      margin: 0;
-    }
-    .events-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 0 16px 0;
-      gap: 16px;
-    }
-    .events-search {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: white;
-      border: 1px solid var(--neutral-300);
-      border-radius: 6px;
-      padding: 8px 12px;
-      min-width: 240px;
-    }
-    .events-search input {
-      border: none;
-      outline: none;
-      font-size: 14px;
-      flex: 1;
-      color: var(--neutral-700);
-    }
-    .events-search input::placeholder {
-      color: var(--neutral-400);
-    }
-    .events-search .material-icons-outlined {
-      color: var(--neutral-400);
-      font-size: 20px;
-    }
-    .events-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .events-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .events-table th,
-    .events-table td {
-      padding: 12px 16px;
-      text-align: left;
-      border-bottom: 1px solid var(--neutral-200);
-    }
-    .events-table th {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--neutral-500);
-      text-transform: uppercase;
-      background: var(--neutral-100);
-    }
-    .events-table tbody tr:hover td {
-      background: var(--neutral-100);
-    }
-    .events-table tbody tr.selected td {
-      background: var(--accent-50, #E0F7FA);
-    }
-    .event-checkbox input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-      accent-color: var(--accent-600);
-    }
-    .event-milestone {
-      font-weight: 500;
-      color: var(--neutral-900);
-    }
-    .event-user {
-      color: var(--neutral-700);
-    }
-    .event-timestamp {
-      color: var(--neutral-500);
-    }
-    .event-comment {
-      color: var(--neutral-500);
-      font-style: italic;
-    }
-    .events-empty {
-      text-align: center;
-      padding: 48px 24px;
-      color: var(--neutral-500);
-    }
-    .events-empty .material-icons-outlined {
-      font-size: 48px;
-      color: var(--neutral-300);
-      margin-bottom: 16px;
-    }
-    .event-action-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      border: none;
-      background: transparent;
-      color: var(--neutral-400);
-      font-size: 14px;
-      font-weight: 500;
-      border-radius: 6px;
-      cursor: default;
-      transition: background 0.2s, color 0.2s;
-    }
-    .event-action-btn.active {
-      color: var(--neutral-600);
-      cursor: pointer;
-    }
-    .event-action-btn.active:hover {
-      background: var(--neutral-100);
-      color: var(--neutral-900);
-    }
+    /* --- Events Tab Specific --- */
+    .tab-content-ereignisse { display: none; }
+    .tab-content-ereignisse.active { display: block; }
+    .event-milestone { font-weight: 500; color: var(--neutral-900); }
+    .event-user { color: var(--neutral-700); }
+    .event-timestamp { color: var(--neutral-500); }
+    .event-comment { color: var(--neutral-500); font-style: italic; }
 
     /* --- Upload Dialog Overlay --- */
     .upload-dialog-overlay {
@@ -1772,6 +1621,20 @@
     .login-btn-submit:hover {
       background: var(--accent-500);
     }
+    .login-links {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 24px 16px;
+    }
+    .login-link {
+      font-size: 13px;
+      color: var(--accent-600);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .login-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -1996,6 +1859,11 @@
           <label class="login-label" for="loginPassword">Passwort</label>
           <input type="password" class="login-input" id="loginPassword" placeholder="Passwort eingeben">
         </div>
+      </div>
+
+      <div class="login-links">
+        <a class="login-link" onclick="alert('Funktion noch nicht verfügbar')">Kennwort vergessen?</a>
+        <a class="login-link" onclick="alert('Funktion noch nicht verfügbar')">Neu registrieren</a>
       </div>
 
       <div class="login-actions">
@@ -2562,7 +2430,7 @@
         if (prop.lat && prop.lng) {
           const el = document.createElement('div');
           el.className = `marker marker-${prop.priority !== null ? prop.priority : 'null'}`;
-          el.innerHTML = '<span class="material-icons">home</span>';
+          el.innerHTML = '<span class="material-icons-outlined">home</span>';
           el.addEventListener('click', () => {
             document.querySelectorAll('.marker').forEach(m => m.classList.remove('selected'));
             el.classList.add('selected');
@@ -3089,17 +2957,17 @@
 
           <!-- EREIGNISSE Tab -->
           <div class="tab-content-ereignisse">
-            <div class="events-container">
-              <div class="events-header">
-                <h2 class="events-title">Ereignisse</h2>
+            <div class="tab-container">
+              <div class="tab-header">
+                <h2 class="tab-title">Ereignisse</h2>
               </div>
-              <div class="events-toolbar">
-                <div class="events-search">
+              <div class="tab-toolbar">
+                <div class="tab-search">
                   <span class="material-icons-outlined">search</span>
                   <input type="text" id="eventSearchInput" placeholder="Alle Spalten filtern" onkeyup="filterEvents(this.value)">
                 </div>
-                <div class="events-actions">
-                  <button class="event-action-btn" id="eventDownloadBtn" onclick="downloadSelectedEvents()" title="CSV herunterladen">
+                <div class="tab-actions">
+                  <button class="table-action-btn" id="eventDownloadBtn" onclick="downloadSelectedEvents()" title="CSV herunterladen">
                     <span class="material-icons-outlined">download</span>
                     <span>CSV herunterladen</span>
                   </button>
@@ -3113,25 +2981,25 @@
 
           <!-- DOKUMENTE Tab -->
           <div class="tab-content-dokumente">
-            <div class="documents-container">
-              <div class="documents-header">
-                <h2 class="documents-title">Dokumente</h2>
+            <div class="tab-container">
+              <div class="tab-header">
+                <h2 class="tab-title">Dokumente</h2>
               </div>
-              <div class="documents-toolbar">
-                <div class="documents-search">
+              <div class="tab-toolbar">
+                <div class="tab-search">
                   <span class="material-icons-outlined">search</span>
                   <input type="text" id="documentSearchInput" placeholder="Alle Spalten filtern" onkeyup="filterDocuments(this.value)">
                 </div>
-                <div class="documents-actions">
-                  <button class="doc-action-btn" id="docDeleteBtn" onclick="deleteSelectedDocuments()" title="Löschen">
+                <div class="tab-actions">
+                  <button class="table-action-btn" id="docDeleteBtn" onclick="deleteSelectedDocuments()" title="Löschen">
                     <span class="material-icons-outlined">delete</span>
                     <span>Löschen</span>
                   </button>
-                  <button class="doc-action-btn" id="docDownloadBtn" onclick="downloadSelectedDocuments()" title="Herunterladen">
+                  <button class="table-action-btn" id="docDownloadBtn" onclick="downloadSelectedDocuments()" title="Herunterladen">
                     <span class="material-icons-outlined">download</span>
                     <span>Herunterladen</span>
                   </button>
-                  <button class="doc-toolbar-btn-outline" onclick="openUploadDialog()" title="Hinzufügen">
+                  <button class="table-btn-outline" onclick="openUploadDialog()" title="Hinzufügen">
                     <span class="material-icons-outlined">add</span>
                     <span>Hinzufügen</span>
                   </button>
@@ -3319,7 +3187,7 @@
     function renderEventsTable(events) {
       if (!events || events.length === 0) {
         return `
-          <div class="events-empty">
+          <div class="tab-empty">
             <span class="material-icons-outlined">event_busy</span>
             <p>Keine Ereignisse vorhanden</p>
           </div>
@@ -3331,7 +3199,7 @@
         const comment = event.comment || '-';
         return `
           <tr data-event-id="${event.id}" class="event-row">
-            <td class="event-checkbox">
+            <td class="data-table-checkbox">
               <input type="checkbox" aria-label="Ereignis auswählen" onchange="updateEventSelection()">
             </td>
             <td class="event-milestone">${event.milestone}</td>
@@ -3343,10 +3211,10 @@
       }).join('');
 
       return `
-        <table class="events-table">
+        <table class="data-table">
           <thead>
             <tr>
-              <th class="event-checkbox">
+              <th class="data-table-checkbox">
                 <input type="checkbox" aria-label="Alle Ereignisse auswählen" onchange="toggleAllEvents(this)">
               </th>
               <th>Meilenstein</th>
@@ -3364,7 +3232,7 @@
 
     // Toggle all event checkboxes
     function toggleAllEvents(headerCheckbox) {
-      const checkboxes = document.querySelectorAll('.events-table tbody input[type="checkbox"]');
+      const checkboxes = document.querySelectorAll('.tab-content-ereignisse .data-table tbody input[type="checkbox"]');
       checkboxes.forEach(cb => {
         cb.checked = headerCheckbox.checked;
         cb.closest('tr').classList.toggle('selected', headerCheckbox.checked);
@@ -3376,8 +3244,8 @@
 
     // Update event selection state
     function updateEventSelection() {
-      const checkboxes = document.querySelectorAll('.events-table tbody input[type="checkbox"]');
-      const headerCheckbox = document.querySelector('.events-table thead input[type="checkbox"]');
+      const checkboxes = document.querySelectorAll('.tab-content-ereignisse .data-table tbody input[type="checkbox"]');
+      const headerCheckbox = document.querySelector('.tab-content-ereignisse .data-table thead input[type="checkbox"]');
       const downloadBtn = document.getElementById('eventDownloadBtn');
 
       checkboxes.forEach(cb => {
@@ -3398,7 +3266,7 @@
 
     // Filter events by search term
     function filterEvents(searchTerm) {
-      const rows = document.querySelectorAll('.events-table tbody tr');
+      const rows = document.querySelectorAll('.tab-content-ereignisse .data-table tbody tr');
       const term = searchTerm.toLowerCase();
 
       rows.forEach(row => {
@@ -3412,7 +3280,7 @@
       const downloadBtn = document.getElementById('eventDownloadBtn');
       if (!downloadBtn || !downloadBtn.classList.contains('active')) return;
 
-      const selected = document.querySelectorAll('.events-table tbody input[type="checkbox"]:checked');
+      const selected = document.querySelectorAll('.tab-content-ereignisse .data-table tbody input[type="checkbox"]:checked');
       if (selected.length === 0) return;
 
       const eventIds = Array.from(selected).map(cb => cb.closest('tr').dataset.eventId);
@@ -3423,7 +3291,7 @@
     function renderDocumentsTable(documents) {
       if (!documents || documents.length === 0) {
         return `
-          <div class="documents-empty">
+          <div class="tab-empty">
             <span class="material-icons-outlined">folder_open</span>
             <p>Keine Dokumente vorhanden</p>
           </div>
@@ -3437,7 +3305,7 @@
         const uploadedInfo = `${doc.uploadedBy}, ${dateOnly}`;
         return `
           <tr data-doc-id="${doc.id}" class="doc-row">
-            <td class="doc-checkbox">
+            <td class="data-table-checkbox">
               <input type="checkbox" aria-label="Dokument auswählen" onchange="updateDocumentSelection()">
             </td>
             <td class="doc-title"><a href="#" onclick="event.preventDefault()">${doc.title || doc.name}</a></td>
@@ -3450,10 +3318,10 @@
       }).join('');
 
       return `
-        <table class="documents-table">
+        <table class="data-table">
           <thead>
             <tr>
-              <th class="doc-checkbox">
+              <th class="data-table-checkbox">
                 <input type="checkbox" aria-label="Alle Dokumente auswählen" onchange="toggleAllDocuments(this)">
               </th>
               <th class="sortable" onclick="sortDocuments('title')">
@@ -3481,7 +3349,7 @@
 
     // Toggle all document checkboxes
     function toggleAllDocuments(headerCheckbox) {
-      const checkboxes = document.querySelectorAll('.documents-table tbody input[type="checkbox"]');
+      const checkboxes = document.querySelectorAll('.tab-content-dokumente .data-table tbody input[type="checkbox"]');
       checkboxes.forEach(cb => {
         cb.checked = headerCheckbox.checked;
         cb.closest('tr').classList.toggle('selected', headerCheckbox.checked);
@@ -3495,8 +3363,8 @@
 
     // Update document selection state
     function updateDocumentSelection() {
-      const checkboxes = document.querySelectorAll('.documents-table tbody input[type="checkbox"]');
-      const headerCheckbox = document.querySelector('.documents-table thead input[type="checkbox"]');
+      const checkboxes = document.querySelectorAll('.tab-content-dokumente .data-table tbody input[type="checkbox"]');
+      const headerCheckbox = document.querySelector('.tab-content-dokumente .data-table thead input[type="checkbox"]');
       const deleteBtn = document.getElementById('docDeleteBtn');
       const downloadBtn = document.getElementById('docDownloadBtn');
 
@@ -3519,7 +3387,7 @@
 
     // Filter documents by search term
     function filterDocuments(searchTerm) {
-      const rows = document.querySelectorAll('.documents-table tbody tr');
+      const rows = document.querySelectorAll('.tab-content-dokumente .data-table tbody tr');
       const term = searchTerm.toLowerCase();
 
       rows.forEach(row => {
@@ -3533,7 +3401,7 @@
     let currentSortDirection = 'asc';
 
     function sortDocuments(column) {
-      const tbody = document.querySelector('.documents-table tbody');
+      const tbody = document.querySelector('.tab-content-dokumente .data-table tbody');
       if (!tbody) return;
 
       const rows = Array.from(tbody.querySelectorAll('tr'));
@@ -3568,7 +3436,7 @@
       const deleteBtn = document.getElementById('docDeleteBtn');
       if (!deleteBtn || !deleteBtn.classList.contains('active')) return;
 
-      const selected = document.querySelectorAll('.documents-table tbody input[type="checkbox"]:checked');
+      const selected = document.querySelectorAll('.tab-content-dokumente .data-table tbody input[type="checkbox"]:checked');
       if (selected.length === 0) return;
 
       if (confirm(`Möchten Sie ${selected.length} Dokument(e) wirklich löschen?`)) {
@@ -3578,7 +3446,7 @@
         });
 
         // Update header checkbox and action buttons
-        const headerCheckbox = document.querySelector('.documents-table thead input[type="checkbox"]');
+        const headerCheckbox = document.querySelector('.tab-content-dokumente .data-table thead input[type="checkbox"]');
         if (headerCheckbox) {
           headerCheckbox.checked = false;
           headerCheckbox.indeterminate = false;
@@ -3592,7 +3460,7 @@
       const downloadBtn = document.getElementById('docDownloadBtn');
       if (!downloadBtn || !downloadBtn.classList.contains('active')) return;
 
-      const selected = document.querySelectorAll('.documents-table tbody input[type="checkbox"]:checked');
+      const selected = document.querySelectorAll('.tab-content-dokumente .data-table tbody input[type="checkbox"]:checked');
       if (selected.length === 0) return;
 
       const docIds = Array.from(selected).map(cb => cb.closest('tr').dataset.docId);
