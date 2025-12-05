@@ -2295,7 +2295,7 @@
                   </div>
                   <div class="detail-value-bar">
                     ${prop.valueMax > prop.valueMin ?
-                      \`<div class="detail-value-marker" style="left: \${((prop.valueMean - prop.valueMin) / (prop.valueMax - prop.valueMin)) * 100}%"></div>\`
+                      '<div class="detail-value-marker" style="left: ' + (((prop.valueMean - prop.valueMin) / (prop.valueMax - prop.valueMin)) * 100) + '%"></div>'
                       : ''}
                   </div>
                   <div class="detail-value-scale">
@@ -2315,7 +2315,7 @@
                   <span class="detail-location-label">Gesamthaft</span>
                   <span class="detail-location-value">${prop.locationRatings ? prop.locationRatings.overall : 'Null'}</span>
                   <div class="detail-location-stars">
-                    ${[1,2,3,4,5].map(i => \`<span class="material-icons-outlined detail-location-star \${prop.locationRatings && i <= prop.locationRatings.overall ? 'filled' : ''}">star</span>\`).join('')}
+                    ${[1,2,3,4,5].map(i => '<span class="material-icons-outlined detail-location-star ' + (prop.locationRatings && i <= prop.locationRatings.overall ? 'filled' : '') + '">star</span>').join('')}
                   </div>
                 </div>
                 <div class="detail-location-item">
