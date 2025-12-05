@@ -2499,22 +2499,6 @@
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- DOKUMENTE Tab -->
-          <div class="tab-content-dokumente">
-            <div class="documents-container">
-              <div class="documents-header">
-                <h2 class="documents-title">Dokumente</h2>
-                <button class="doc-add-btn" onclick="openUploadDialog()" aria-label="Dokument hinzufügen">
-                  <span class="material-icons-outlined">add</span>
-                </button>
-              </div>
-              <div id="documentsTableContainer">
-                ${renderDocumentsTable(prop.documents)}
-              </div>
-            </div>
-          </div>
 
           <!-- Section Separator -->
           <div class="detail-section-separator"></div>
@@ -2699,6 +2683,22 @@
                   <span class="detail-location-value">${prop.locationRatings ? prop.locationRatings.noisePollution : 'Null'}</span>
                   <div class="detail-location-bar"><div class="detail-location-bar-fill" style="width: ${prop.locationRatings ? prop.locationRatings.noisePollution : 10}%"></div></div>
                 </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <!-- DOKUMENTE Tab -->
+          <div class="tab-content-dokumente">
+            <div class="documents-container">
+              <div class="documents-header">
+                <h2 class="documents-title">Dokumente</h2>
+                <button class="doc-add-btn" onclick="openUploadDialog()" aria-label="Dokument hinzufügen">
+                  <span class="material-icons-outlined">add</span>
+                </button>
+              </div>
+              <div id="documentsTableContainer">
+                ${renderDocumentsTable(prop.documents)}
               </div>
             </div>
           </div>
