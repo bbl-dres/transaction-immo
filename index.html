@@ -1852,6 +1852,11 @@
     .sales-form-section {
       margin-bottom: 24px;
     }
+    .sales-form-divider {
+      height: 1px;
+      background: var(--neutral-200);
+      margin: 24px 0;
+    }
     .sales-form-section-title {
       font-size: 14px;
       font-weight: 600;
@@ -2123,9 +2128,10 @@
 
     /* Input Grid */
     .sales-form-input-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-direction: column;
       gap: 20px;
+      margin-bottom: 24px;
     }
     .sales-form-input-group {
       display: flex;
@@ -2156,7 +2162,6 @@
       padding: 16px;
       background: var(--neutral-100);
       border-radius: 6px;
-      margin-top: 16px;
     }
     .sales-form-info-box .material-icons-outlined {
       color: var(--neutral-500);
@@ -4946,7 +4951,7 @@
             </div>
           </div>
 
-          <div class="sales-form-input-grid" style="margin-top: 24px;">
+          <div class="sales-form-input-grid">
             <div class="sales-form-input-group">
               <label class="sales-form-label">In welchem Geschäftsjahr soll die Liegenschaft verkauft werden?</label>
               <select class="sales-form-select" id="saleYearSelect">
@@ -4975,6 +4980,8 @@
               </div>
             </div>
           </div>
+
+          <div class="sales-form-divider"></div>
 
           <div class="sales-form-info-box">
             <span class="material-icons-outlined">lightbulb</span>
