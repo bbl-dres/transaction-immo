@@ -1850,12 +1850,15 @@
 
     /* Form Elements */
     .sales-form-section {
-      margin-bottom: 24px;
+      margin: 34px 0;
+    }
+    .sales-form-section:first-child {
+      margin-top: 0;
     }
     .sales-form-divider {
       height: 1px;
       background: var(--neutral-200);
-      margin: 24px 0;
+      margin: 34px 0;
     }
     .sales-form-section-title {
       font-size: 14px;
@@ -1957,6 +1960,7 @@
       width: 100%;
       padding: 12px 16px;
       padding-left: 44px;
+      padding-right: 44px;
       border: 1px solid var(--neutral-300);
       border-radius: 4px;
       font-size: 14px;
@@ -1973,6 +1977,29 @@
       top: 50%;
       transform: translateY(-50%);
       color: var(--neutral-400);
+      font-size: 20px;
+    }
+    .sales-form-search-clear {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--neutral-400);
+      cursor: pointer;
+      padding: 4px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .sales-form-search-clear.visible {
+      display: flex;
+    }
+    .sales-form-search-clear:hover {
+      color: var(--neutral-600);
+    }
+    .sales-form-search-clear .material-icons-outlined {
       font-size: 20px;
     }
     .sales-form-search-results {
@@ -2130,12 +2157,13 @@
     .sales-form-input-grid {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      margin-bottom: 24px;
+      gap: 34px;
+      margin: 34px 0;
     }
     .sales-form-input-group {
       display: flex;
       flex-direction: column;
+      max-width: 480px;
     }
     .sales-form-input-group.full-width {
       grid-column: 1 / -1;
@@ -4911,6 +4939,9 @@
                      placeholder="Mit Adresse, PLZ oder Ort suchen..."
                      value="${salesFormData.location.searchText}"
                      autocomplete="off">
+              <button type="button" class="sales-form-search-clear ${salesFormData.location.searchText ? 'visible' : ''}" id="searchClearBtn" onclick="clearSearchInput()">
+                <span class="material-icons-outlined">close</span>
+              </button>
               <div class="sales-form-search-results" id="locationSearchResults"></div>
             </div>
             ${hasLocation ? `
@@ -4951,6 +4982,13 @@
             </div>
           </div>
 
+          <div class="sales-form-divider"></div>
+
+          <div class="sales-form-info-box">
+            <span class="material-icons-outlined">lightbulb</span>
+            <p>Sollten bestimmte Angaben für Sie nicht zutreffen oder unbekannt sein, tragen Sie bitte eine 0 ein.</p>
+          </div>
+
           <div class="sales-form-input-grid">
             <div class="sales-form-input-group">
               <label class="sales-form-label">In welchem Geschäftsjahr soll die Liegenschaft verkauft werden?</label>
@@ -4980,13 +5018,6 @@
               </div>
             </div>
           </div>
-
-          <div class="sales-form-divider"></div>
-
-          <div class="sales-form-info-box">
-            <span class="material-icons-outlined">lightbulb</span>
-            <p>Sollten bestimmte Angaben für Sie nicht zutreffen oder unbekannt sein, tragen Sie bitte eine 0 ein.</p>
-          </div>
         </div>
         <div class="sales-form-nav">
           <button class="sales-form-nav-btn next" onclick="nextSalesFormStep()">
@@ -5000,11 +5031,21 @@
     function setupStep1Handlers() {
       const searchInput = document.getElementById('locationSearchInput');
       const searchResults = document.getElementById('locationSearchResults');
+      const clearBtn = document.getElementById('searchClearBtn');
 
       if (searchInput) {
         searchInput.addEventListener('input', (e) => {
           const query = e.target.value.trim();
           salesFormData.location.searchText = query;
+
+          // Toggle clear button visibility
+          if (clearBtn) {
+            if (query.length > 0) {
+              clearBtn.classList.add('visible');
+            } else {
+              clearBtn.classList.remove('visible');
+            }
+          }
 
           if (searchDebounceTimer) {
             clearTimeout(searchDebounceTimer);
@@ -5101,6 +5142,16 @@
     function clearSelectedLocation() {
       salesFormData.location = { searchText: '', label: '', coords: { E: null, N: null } };
       renderSalesFormStepContent();
+    }
+
+    function clearSearchInput() {
+      salesFormData.location.searchText = '';
+      const searchInput = document.getElementById('locationSearchInput');
+      const clearBtn = document.getElementById('searchClearBtn');
+      const searchResults = document.getElementById('locationSearchResults');
+      if (searchInput) searchInput.value = '';
+      if (clearBtn) clearBtn.classList.remove('visible');
+      if (searchResults) searchResults.classList.remove('active');
     }
 
     // --- Step 2: Angaben zum Objekt ---
