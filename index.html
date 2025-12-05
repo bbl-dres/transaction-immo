@@ -700,11 +700,6 @@
       stroke: var(--primary-900) !important;
       stroke-width: 2px !important;
     }
-    .detail-map-coords {
-      margin-top: 12px;
-      font-size: 12px;
-      color: var(--neutral-500);
-    }
 
     /* External Links */
     .detail-links {
@@ -1357,6 +1352,140 @@
       margin-bottom: 16px;
     }
 
+    /* --- Events Tab Styles --- */
+    .tab-content-ereignisse {
+      display: none;
+    }
+    .tab-content-ereignisse.active {
+      display: block;
+    }
+    .events-container {
+      padding: 0;
+    }
+    .events-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0 16px 0;
+    }
+    .events-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin: 0;
+    }
+    .events-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0 16px 0;
+      gap: 16px;
+    }
+    .events-search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border: 1px solid var(--neutral-300);
+      border-radius: 6px;
+      padding: 8px 12px;
+      min-width: 240px;
+    }
+    .events-search input {
+      border: none;
+      outline: none;
+      font-size: 14px;
+      flex: 1;
+      color: var(--neutral-700);
+    }
+    .events-search input::placeholder {
+      color: var(--neutral-400);
+    }
+    .events-search .material-icons-outlined {
+      color: var(--neutral-400);
+      font-size: 20px;
+    }
+    .events-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .events-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .events-table th,
+    .events-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--neutral-200);
+    }
+    .events-table th {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--neutral-500);
+      text-transform: uppercase;
+      background: var(--neutral-100);
+    }
+    .events-table tbody tr:hover td {
+      background: var(--neutral-100);
+    }
+    .events-table tbody tr.selected td {
+      background: var(--accent-50, #E0F7FA);
+    }
+    .event-checkbox input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--accent-600);
+    }
+    .event-milestone {
+      font-weight: 500;
+      color: var(--neutral-900);
+    }
+    .event-user {
+      color: var(--neutral-700);
+    }
+    .event-timestamp {
+      color: var(--neutral-500);
+    }
+    .event-comment {
+      color: var(--neutral-500);
+      font-style: italic;
+    }
+    .events-empty {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--neutral-500);
+    }
+    .events-empty .material-icons-outlined {
+      font-size: 48px;
+      color: var(--neutral-300);
+      margin-bottom: 16px;
+    }
+    .event-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border: none;
+      background: transparent;
+      color: var(--neutral-400);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: default;
+      transition: background 0.2s, color 0.2s;
+    }
+    .event-action-btn.active {
+      color: var(--neutral-600);
+      cursor: pointer;
+    }
+    .event-action-btn.active:hover {
+      background: var(--neutral-100);
+      color: var(--neutral-900);
+    }
+
     /* --- Upload Dialog Overlay --- */
     .upload-dialog-overlay {
       position: fixed;
@@ -1521,6 +1650,128 @@
       opacity: 0.5;
       cursor: not-allowed;
     }
+
+    /* --- Login Dialog Styles --- */
+    .login-dialog-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .login-dialog-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .login-dialog {
+      background: var(--neutral-50);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    .login-dialog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--neutral-200);
+    }
+    .login-dialog-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin: 0;
+    }
+    .login-dialog-close {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--neutral-500);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .login-dialog-close:hover {
+      background: var(--neutral-100);
+    }
+    .login-form {
+      padding: 24px;
+    }
+    .login-field {
+      margin-bottom: 16px;
+    }
+    .login-field:last-of-type {
+      margin-bottom: 0;
+    }
+    .login-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      margin-bottom: 6px;
+    }
+    .login-input {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      border: 1px solid var(--neutral-300);
+      border-radius: 6px;
+      background: var(--neutral-50);
+      color: var(--neutral-700);
+      box-sizing: border-box;
+    }
+    .login-input:focus {
+      outline: none;
+      border-color: var(--accent-600);
+    }
+    .login-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      padding: 20px 24px;
+      border-top: 1px solid var(--neutral-200);
+    }
+    .login-btn-cancel {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid var(--neutral-300);
+      background: var(--neutral-50);
+      color: var(--neutral-700);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login-btn-cancel:hover {
+      background: var(--neutral-100);
+    }
+    .login-btn-submit {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      background: var(--accent-600);
+      color: var(--neutral-50);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login-btn-submit:hover {
+      background: var(--accent-500);
+    }
   </style>
 </head>
 <body>
@@ -1534,7 +1785,7 @@
     </div>
     <div class="header-right">
       <button class="btn btn-primary">Auftrag erstellen</button>
-      <button class="btn btn-outline">Login</button>
+      <button class="btn btn-outline" onclick="openLoginDialog()">Login</button>
     </div>
   </header>
 
@@ -1721,6 +1972,35 @@
       <div class="upload-actions">
         <button class="upload-btn-cancel" onclick="closeUploadDialog()">Abbrechen</button>
         <button class="upload-btn-submit" id="uploadSubmitBtn" onclick="submitDocumentUpload()" disabled>Hochladen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Dialog -->
+  <div class="login-dialog-overlay" id="loginDialogOverlay" onclick="if(event.target === this) closeLoginDialog()">
+    <div class="login-dialog">
+      <div class="login-dialog-header">
+        <h3 class="login-dialog-title">Anmelden</h3>
+        <button class="login-dialog-close" onclick="closeLoginDialog()" aria-label="Schliessen">
+          <span class="material-icons-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="login-form">
+        <div class="login-field">
+          <label class="login-label" for="loginEmail">E-Mail</label>
+          <input type="email" class="login-input" id="loginEmail" placeholder="name@beispiel.ch">
+        </div>
+
+        <div class="login-field">
+          <label class="login-label" for="loginPassword">Passwort</label>
+          <input type="password" class="login-input" id="loginPassword" placeholder="Passwort eingeben">
+        </div>
+      </div>
+
+      <div class="login-actions">
+        <button class="login-btn-cancel" onclick="closeLoginDialog()">Abbrechen</button>
+        <button class="login-btn-submit" onclick="submitLogin()">Anmelden</button>
       </div>
     </div>
   </div>
@@ -2543,7 +2823,7 @@
         <div class="detail-tabs">
           <button class="detail-tab active" onclick="switchTab('ÜBERSICHT')">ÜBERSICHT</button>
           <button class="detail-tab disabled">MEILENSTEINE</button>
-          <button class="detail-tab disabled">EREIGNISSE</button>
+          <button class="detail-tab" onclick="switchTab('EREIGNISSE')">EREIGNISSE</button>
           <button class="detail-tab" onclick="switchTab('DOKUMENTE')">DOKUMENTE</button>
         </div>
 
@@ -2616,10 +2896,6 @@
               <!-- Switzerland Map -->
               <div class="detail-map-container">
                 <div class="detail-map-svg" id="detailMapSvg">${svgMapHtml}</div>
-                <div class="detail-map-coords">
-                  lat: ${prop.lat || '-'}<br>
-                  long: ${prop.lng || '-'}
-                </div>
               </div>
             </div>
 
@@ -2811,6 +3087,30 @@
           </div>
           </div>
 
+          <!-- EREIGNISSE Tab -->
+          <div class="tab-content-ereignisse">
+            <div class="events-container">
+              <div class="events-header">
+                <h2 class="events-title">Ereignisse</h2>
+              </div>
+              <div class="events-toolbar">
+                <div class="events-search">
+                  <span class="material-icons-outlined">search</span>
+                  <input type="text" id="eventSearchInput" placeholder="Alle Spalten filtern" onkeyup="filterEvents(this.value)">
+                </div>
+                <div class="events-actions">
+                  <button class="event-action-btn" id="eventDownloadBtn" onclick="downloadSelectedEvents()" title="CSV herunterladen">
+                    <span class="material-icons-outlined">download</span>
+                    <span>CSV herunterladen</span>
+                  </button>
+                </div>
+              </div>
+              <div id="eventsTableContainer">
+                ${renderEventsTable(prop.events)}
+              </div>
+            </div>
+          </div>
+
           <!-- DOKUMENTE Tab -->
           <div class="tab-content-dokumente">
             <div class="documents-container">
@@ -2954,13 +3254,20 @@
 
       // Update tab content
       const uebersichtContent = document.querySelector('.tab-content-uebersicht');
+      const ereignisseContent = document.querySelector('.tab-content-ereignisse');
       const dokumenteContent = document.querySelector('.tab-content-dokumente');
 
+      // Hide all tabs first
+      uebersichtContent.classList.remove('active');
+      ereignisseContent.classList.remove('active');
+      dokumenteContent.classList.remove('active');
+
+      // Show the selected tab
       if (tabName === 'ÜBERSICHT') {
         uebersichtContent.classList.add('active');
-        dokumenteContent.classList.remove('active');
+      } else if (tabName === 'EREIGNISSE') {
+        ereignisseContent.classList.add('active');
       } else if (tabName === 'DOKUMENTE') {
-        uebersichtContent.classList.remove('active');
         dokumenteContent.classList.add('active');
       }
     }
@@ -3006,6 +3313,110 @@
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const year = date.getFullYear();
       return `${day}.${month}.${year}`;
+    }
+
+    // Render events table
+    function renderEventsTable(events) {
+      if (!events || events.length === 0) {
+        return `
+          <div class="events-empty">
+            <span class="material-icons-outlined">event_busy</span>
+            <p>Keine Ereignisse vorhanden</p>
+          </div>
+        `;
+      }
+
+      const rows = events.map(event => {
+        const dateOnly = formatDocumentDateOnly(event.timestamp);
+        const comment = event.comment || '-';
+        return `
+          <tr data-event-id="${event.id}" class="event-row">
+            <td class="event-checkbox">
+              <input type="checkbox" aria-label="Ereignis auswählen" onchange="updateEventSelection()">
+            </td>
+            <td class="event-milestone">${event.milestone}</td>
+            <td class="event-user">${event.user}</td>
+            <td class="event-timestamp">${dateOnly}</td>
+            <td class="event-comment">${comment}</td>
+          </tr>
+        `;
+      }).join('');
+
+      return `
+        <table class="events-table">
+          <thead>
+            <tr>
+              <th class="event-checkbox">
+                <input type="checkbox" aria-label="Alle Ereignisse auswählen" onchange="toggleAllEvents(this)">
+              </th>
+              <th>Meilenstein</th>
+              <th>Benutzer</th>
+              <th>Zeitstempel</th>
+              <th>Kommentar</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows}
+          </tbody>
+        </table>
+      `;
+    }
+
+    // Toggle all event checkboxes
+    function toggleAllEvents(headerCheckbox) {
+      const checkboxes = document.querySelectorAll('.events-table tbody input[type="checkbox"]');
+      checkboxes.forEach(cb => {
+        cb.checked = headerCheckbox.checked;
+        cb.closest('tr').classList.toggle('selected', headerCheckbox.checked);
+      });
+      // Update action button state
+      const downloadBtn = document.getElementById('eventDownloadBtn');
+      if (downloadBtn) downloadBtn.classList.toggle('active', headerCheckbox.checked);
+    }
+
+    // Update event selection state
+    function updateEventSelection() {
+      const checkboxes = document.querySelectorAll('.events-table tbody input[type="checkbox"]');
+      const headerCheckbox = document.querySelector('.events-table thead input[type="checkbox"]');
+      const downloadBtn = document.getElementById('eventDownloadBtn');
+
+      checkboxes.forEach(cb => {
+        cb.closest('tr').classList.toggle('selected', cb.checked);
+      });
+
+      const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+      const someChecked = Array.from(checkboxes).some(cb => cb.checked);
+
+      if (headerCheckbox) {
+        headerCheckbox.checked = allChecked;
+        headerCheckbox.indeterminate = someChecked && !allChecked;
+      }
+
+      // Toggle active state on action button
+      if (downloadBtn) downloadBtn.classList.toggle('active', someChecked);
+    }
+
+    // Filter events by search term
+    function filterEvents(searchTerm) {
+      const rows = document.querySelectorAll('.events-table tbody tr');
+      const term = searchTerm.toLowerCase();
+
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(term) ? '' : 'none';
+      });
+    }
+
+    // Download selected events as CSV (placeholder)
+    function downloadSelectedEvents() {
+      const downloadBtn = document.getElementById('eventDownloadBtn');
+      if (!downloadBtn || !downloadBtn.classList.contains('active')) return;
+
+      const selected = document.querySelectorAll('.events-table tbody input[type="checkbox"]:checked');
+      if (selected.length === 0) return;
+
+      const eventIds = Array.from(selected).map(cb => cb.closest('tr').dataset.eventId);
+      alert(`CSV-Download von ${eventIds.length} Ereignis(sen) wird gestartet...\n\nIDs: ${eventIds.join(', ')}`);
     }
 
     // Render documents table
@@ -3210,6 +3621,29 @@
       const overlay = document.getElementById('uploadDialogOverlay');
       overlay.classList.remove('active');
       document.body.style.overflow = '';
+    }
+
+    // Open login dialog
+    function openLoginDialog() {
+      const overlay = document.getElementById('loginDialogOverlay');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // Clear form
+      document.getElementById('loginEmail').value = '';
+      document.getElementById('loginPassword').value = '';
+    }
+
+    // Close login dialog
+    function closeLoginDialog() {
+      const overlay = document.getElementById('loginDialogOverlay');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Submit login (mockup - just closes dialog)
+    function submitLogin() {
+      closeLoginDialog();
     }
 
     // Reset upload form
