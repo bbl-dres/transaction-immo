@@ -410,6 +410,11 @@
       align-items: center;
       justify-content: space-between;
     }
+    .detail-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
     .detail-back-btn {
       display: flex;
       align-items: center;
@@ -543,8 +548,10 @@
       font-size: 13px;
     }
     .detail-pdf-btn {
-      margin-top: 16px;
-      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
       background: var(--accent-600);
       color: var(--neutral-50);
       border: none;
@@ -852,6 +859,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      max-width: 500px;
     }
     .detail-location-item {
       display: grid;
@@ -921,8 +929,7 @@
 
     /* Hide list/search when detail view is active */
     body.detail-active .search-section,
-    body.detail-active .main,
-    body.detail-active .footer {
+    body.detail-active .main {
       display: none;
     }
 
@@ -1587,10 +1594,16 @@
     <div class="detail-header">
       <div class="detail-header-inner">
         <span class="detail-breadcrumb" id="detailBreadcrumb"></span>
-        <button class="detail-back-btn" onclick="closeDetailPage()">
-          <span class="material-icons-outlined">arrow_back</span>
-          Zurück zur Übersicht
-        </button>
+        <div class="detail-header-actions">
+          <button class="detail-back-btn" onclick="closeDetailPage()">
+            <span class="material-icons-outlined">arrow_back</span>
+            Zurück zur Übersicht
+          </button>
+          <button class="detail-pdf-btn" onclick="exportToPdf()">
+            <span class="material-icons-outlined">picture_as_pdf</span>
+            Als PDF exportieren
+          </button>
+        </div>
       </div>
     </div>
     <div class="detail-content" id="detailContent">
@@ -2520,7 +2533,6 @@
             <div class="detail-info-section detail-title-section">
               <h1>${prop.milestone.current}/${prop.milestone.total} ${prop.milestone.label}</h1>
               <div class="detail-data-label">Meilenstein</div>
-              <button class="detail-pdf-btn" onclick="exportToPdf()">Als PDF exportieren</button>
             </div>
           </div>
         </div>
