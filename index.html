@@ -5472,6 +5472,12 @@
       if (saleYearSelect) {
         saleYearSelect.addEventListener('change', (e) => {
           salesFormData.saleYear = e.target.value ? parseInt(e.target.value) : null;
+          // Toggle required class
+          if (salesFormData.saleYear) {
+            saleYearSelect.classList.remove('required');
+          } else {
+            saleYearSelect.classList.add('required');
+          }
         });
       }
 
@@ -5479,6 +5485,11 @@
       document.querySelectorAll('input[name="saleReason"]').forEach(radio => {
         radio.addEventListener('change', (e) => {
           salesFormData.saleReason = e.target.value;
+          // Toggle required class on radio group
+          const radioGroup = e.target.closest('.sales-form-radio-group');
+          if (radioGroup && salesFormData.saleReason) {
+            radioGroup.classList.remove('required');
+          }
         });
       });
     }
@@ -5940,12 +5951,23 @@
         'areaGVInput': 'areaGV'
       };
 
+      // Required fields in Step 2
+      const requiredStep2Fields = ['floorsInput', 'parkingSpacesInput'];
+
       Object.entries(inputMappings).forEach(([id, field]) => {
         const input = document.getElementById(id);
         if (input) {
           input.addEventListener('input', (e) => {
             salesFormData[field] = e.target.value;
             updateAreaPercentages();
+            // Toggle required class for required fields
+            if (requiredStep2Fields.includes(id)) {
+              if (e.target.value) {
+                input.classList.remove('required');
+              } else {
+                input.classList.add('required');
+              }
+            }
           });
         }
       });
@@ -6155,11 +6177,22 @@
         'verbalAgreementsInput': 'verbalAgreementsDescription'
       };
 
+      // Required fields in Step 3
+      const requiredStep3Fields = ['residentialLeasesInput', 'commercialLeasesInput', 'monthlyRentInput', 'rentArrearsInput'];
+
       Object.entries(inputMappings).forEach(([id, field]) => {
         const input = document.getElementById(id);
         if (input) {
           input.addEventListener('input', (e) => {
             salesFormData[field] = e.target.value;
+            // Toggle required class for required fields
+            if (requiredStep3Fields.includes(id)) {
+              if (e.target.value || e.target.value === '0') {
+                input.classList.remove('required');
+              } else {
+                input.classList.add('required');
+              }
+            }
           });
         }
       });
