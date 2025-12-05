@@ -1140,21 +1140,15 @@
     /* --- Documents Tab Styles --- */
     .documents-container {
       padding: 0;
-      background: var(--neutral-50);
-      border: 1px solid var(--neutral-200);
-      border-radius: 8px;
-      overflow: hidden;
     }
     .documents-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--neutral-200);
-      background: var(--neutral-50);
+      padding: 0 0 16px 0;
     }
     .documents-title {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       color: var(--neutral-900);
       margin: 0;
@@ -1163,9 +1157,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 20px;
-      border-bottom: 1px solid var(--neutral-200);
-      background: var(--neutral-50);
+      padding: 0 0 16px 0;
       gap: 16px;
     }
     .documents-search {
@@ -1196,15 +1188,39 @@
     .documents-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
     }
-    .doc-toolbar-btn {
+    .doc-action-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: transparent;
+      color: var(--neutral-300);
+      border-radius: 6px;
+      cursor: not-allowed;
+      transition: all 0.2s;
+    }
+    .doc-action-icon .material-icons-outlined {
+      font-size: 20px;
+    }
+    .doc-action-icon.active {
+      color: var(--neutral-600);
+      cursor: pointer;
+    }
+    .doc-action-icon.active:hover {
+      background: var(--neutral-100);
+      color: var(--neutral-900);
+    }
+    .doc-toolbar-btn-outline {
       display: flex;
       align-items: center;
       gap: 6px;
       padding: 8px 14px;
       border: 1px solid var(--neutral-300);
-      background: white;
+      background: transparent;
       color: var(--neutral-700);
       font-size: 14px;
       font-weight: 500;
@@ -1212,21 +1228,12 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .doc-toolbar-btn:hover {
+    .doc-toolbar-btn-outline:hover {
       background: var(--neutral-100);
       border-color: var(--neutral-400);
     }
-    .doc-toolbar-btn .material-icons-outlined {
+    .doc-toolbar-btn-outline .material-icons-outlined {
       font-size: 18px;
-    }
-    .doc-toolbar-btn-primary {
-      background: var(--accent-600);
-      color: white;
-      border-color: var(--accent-600);
-    }
-    .doc-toolbar-btn-primary:hover {
-      background: var(--accent-700);
-      border-color: var(--accent-700);
     }
     .documents-table {
       width: 100%;
@@ -1265,7 +1272,6 @@
     .documents-table td {
       font-size: 14px;
       color: var(--neutral-700);
-      background: white;
     }
     .documents-table tbody tr:hover td {
       background: var(--neutral-100);
@@ -1282,11 +1288,6 @@
       cursor: pointer;
       accent-color: var(--accent-600);
     }
-    .doc-id {
-      color: var(--neutral-600);
-      font-family: monospace;
-      font-size: 13px;
-    }
     .doc-title {
       font-weight: 500;
       color: var(--neutral-900);
@@ -1298,9 +1299,9 @@
       color: var(--neutral-600);
       font-weight: 500;
     }
-    .doc-date {
-      color: var(--neutral-600);
-      white-space: nowrap;
+    .doc-uploaded {
+      color: var(--neutral-500);
+      font-size: 13px;
     }
     .doc-size {
       color: var(--neutral-600);
@@ -1311,7 +1312,6 @@
       text-align: center;
       padding: 48px 24px;
       color: var(--neutral-500);
-      background: white;
     }
     .documents-empty .material-icons-outlined {
       font-size: 48px;
@@ -2783,15 +2783,13 @@
                   <input type="text" id="documentSearchInput" placeholder="Alle Spalten filtern" onkeyup="filterDocuments(this.value)">
                 </div>
                 <div class="documents-actions">
-                  <button class="doc-toolbar-btn" onclick="deleteSelectedDocuments()" title="Löschen">
+                  <button class="doc-action-icon" id="docDeleteBtn" onclick="deleteSelectedDocuments()" title="Löschen">
                     <span class="material-icons-outlined">delete</span>
-                    <span>Löschen</span>
                   </button>
-                  <button class="doc-toolbar-btn" onclick="downloadSelectedDocuments()" title="Herunterladen">
+                  <button class="doc-action-icon" id="docDownloadBtn" onclick="downloadSelectedDocuments()" title="Herunterladen">
                     <span class="material-icons-outlined">download</span>
-                    <span>Herunterladen</span>
                   </button>
-                  <button class="doc-toolbar-btn doc-toolbar-btn-primary" onclick="openUploadDialog()" title="Hinzufügen">
+                  <button class="doc-toolbar-btn-outline" onclick="openUploadDialog()" title="Hinzufügen">
                     <span class="material-icons-outlined">add</span>
                     <span>Hinzufügen</span>
                   </button>
@@ -2983,16 +2981,16 @@
         const format = getFileExtension(doc.name).toUpperCase();
         const size = doc.size || '-';
         const dateOnly = formatDocumentDateOnly(doc.uploadedAt);
+        const uploadedInfo = `${doc.uploadedBy}, ${dateOnly}`;
         return `
           <tr data-doc-id="${doc.id}" class="doc-row">
             <td class="doc-checkbox">
               <input type="checkbox" aria-label="Dokument auswählen" onchange="updateDocumentSelection()">
             </td>
-            <td class="doc-id">${doc.id}</td>
             <td class="doc-title">${doc.title || doc.name}</td>
             <td class="doc-type">${doc.type}</td>
             <td class="doc-format">${format}</td>
-            <td class="doc-date">${dateOnly}</td>
+            <td class="doc-uploaded">${uploadedInfo}</td>
             <td class="doc-size">${size}</td>
           </tr>
         `;
@@ -3005,10 +3003,6 @@
               <th class="doc-checkbox">
                 <input type="checkbox" aria-label="Alle Dokumente auswählen" onchange="toggleAllDocuments(this)">
               </th>
-              <th class="sortable" onclick="sortDocuments('id')">
-                <span>ID</span>
-                <span class="material-icons-outlined sort-icon">unfold_more</span>
-              </th>
               <th class="sortable" onclick="sortDocuments('title')">
                 <span>Titel</span>
                 <span class="material-icons-outlined sort-icon">unfold_more</span>
@@ -3018,8 +3012,8 @@
                 <span class="material-icons-outlined sort-icon">unfold_more</span>
               </th>
               <th>Format</th>
-              <th class="sortable" onclick="sortDocuments('date')">
-                <span>Datum</span>
+              <th class="sortable" onclick="sortDocuments('uploaded')">
+                <span>Hochgeladen</span>
                 <span class="material-icons-outlined sort-icon">unfold_more</span>
               </th>
               <th>Grösse</th>
@@ -3039,12 +3033,19 @@
         cb.checked = headerCheckbox.checked;
         cb.closest('tr').classList.toggle('selected', headerCheckbox.checked);
       });
+      // Update action buttons state
+      const deleteBtn = document.getElementById('docDeleteBtn');
+      const downloadBtn = document.getElementById('docDownloadBtn');
+      if (deleteBtn) deleteBtn.classList.toggle('active', headerCheckbox.checked);
+      if (downloadBtn) downloadBtn.classList.toggle('active', headerCheckbox.checked);
     }
 
     // Update document selection state
     function updateDocumentSelection() {
       const checkboxes = document.querySelectorAll('.documents-table tbody input[type="checkbox"]');
       const headerCheckbox = document.querySelector('.documents-table thead input[type="checkbox"]');
+      const deleteBtn = document.getElementById('docDeleteBtn');
+      const downloadBtn = document.getElementById('docDownloadBtn');
 
       checkboxes.forEach(cb => {
         cb.closest('tr').classList.toggle('selected', cb.checked);
@@ -3057,6 +3058,10 @@
         headerCheckbox.checked = allChecked;
         headerCheckbox.indeterminate = someChecked && !allChecked;
       }
+
+      // Toggle active state on action buttons
+      if (deleteBtn) deleteBtn.classList.toggle('active', someChecked);
+      if (downloadBtn) downloadBtn.classList.toggle('active', someChecked);
     }
 
     // Filter documents by search term
@@ -3089,10 +3094,9 @@
       }
 
       const columnIndex = {
-        'id': 1,
-        'title': 2,
-        'type': 3,
-        'date': 5
+        'title': 1,
+        'type': 2,
+        'uploaded': 4
       }[column];
 
       rows.sort((a, b) => {
@@ -3108,11 +3112,11 @@
 
     // Delete selected documents
     function deleteSelectedDocuments() {
+      const deleteBtn = document.getElementById('docDeleteBtn');
+      if (!deleteBtn || !deleteBtn.classList.contains('active')) return;
+
       const selected = document.querySelectorAll('.documents-table tbody input[type="checkbox"]:checked');
-      if (selected.length === 0) {
-        alert('Bitte wählen Sie mindestens ein Dokument aus.');
-        return;
-      }
+      if (selected.length === 0) return;
 
       if (confirm(`Möchten Sie ${selected.length} Dokument(e) wirklich löschen?`)) {
         selected.forEach(cb => {
@@ -3120,22 +3124,23 @@
           if (row) row.remove();
         });
 
-        // Update header checkbox
+        // Update header checkbox and action buttons
         const headerCheckbox = document.querySelector('.documents-table thead input[type="checkbox"]');
         if (headerCheckbox) {
           headerCheckbox.checked = false;
           headerCheckbox.indeterminate = false;
         }
+        updateDocumentSelection();
       }
     }
 
     // Download selected documents
     function downloadSelectedDocuments() {
+      const downloadBtn = document.getElementById('docDownloadBtn');
+      if (!downloadBtn || !downloadBtn.classList.contains('active')) return;
+
       const selected = document.querySelectorAll('.documents-table tbody input[type="checkbox"]:checked');
-      if (selected.length === 0) {
-        alert('Bitte wählen Sie mindestens ein Dokument aus.');
-        return;
-      }
+      if (selected.length === 0) return;
 
       const docIds = Array.from(selected).map(cb => cb.closest('tr').dataset.docId);
       alert(`Download von ${docIds.length} Dokument(en) wird gestartet...\n\nIDs: ${docIds.join(', ')}`);
