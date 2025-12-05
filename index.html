@@ -2548,6 +2548,140 @@
       background: var(--accent-500);
     }
 
+    /* SIA 416 Widget */
+    .sia-416-widget {
+      max-width: 720px;
+      margin-top: 34px;
+      padding-top: 34px;
+      border-top: 1px solid var(--neutral-200);
+    }
+    .sia-416-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--neutral-800);
+      margin-bottom: 24px;
+    }
+    .sia-416-section {
+      margin-bottom: 24px;
+    }
+    .sia-416-section:last-of-type {
+      margin-bottom: 0;
+    }
+    .sia-416-section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--neutral-700);
+      margin-bottom: 12px;
+    }
+    .sia-416-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 32px 180px 60px;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .sia-416-row:last-child {
+      margin-bottom: 0;
+    }
+    .sia-416-abbr {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-700);
+    }
+    .sia-416-name {
+      font-size: 14px;
+      color: var(--neutral-600);
+    }
+    .sia-416-unit {
+      font-size: 14px;
+      color: var(--neutral-500);
+      text-align: right;
+    }
+    .sia-416-input {
+      padding: 8px 12px;
+      border: 1px solid var(--neutral-300);
+      border-radius: 4px;
+      font-size: 14px;
+      color: var(--neutral-800);
+      background: white;
+    }
+    .sia-416-input::placeholder {
+      color: var(--neutral-400);
+    }
+    .sia-416-input:focus {
+      outline: none;
+      border-color: var(--accent-500);
+      box-shadow: 0 0 0 3px var(--accent-100);
+    }
+    .sia-416-input.required {
+      border-color: var(--priority-red);
+    }
+    .sia-416-input.required:focus {
+      border-color: var(--priority-red);
+      box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+    }
+    .sia-416-percent {
+      font-size: 13px;
+      color: var(--neutral-500);
+      text-align: right;
+    }
+    .sia-416-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 20px;
+      padding: 10px 0;
+      background: none;
+      border: none;
+      font-size: 14px;
+      color: var(--neutral-600);
+      cursor: pointer;
+      width: 100%;
+    }
+    .sia-416-toggle:hover {
+      color: var(--neutral-800);
+    }
+    .sia-416-toggle .material-icons-outlined {
+      font-size: 20px;
+      transition: transform 0.2s;
+    }
+    .sia-416-toggle.expanded .material-icons-outlined {
+      transform: rotate(180deg);
+    }
+    .sia-416-optional {
+      display: none;
+    }
+    .sia-416-optional.visible {
+      display: block;
+    }
+    .sia-416-info {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 20px;
+      padding: 12px 16px;
+      background: var(--neutral-100);
+      border-radius: 6px;
+    }
+    .sia-416-info .material-icons-outlined {
+      font-size: 20px;
+      color: var(--neutral-500);
+      flex-shrink: 0;
+    }
+    .sia-416-info p {
+      font-size: 13px;
+      color: var(--neutral-600);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .sia-416-info a {
+      color: var(--accent-600);
+    }
+    .sia-416-info a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 1100px) {
       .sales-form-container {
         flex-direction: column;
@@ -4825,9 +4959,25 @@
       salesFormData.isHeated = null;
       salesFormData.hasBuildingRights = null;
       salesFormData.buildingRightsFee = '';
+      // SIA 416 - Grundstücksflächen
+      salesFormData.areaGSF = '';
+      salesFormData.areaGGF = '';
+      salesFormData.areaUF = '';
+      salesFormData.areaBUF = '';
+      // SIA 416 - Gebäudeflächen
       salesFormData.areaGF = '';
+      salesFormData.areaNGF = '';
+      salesFormData.areaNF = '';
       salesFormData.areaVMF = '';
       salesFormData.areaHNF = '';
+      salesFormData.areaNNF = '';
+      salesFormData.areaVF = '';
+      salesFormData.areaFF = '';
+      salesFormData.areaKF = '';
+      salesFormData.areaAGF = '';
+      // SIA 416 - Gebäudevolumen
+      salesFormData.areaGV = '';
+      salesFormData.sia416Expanded = false;
       salesFormData.photos = [];
       salesFormData.condition = 3;
       salesFormData.standard = 3;
@@ -5231,6 +5381,154 @@
             </div>
           </div>
 
+          <!-- SIA 416 Widget -->
+          <div class="sia-416-widget">
+            <div class="sia-416-title">Bemessungen nach SIA 416</div>
+
+            <!-- Grundstücksflächen (optional - only visible when expanded) -->
+            <div class="sia-416-optional ${salesFormData.sia416Expanded ? 'visible' : ''}" id="sia416Grundstueck">
+              <div class="sia-416-section">
+                <div class="sia-416-section-title">Grundstücksflächen</div>
+                <div class="sia-416-row">
+                  <span class="sia-416-abbr">GSF</span>
+                  <span class="sia-416-name">Grundstücksfläche</span>
+                  <span class="sia-416-unit">m²</span>
+                  <input type="number" class="sia-416-input" id="areaGSFInput" placeholder="Angabe fehlt" value="${salesFormData.areaGSF}">
+                  <span class="sia-416-percent" id="gsfPercent">0% GSF</span>
+                </div>
+                <div class="sia-416-row">
+                  <span class="sia-416-abbr">GGF</span>
+                  <span class="sia-416-name">Gebäudegrundfläche</span>
+                  <span class="sia-416-unit">m²</span>
+                  <input type="number" class="sia-416-input" id="areaGGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaGGF}">
+                  <span class="sia-416-percent" id="ggfPercent">0% GSF</span>
+                </div>
+                <div class="sia-416-row">
+                  <span class="sia-416-abbr">UF</span>
+                  <span class="sia-416-name">Umgebungsfläche</span>
+                  <span class="sia-416-unit">m²</span>
+                  <input type="number" class="sia-416-input" id="areaUFInput" placeholder="Angabe fehlt" value="${salesFormData.areaUF}">
+                  <span class="sia-416-percent" id="ufPercent">0% GSF</span>
+                </div>
+                <div class="sia-416-row">
+                  <span class="sia-416-abbr">BUF</span>
+                  <span class="sia-416-name">Bearbeitete Umgebungsfläche</span>
+                  <span class="sia-416-unit">m²</span>
+                  <input type="number" class="sia-416-input" id="areaBUFInput" placeholder="Angabe fehlt" value="${salesFormData.areaBUF}">
+                  <span class="sia-416-percent" id="bufPercent">0% GSF</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gebäudeflächen -->
+            <div class="sia-416-section">
+              <div class="sia-416-section-title">Gebäudeflächen</div>
+              <!-- Required fields (always visible) -->
+              <div class="sia-416-row">
+                <span class="sia-416-abbr">GF*</span>
+                <span class="sia-416-name">Geschossfläche</span>
+                <span class="sia-416-unit">m²</span>
+                <input type="number" class="sia-416-input required" id="areaGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaGF}">
+                <span class="sia-416-percent">0% GF</span>
+              </div>
+              <!-- Optional fields in Gebäudeflächen (only visible when expanded) -->
+              <div class="sia-416-optional ${salesFormData.sia416Expanded ? 'visible' : ''}" id="sia416GebaeudeFlaechenOptional">
+                <div class="sia-416-row">
+                  <span class="sia-416-abbr">NGF</span>
+                  <span class="sia-416-name">Nettogeschossfläche</span>
+                  <span class="sia-416-unit">m²</span>
+                  <input type="number" class="sia-416-input" id="areaNGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaNGF}">
+                  <span class="sia-416-percent" id="ngfPercent">0% GF</span>
+                </div>
+                <div class="sia-416-row">
+                  <span class="sia-416-abbr">NF</span>
+                  <span class="sia-416-name">Nutzfläche</span>
+                  <span class="sia-416-unit">m²</span>
+                  <input type="number" class="sia-416-input" id="areaNFInput" placeholder="Angabe fehlt" value="${salesFormData.areaNF}">
+                  <span class="sia-416-percent" id="nfPercent">0% GF</span>
+                </div>
+              </div>
+              <div class="sia-416-row">
+                <span class="sia-416-abbr">VMF*</span>
+                <span class="sia-416-name">Vermietbare Fläche</span>
+                <span class="sia-416-unit">m²</span>
+                <input type="number" class="sia-416-input required" id="areaVMFInput" placeholder="Angabe fehlt" value="${salesFormData.areaVMF}">
+                <span class="sia-416-percent" id="vmfPercent">0% GF</span>
+              </div>
+              <div class="sia-416-row">
+                <span class="sia-416-abbr">HNF</span>
+                <span class="sia-416-name">Hauptnutzfläche</span>
+                <span class="sia-416-unit">m²</span>
+                <input type="number" class="sia-416-input" id="areaHNFInput" placeholder="Angabe fehlt" value="${salesFormData.areaHNF}">
+                <span class="sia-416-percent" id="hnfPercent">0% GF</span>
+              </div>
+              <!-- More optional fields in Gebäudeflächen -->
+              <div class="sia-416-optional ${salesFormData.sia416Expanded ? 'visible' : ''}" id="sia416GebaeudeFlaechenOptional2">
+                <div class="sia-416-row">
+                  <span class="sia-416-abbr">NNF</span>
+                  <span class="sia-416-name">Nebennutzfläche</span>
+                  <span class="sia-416-unit">m²</span>
+                  <input type="number" class="sia-416-input" id="areaNNFInput" placeholder="Angabe fehlt" value="${salesFormData.areaNNF}">
+                  <span class="sia-416-percent" id="nnfPercent">0% GF</span>
+                </div>
+                <div class="sia-416-row">
+                  <span class="sia-416-abbr">VF</span>
+                  <span class="sia-416-name">Verkehrsfläche</span>
+                  <span class="sia-416-unit">m²</span>
+                  <input type="number" class="sia-416-input" id="areaVFInput" placeholder="Angabe fehlt" value="${salesFormData.areaVF}">
+                  <span class="sia-416-percent" id="vfPercent">0% GF</span>
+                </div>
+                <div class="sia-416-row">
+                  <span class="sia-416-abbr">FF</span>
+                  <span class="sia-416-name">Funktionsfläche</span>
+                  <span class="sia-416-unit">m²</span>
+                  <input type="number" class="sia-416-input" id="areaFFInput" placeholder="Angabe fehlt" value="${salesFormData.areaFF}">
+                  <span class="sia-416-percent" id="ffPercent">0% GF</span>
+                </div>
+                <div class="sia-416-row">
+                  <span class="sia-416-abbr">KF</span>
+                  <span class="sia-416-name">Konstruktionsfläche</span>
+                  <span class="sia-416-unit">m²</span>
+                  <input type="number" class="sia-416-input" id="areaKFInput" placeholder="Angabe fehlt" value="${salesFormData.areaKF}">
+                  <span class="sia-416-percent" id="kfPercent">0% GF</span>
+                </div>
+                <div class="sia-416-row">
+                  <span class="sia-416-abbr">AGF</span>
+                  <span class="sia-416-name">Aussengeschossfläche</span>
+                  <span class="sia-416-unit">m²</span>
+                  <input type="number" class="sia-416-input" id="areaAGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaAGF}">
+                  <span class="sia-416-percent" id="agfPercent">0% GF</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gebäudevolumen (optional - only visible when expanded) -->
+            <div class="sia-416-optional ${salesFormData.sia416Expanded ? 'visible' : ''}" id="sia416Volumen">
+              <div class="sia-416-section">
+                <div class="sia-416-section-title">Gebäudevolumen</div>
+                <div class="sia-416-row">
+                  <span class="sia-416-abbr">GV</span>
+                  <span class="sia-416-name">Gebäudevolumen</span>
+                  <span class="sia-416-unit">m³</span>
+                  <input type="number" class="sia-416-input" id="areaGVInput" placeholder="Angabe fehlt" value="${salesFormData.areaGV}">
+                  <span class="sia-416-percent">0% GV</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Toggle button -->
+            <button type="button" class="sia-416-toggle ${salesFormData.sia416Expanded ? 'expanded' : ''}" id="sia416Toggle" onclick="toggleSia416()">
+              <span class="material-icons-outlined">expand_more</span>
+              <span id="sia416ToggleText">${salesFormData.sia416Expanded ? 'Zusätzliche Angaben ausblenden' : 'Zusätzliche Angaben einblenden'}</span>
+            </button>
+
+            <!-- Info box -->
+            <div class="sia-416-info">
+              <span class="material-icons-outlined">lightbulb</span>
+              <p>Mit Stern* markierte Informationen sind Pflichtfelder. Angaben zur Grundstücksfläche werden automatisch aus der <a href="https://map.geo.admin.ch/#/map?lang=de&center=2669393.97,1204289.63&z=2&topic=ech&layers=ch.swisstopo-vd.stand-oerebkataster&bgLayer=ch.swisstopo.pixelkarte-farbe" target="_blank" rel="noopener">Amtlichen Vermessung</a> ermittelt.</p>
+            </div>
+          </div>
+
           <div class="sales-form-photos-section">
             <div class="sales-form-photos-title">Fotos</div>
             <p class="sales-form-photos-description">Im folgenden Abschnitt können Objekt Fotos hochgeladen werden. Mehrere Bilder können einzeln hochgeladen werden.</p>
@@ -5354,9 +5652,24 @@
         'roomsInput': 'rooms',
         'parkingSpacesInput': 'parkingSpaces',
         'buildingRightsFeeInput': 'buildingRightsFee',
+        // SIA 416 - Grundstücksflächen
+        'areaGSFInput': 'areaGSF',
+        'areaGGFInput': 'areaGGF',
+        'areaUFInput': 'areaUF',
+        'areaBUFInput': 'areaBUF',
+        // SIA 416 - Gebäudeflächen
         'areaGFInput': 'areaGF',
+        'areaNGFInput': 'areaNGF',
+        'areaNFInput': 'areaNF',
         'areaVMFInput': 'areaVMF',
-        'areaHNFInput': 'areaHNF'
+        'areaHNFInput': 'areaHNF',
+        'areaNNFInput': 'areaNNF',
+        'areaVFInput': 'areaVF',
+        'areaFFInput': 'areaFF',
+        'areaKFInput': 'areaKF',
+        'areaAGFInput': 'areaAGF',
+        // SIA 416 - Gebäudevolumen
+        'areaGVInput': 'areaGV'
       };
 
       Object.entries(inputMappings).forEach(([id, field]) => {
@@ -5405,18 +5718,50 @@
     }
 
     function updateAreaPercentages() {
+      // Reference values
+      const gsf = parseFloat(salesFormData.areaGSF) || 0;
       const gf = parseFloat(salesFormData.areaGF) || 0;
-      const vmf = parseFloat(salesFormData.areaVMF) || 0;
-      const hnf = parseFloat(salesFormData.areaHNF) || 0;
 
-      const vmfPercent = document.getElementById('vmfPercent');
-      const hnfPercent = document.getElementById('hnfPercent');
+      // Grundstücksflächen (% of GSF)
+      const gsfFields = ['ggf', 'uf', 'buf'];
+      gsfFields.forEach(field => {
+        const value = parseFloat(salesFormData[`area${field.toUpperCase()}`]) || 0;
+        const percentEl = document.getElementById(`${field}Percent`);
+        if (percentEl) {
+          percentEl.textContent = gsf > 0 ? `${Math.round(value / gsf * 100)}% GSF` : '0% GSF';
+        }
+      });
 
-      if (vmfPercent) {
-        vmfPercent.textContent = gf > 0 ? `${Math.round(vmf / gf * 100)}% GF` : '0% GF';
+      // Gebäudeflächen (% of GF)
+      const gfFields = ['ngf', 'nf', 'vmf', 'hnf', 'nnf', 'vf', 'ff', 'kf', 'agf'];
+      gfFields.forEach(field => {
+        const value = parseFloat(salesFormData[`area${field.toUpperCase()}`]) || 0;
+        const percentEl = document.getElementById(`${field}Percent`);
+        if (percentEl) {
+          percentEl.textContent = gf > 0 ? `${Math.round(value / gf * 100)}% GF` : '0% GF';
+        }
+      });
+    }
+
+    function toggleSia416() {
+      salesFormData.sia416Expanded = !salesFormData.sia416Expanded;
+
+      // Toggle visibility of optional sections
+      const optionalSections = document.querySelectorAll('.sia-416-optional');
+      optionalSections.forEach(section => {
+        section.classList.toggle('visible', salesFormData.sia416Expanded);
+      });
+
+      // Update toggle button
+      const toggleBtn = document.getElementById('sia416Toggle');
+      const toggleText = document.getElementById('sia416ToggleText');
+      if (toggleBtn) {
+        toggleBtn.classList.toggle('expanded', salesFormData.sia416Expanded);
       }
-      if (hnfPercent) {
-        hnfPercent.textContent = gf > 0 ? `${Math.round(hnf / gf * 100)}% GF` : '0% GF';
+      if (toggleText) {
+        toggleText.textContent = salesFormData.sia416Expanded
+          ? 'Zusätzliche Angaben ausblenden'
+          : 'Zusätzliche Angaben einblenden';
       }
     }
 
@@ -5692,12 +6037,6 @@
                     <span class="sales-form-summary-label">Vermietbare Fläche (VMF)</span>
                     <span class="sales-form-summary-value ${!salesFormData.areaVMF ? 'empty' : ''}">
                       ${salesFormData.areaVMF ? `${salesFormData.areaVMF} m²` : 'Nicht angegeben'}
-                    </span>
-                  </div>
-                  <div class="sales-form-summary-item">
-                    <span class="sales-form-summary-label">Hauptnutzfläche (HNF)</span>
-                    <span class="sales-form-summary-value ${!salesFormData.areaHNF ? 'empty' : ''}">
-                      ${salesFormData.areaHNF ? `${salesFormData.areaHNF} m²` : 'Nicht angegeben'}
                     </span>
                   </div>
                   <div class="sales-form-summary-item">
