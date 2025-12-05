@@ -2198,6 +2198,10 @@
       padding: 16px;
       background: var(--neutral-100);
       border-radius: 6px;
+      margin: 34px 0;
+    }
+    .sales-form-info-box:last-child {
+      margin-bottom: 0;
     }
     .sales-form-info-box .material-icons-outlined {
       color: var(--neutral-500);
@@ -2213,8 +2217,8 @@
 
     /* Building Areas Table */
     .sales-form-areas-section {
-      margin-top: 24px;
-      padding-top: 24px;
+      margin-top: 34px;
+      padding-top: 34px;
       border-top: 1px solid var(--neutral-200);
     }
     .sales-form-areas-title {
@@ -2310,8 +2314,8 @@
 
     /* Photo Upload */
     .sales-form-photos-section {
-      margin-top: 24px;
-      padding-top: 24px;
+      margin-top: 34px;
+      padding-top: 34px;
       border-top: 1px solid var(--neutral-200);
     }
     .sales-form-photos-title {
@@ -4981,11 +4985,6 @@
 
           <div class="sales-form-divider"></div>
 
-          <div class="sales-form-info-box">
-            <span class="material-icons-outlined">lightbulb</span>
-            <p>Sollten bestimmte Angaben für Sie nicht zutreffen oder unbekannt sein, tragen Sie bitte eine 0 ein.</p>
-          </div>
-
           <div class="sales-form-input-grid">
             <div class="sales-form-input-group">
               <label class="sales-form-label">In welchem Geschäftsjahr soll die Liegenschaft verkauft werden?</label>
@@ -5230,60 +5229,6 @@
               <input type="number" class="sales-form-input" id="parkingSpacesInput"
                      placeholder="Angabe fehlt" value="${salesFormData.parkingSpaces}">
             </div>
-          </div>
-
-          <div class="sales-form-info-box">
-            <span class="material-icons-outlined">lightbulb</span>
-            <p>Um den geschätzten Marktwert von Wohnobjekten zu bestimmen, benötigen wir zusätzliche Angaben wie Wohnfläche und Anzahl Wohnungen. Informationen zum Baurecht entnehmen Sie bitte dem Baurechtsvertrag.</p>
-          </div>
-
-          <div class="sales-form-areas-section">
-            <div class="sales-form-areas-title">Bemessungen nach SIA 416</div>
-            <div class="sales-form-areas-subtitle">Gebäudeflächen</div>
-            <div class="sales-form-areas-table">
-              <div class="sales-form-areas-row">
-                <span class="sales-form-areas-abbr">GF*</span>
-                <span class="sales-form-areas-label">Geschossfläche</span>
-                <div class="sales-form-areas-input">
-                  <input type="number" id="areaGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaGF}">
-                  <span class="sales-form-areas-unit">m²</span>
-                </div>
-                <span class="sales-form-areas-percent">-</span>
-              </div>
-              <div class="sales-form-areas-row">
-                <span class="sales-form-areas-abbr">VMF*</span>
-                <span class="sales-form-areas-label">Vermietbare Fläche</span>
-                <div class="sales-form-areas-input">
-                  <input type="number" id="areaVMFInput" placeholder="Angabe fehlt" value="${salesFormData.areaVMF}">
-                  <span class="sales-form-areas-unit">m²</span>
-                </div>
-                <span class="sales-form-areas-percent" id="vmfPercent">${vmfPercent}% GF</span>
-              </div>
-              <div class="sales-form-areas-row">
-                <span class="sales-form-areas-abbr">HNF</span>
-                <span class="sales-form-areas-label">Hauptnutzfläche</span>
-                <div class="sales-form-areas-input">
-                  <input type="number" id="areaHNFInput" placeholder="Angabe fehlt" value="${salesFormData.areaHNF}">
-                  <span class="sales-form-areas-unit">m²</span>
-                </div>
-                <span class="sales-form-areas-percent" id="hnfPercent">${hnfPercent}% GF</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="sales-form-expandable">
-            <button class="sales-form-expandable-toggle" onclick="toggleExpandable(this)">
-              <span class="material-icons-outlined">expand_more</span>
-              Zusätzliche Angaben einblenden
-            </button>
-            <div class="sales-form-expandable-content">
-              <p style="color: var(--neutral-600); font-size: 14px;">Weitere Felder können hier hinzugefügt werden.</p>
-            </div>
-          </div>
-
-          <div class="sales-form-info-box">
-            <span class="material-icons-outlined">lightbulb</span>
-            <p>Mit Stern* markierte Informationen sind Pflichtfelder. Angaben zur Grundstückfläche werden automatisch aus der <a href="#" style="color: var(--accent-600);">Amtlichen Vermessung</a> ermittelt.</p>
           </div>
 
           <div class="sales-form-photos-section">
