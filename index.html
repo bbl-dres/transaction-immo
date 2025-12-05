@@ -2675,17 +2675,32 @@
       background: white;
       border: 2px solid var(--neutral-300);
       transition: all 0.15s;
+      position: relative;
+    }
+    .sales-form-rating-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-600);
+      transition: transform 0.15s;
     }
     .sales-form-rating-sector:hover .sales-form-rating-dot {
       border-color: var(--neutral-400);
     }
     .sales-form-rating-sector.active .sales-form-rating-dot {
-      background: var(--accent-500);
-      border-color: var(--accent-500);
+      border-color: var(--accent-600);
+    }
+    .sales-form-rating-sector.active .sales-form-rating-dot::after {
+      transform: translate(-50%, -50%) scale(1);
     }
     .sales-form-rating-sector-label {
       text-align: center;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--neutral-600);
       min-height: 18px;
       position: relative;
