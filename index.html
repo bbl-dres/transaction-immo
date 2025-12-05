@@ -31,23 +31,41 @@
       --neutral-800: #2D3748;
       --neutral-700: #4A5568;
       --neutral-600: #718096;
-      --neutral-500: #718096;
+      --neutral-500: #8895A7;
       --neutral-400: #A0AEC0;
       --neutral-300: #CBD5E0;
       --neutral-200: #E2E8F0;
       --neutral-100: #F7FAFC;
       --neutral-50: #FFFFFF;
 
-      /* Priority Colors - Semantic (with base color aliases) */
+      /* Priority Colors - Semantic Status Indicators
+         Design Decision: Colors map to urgency/attention levels:
+         - High (Red): Critical, requires immediate attention
+         - Medium (Amber): Moderate priority, review soon
+         - Standard (Green): Active/on-track, proceeding normally
+         - Low (Blue): Informational, lower urgency
+         - None (Gray): Inactive, archived, or no priority assigned
+      */
       --priority-high: #DC2626;
       --priority-high-bg: #FEE2E2;
       --priority-high-text: #B91C1C;
       --priority-high-marker: #DC2626;
 
+      /* Medium Priority - Amber (new tier for moderate urgency) */
+      --priority-medium: #F59E0B;
+      --priority-medium-bg: #FEF3C7;
+      --priority-medium-text: #B45309;
+      --priority-medium-marker: #F59E0B;
+
+      /* Standard/Normal - Green indicates "on track" or "active" status */
       --priority-normal: #10B981;
       --priority-normal-bg: #D1FAE5;
       --priority-normal-text: #047857;
       --priority-normal-marker: #10B981;
+      /* Semantic alias for clarity */
+      --priority-standard: var(--priority-normal);
+      --priority-standard-bg: var(--priority-normal-bg);
+      --priority-standard-text: var(--priority-normal-text);
 
       --priority-low: #3B82F6;
       --priority-low-bg: #DBEAFE;
@@ -63,6 +81,12 @@
       --priority-null-text: #9CA3AF;
       --priority-null-border: #E5E7EB;
       --priority-null-marker: #D1D5DB;
+
+      /* Warning Colors - Caution/Attention States */
+      --warning: #F59E0B;
+      --warning-bg: #FEF3C7;
+      --warning-text: #B45309;
+      --warning-border: #FCD34D;
 
       /* Semantic Colors */
       --color-star: #FFC107;
@@ -476,7 +500,12 @@
     .marker {
         width: 30px; height: 30px; border-radius: 50%; cursor: pointer;
         display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3); border: 2px solid var(--neutral-50);
+        border: 2px solid var(--neutral-50);
+        /* Enhanced shadow for visibility on satellite/terrain maps */
+        box-shadow:
+          0 2px 6px rgba(0,0,0,0.4),
+          0 0 0 1px rgba(255,255,255,0.3),
+          0 4px 12px rgba(0,0,0,0.25);
     }
     .marker-0 { background-color: var(--priority-high-marker); }
     .marker-1 { background-color: var(--priority-normal-marker); }
@@ -484,7 +513,15 @@
     .marker-3 { background-color: var(--priority-none-marker); }
     .marker-null { background-color: var(--priority-null-marker); }
     .marker .material-icons-outlined { color: var(--neutral-50); font-size: 16px; }
-    .marker.selected { border: 3px solid var(--accent-600); transform: scale(1.15); z-index: 10; }
+    .marker.selected {
+        border: 3px solid var(--accent-600);
+        transform: scale(1.15);
+        z-index: 10;
+        box-shadow:
+          0 2px 6px rgba(0,0,0,0.4),
+          0 0 0 2px rgba(0, 119, 182, 0.5),
+          0 4px 16px rgba(0,0,0,0.3);
+    }
 
     .mapboxgl-popup-content { padding: 0; border-radius: 8px; overflow: hidden; min-width: 250px; }
     .popup-image { height: 120px; background-size: cover; background-position: center; }
