@@ -3,14 +3,17 @@
 A web-based real estate portfolio management platform for the Swiss Federal Office for Buildings and Logistics (Bundesamt für Bauten und Logistik - BBL). This platform enables visualization, filtering, and management of federal government properties available for sale across Switzerland.
 - Deployed: [davras5.github.io/transaction-immo/](davras5.github.io/transaction-immo/)
 
-<p align="center">
-  <img src="images/Preview1.jpg" width="90%"/>
-</p>
-
-<p align="center">
-  <img src="images/Preview2.jpg" width="45%" style="vertical-align: top;"/>
-  <img src="images/Preview3.jpg" width="45%" style="vertical-align: top;"/>
-</p>
+<table>
+  <tr>
+    <td colspan="2" align="center">
+      <img src="images/Preview1.jpg" width="90%"/>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="images/Preview2.jpg" width="100%"/></td>
+    <td><img src="images/Preview3.jpg" width="100%"/></td>
+  </tr>
+</table>
 
 ## Features
 
