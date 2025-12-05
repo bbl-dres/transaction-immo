@@ -8,10 +8,8 @@ A web-based real estate portfolio management platform for the Swiss Federal Offi
 </p>
 
 <p align="center">
-  <img src="images/Preview2.jpg" width="45%"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="images/Preview3.jpg" width="45%"/>
-  &nbsp;&nbsp;&nbsp;
+  <img src="images/Preview2.jpg" width="45%" style="vertical-align: top;"/>
+  <img src="images/Preview3.jpg" width="45%" style="vertical-align: top;"/>
 </p>
 
 ## Features
