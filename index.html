@@ -438,7 +438,6 @@
     }
 
     .detail-content {
-      flex: 1;
       max-width: 1440px;
       margin: 24px auto;
       padding: 24px;
@@ -554,14 +553,15 @@
       padding: 10px 20px;
       background: var(--accent-600);
       color: var(--neutral-50);
-      border: none;
+      border: 1px solid var(--accent-600);
       border-radius: 6px;
       font-size: 14px;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s;
     }
     .detail-pdf-btn:hover {
       background: var(--accent-500);
+      border-color: var(--accent-500);
     }
 
     .detail-price-cards {
