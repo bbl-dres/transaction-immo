@@ -2051,6 +2051,10 @@
       color: var(--neutral-700);
       margin-bottom: 6px;
     }
+    .sales-form-label.required::after {
+      content: " *";
+      color: var(--priority-high);
+    }
     .sales-form-input {
       width: 100%;
       padding: 10px 12px;
@@ -2073,9 +2077,16 @@
       border-color: var(--priority-high);
       background: #fef2f2;
     }
+    .sales-form-input.required {
+      border-color: var(--priority-high);
+    }
+    .sales-form-input.required:focus {
+      border-color: var(--priority-high);
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+    }
     .sales-form-select {
       width: 100%;
-      padding: 10px 12px;
+      padding: 10px 36px 10px 12px;
       border: 1px solid var(--neutral-300);
       border-radius: 4px;
       font-size: 14px;
@@ -2087,6 +2098,13 @@
       outline: none;
       border-color: var(--accent-500);
       box-shadow: 0 0 0 3px var(--accent-100);
+    }
+    .sales-form-select.required {
+      border-color: var(--priority-high);
+    }
+    .sales-form-select.required:focus {
+      border-color: var(--priority-high);
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
     }
     .sales-form-textarea {
       width: 100%;
@@ -2114,6 +2132,12 @@
     .sales-form-radio-group.horizontal {
       flex-direction: row;
       gap: 24px;
+    }
+    .sales-form-radio-group.required {
+      padding: 8px 12px;
+      border: 1px solid var(--priority-high);
+      border-radius: 4px;
+      background: rgba(220, 38, 38, 0.03);
     }
     .sales-form-radio {
       display: flex;
@@ -2148,6 +2172,13 @@
       outline: none;
       border-color: var(--accent-500);
       box-shadow: 0 0 0 3px var(--accent-100);
+    }
+    .sales-form-search-input.required {
+      border-color: var(--priority-high);
+    }
+    .sales-form-search-input.required:focus {
+      border-color: var(--priority-high);
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
     }
     .sales-form-search-icon {
       position: absolute;
@@ -5286,11 +5317,11 @@
         </div>
         <div class="sales-form-step-content">
           <div class="sales-form-section">
-            <label class="sales-form-label">Adresse oder Standort suchen</label>
+            <label class="sales-form-label required">Adresse oder Standort suchen</label>
             <div class="sales-form-search-wrapper">
               <span class="material-icons-outlined sales-form-search-icon">search</span>
               <input type="text"
-                     class="sales-form-search-input"
+                     class="sales-form-search-input ${!salesFormData.location.coords.E ? 'required' : ''}"
                      id="locationSearchInput"
                      placeholder="Mit Adresse, PLZ oder Ort suchen..."
                      value="${salesFormData.location.searchText}"
@@ -5342,8 +5373,8 @@
 
           <div class="sales-form-input-grid">
             <div class="sales-form-input-group">
-              <label class="sales-form-label">In welchem Geschäftsjahr soll die Liegenschaft verkauft werden?</label>
-              <select class="sales-form-select" id="saleYearSelect">
+              <label class="sales-form-label required">In welchem Geschäftsjahr soll die Liegenschaft verkauft werden?</label>
+              <select class="sales-form-select ${!salesFormData.saleYear ? 'required' : ''}" id="saleYearSelect">
                 <option value="">Auswahl Verkaufsjahr</option>
                 ${saleYears.map(year => `
                   <option value="${year}" ${salesFormData.saleYear === year ? 'selected' : ''}>${year}</option>
@@ -5352,8 +5383,8 @@
             </div>
 
             <div class="sales-form-input-group">
-              <label class="sales-form-label">Aus welchem Grund möchten Sie die Liegenschaft verkaufen?</label>
-              <div class="sales-form-radio-group">
+              <label class="sales-form-label required">Aus welchem Grund möchten Sie die Liegenschaft verkaufen?</label>
+              <div class="sales-form-radio-group ${!salesFormData.saleReason ? 'required' : ''}">
                 <label class="sales-form-radio">
                   <input type="radio" name="saleReason" value="bazg" ${salesFormData.saleReason === 'bazg' ? 'checked' : ''}>
                   Objektstrategie BAZG
@@ -5521,8 +5552,8 @@
         <div class="sales-form-step-content">
           <div class="sales-form-input-grid two-column">
             <div class="sales-form-input-group">
-              <label class="sales-form-label">Anzahl Geschosse</label>
-              <input type="number" class="sales-form-input" id="floorsInput"
+              <label class="sales-form-label required">Anzahl Geschosse</label>
+              <input type="number" class="sales-form-input ${!salesFormData.floors ? 'required' : ''}" id="floorsInput"
                      placeholder="Angabe fehlt" value="${salesFormData.floors}">
             </div>
             <div class="sales-form-input-group">
@@ -5580,8 +5611,8 @@
             </div>
 
             <div class="sales-form-input-group">
-              <label class="sales-form-label">Anzahl Parkplätze</label>
-              <input type="number" class="sales-form-input" id="parkingSpacesInput"
+              <label class="sales-form-label required">Anzahl Parkplätze</label>
+              <input type="number" class="sales-form-input ${!salesFormData.parkingSpaces ? 'required' : ''}" id="parkingSpacesInput"
                      placeholder="Angabe fehlt" value="${salesFormData.parkingSpaces}">
             </div>
           </div>
@@ -6050,38 +6081,38 @@
         <div class="sales-form-step-content">
           <div class="sales-form-input-grid">
             <div class="sales-form-input-group">
-              <label class="sales-form-label">Anzahl Wohnungsmietverträge</label>
-              <input type="number" class="sales-form-input" id="residentialLeasesInput"
+              <label class="sales-form-label required">Anzahl Wohnungsmietverträge</label>
+              <input type="number" class="sales-form-input ${!salesFormData.residentialLeases && salesFormData.residentialLeases !== 0 ? 'required' : ''}" id="residentialLeasesInput"
                      placeholder="Angabe fehlt" value="${salesFormData.residentialLeases}">
             </div>
 
             <div class="sales-form-input-group">
-              <label class="sales-form-label">Anzahl Geschäftsmietverträge</label>
-              <input type="number" class="sales-form-input" id="commercialLeasesInput"
+              <label class="sales-form-label required">Anzahl Geschäftsmietverträge</label>
+              <input type="number" class="sales-form-input ${!salesFormData.commercialLeases && salesFormData.commercialLeases !== 0 ? 'required' : ''}" id="commercialLeasesInput"
                      placeholder="Angabe fehlt" value="${salesFormData.commercialLeases}">
             </div>
 
             <div class="sales-form-input-group">
-              <label class="sales-form-label">Total Mietertrag netto pro Monat in CHF</label>
+              <label class="sales-form-label required">Total Mietertrag netto pro Monat in CHF</label>
               <div class="sales-form-input-with-suffix">
-                <input type="number" class="sales-form-input" id="monthlyRentInput"
+                <input type="number" class="sales-form-input ${!salesFormData.monthlyRent && salesFormData.monthlyRent !== 0 ? 'required' : ''}" id="monthlyRentInput"
                        placeholder="Angabe fehlt" value="${salesFormData.monthlyRent}">
                 <span class="sales-form-input-suffix">CHF</span>
               </div>
             </div>
 
             <div class="sales-form-input-group">
-              <label class="sales-form-label">Höhe Mietzinsausstände in CHF</label>
+              <label class="sales-form-label required">Höhe Mietzinsausstände in CHF</label>
               <div class="sales-form-input-with-suffix">
-                <input type="number" class="sales-form-input" id="rentArrearsInput"
+                <input type="number" class="sales-form-input ${!salesFormData.rentArrears && salesFormData.rentArrears !== 0 ? 'required' : ''}" id="rentArrearsInput"
                        placeholder="Angabe fehlt" value="${salesFormData.rentArrears}">
                 <span class="sales-form-input-suffix">CHF</span>
               </div>
             </div>
 
             <div class="sales-form-input-group full-width">
-              <label class="sales-form-label">Mündliche Vereinbarungen mit Mietern, Nachbarn etc.</label>
-              <div class="sales-form-radio-group horizontal">
+              <label class="sales-form-label required">Mündliche Vereinbarungen mit Mietern, Nachbarn etc.</label>
+              <div class="sales-form-radio-group horizontal ${salesFormData.hasVerbalAgreements === null || salesFormData.hasVerbalAgreements === undefined ? 'required' : ''}">
                 <label class="sales-form-radio">
                   <input type="radio" name="hasVerbalAgreements" value="yes" ${salesFormData.hasVerbalAgreements === true ? 'checked' : ''}>
                   Ja
