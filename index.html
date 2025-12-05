@@ -2785,7 +2785,6 @@
 
     /* SIA 416 Widget */
     .sia-416-widget {
-      max-width: 720px;
       margin-top: 34px;
       padding-top: 34px;
       border-top: 1px solid var(--neutral-200);
@@ -2808,9 +2807,12 @@
       color: var(--neutral-700);
       margin-bottom: 12px;
     }
+    .sia-416-section-title.hidden {
+      display: none;
+    }
     .sia-416-row {
       display: grid;
-      grid-template-columns: 60px 1fr 32px 180px 60px;
+      grid-template-columns: 60px 1fr 200px 70px;
       gap: 12px;
       align-items: center;
       margin-bottom: 8px;
@@ -2823,17 +2825,20 @@
       font-weight: 500;
       color: var(--neutral-700);
     }
+    .sia-416-abbr.required::after {
+      content: " *";
+      color: var(--priority-high);
+    }
     .sia-416-name {
       font-size: 14px;
       color: var(--neutral-600);
     }
-    .sia-416-unit {
-      font-size: 14px;
-      color: var(--neutral-500);
-      text-align: right;
+    .sia-416-input-wrapper {
+      position: relative;
     }
     .sia-416-input {
-      padding: 8px 12px;
+      width: 100%;
+      padding: 8px 40px 8px 12px;
       border: 1px solid var(--neutral-300);
       border-radius: 4px;
       font-size: 14px;
@@ -2854,6 +2859,15 @@
     .sia-416-input.required:focus {
       border-color: var(--priority-high);
       box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+    }
+    .sia-416-unit {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: var(--neutral-500);
+      pointer-events: none;
     }
     .sia-416-percent {
       font-size: 13px;
@@ -5639,43 +5653,52 @@
                 <div class="sia-416-row">
                   <span class="sia-416-abbr">GSF</span>
                   <span class="sia-416-name">Grundstücksfläche</span>
-                  <span class="sia-416-unit">m²</span>
-                  <input type="number" class="sia-416-input" id="areaGSFInput" placeholder="Angabe fehlt" value="${salesFormData.areaGSF}">
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaGSFInput" placeholder="Angabe fehlt" value="${salesFormData.areaGSF}">
+                    <span class="sia-416-unit">m²</span>
+                  </div>
                   <span class="sia-416-percent" id="gsfPercent">0% GSF</span>
                 </div>
                 <div class="sia-416-row">
                   <span class="sia-416-abbr">GGF</span>
                   <span class="sia-416-name">Gebäudegrundfläche</span>
-                  <span class="sia-416-unit">m²</span>
-                  <input type="number" class="sia-416-input" id="areaGGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaGGF}">
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaGGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaGGF}">
+                    <span class="sia-416-unit">m²</span>
+                  </div>
                   <span class="sia-416-percent" id="ggfPercent">0% GSF</span>
                 </div>
                 <div class="sia-416-row">
                   <span class="sia-416-abbr">UF</span>
                   <span class="sia-416-name">Umgebungsfläche</span>
-                  <span class="sia-416-unit">m²</span>
-                  <input type="number" class="sia-416-input" id="areaUFInput" placeholder="Angabe fehlt" value="${salesFormData.areaUF}">
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaUFInput" placeholder="Angabe fehlt" value="${salesFormData.areaUF}">
+                    <span class="sia-416-unit">m²</span>
+                  </div>
                   <span class="sia-416-percent" id="ufPercent">0% GSF</span>
                 </div>
                 <div class="sia-416-row">
                   <span class="sia-416-abbr">BUF</span>
                   <span class="sia-416-name">Bearbeitete Umgebungsfläche</span>
-                  <span class="sia-416-unit">m²</span>
-                  <input type="number" class="sia-416-input" id="areaBUFInput" placeholder="Angabe fehlt" value="${salesFormData.areaBUF}">
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaBUFInput" placeholder="Angabe fehlt" value="${salesFormData.areaBUF}">
+                    <span class="sia-416-unit">m²</span>
+                  </div>
                   <span class="sia-416-percent" id="bufPercent">0% GSF</span>
                 </div>
               </div>
             </div>
 
-            <!-- Gebäudeflächen -->
+            <!-- Gebäudeflächen - Required fields (always visible) -->
             <div class="sia-416-section">
-              <div class="sia-416-section-title">Gebäudeflächen</div>
-              <!-- Required fields (always visible) -->
+              <div class="sia-416-section-title ${salesFormData.sia416Expanded ? '' : 'hidden'}">Gebäudeflächen</div>
               <div class="sia-416-row">
-                <span class="sia-416-abbr">GF*</span>
+                <span class="sia-416-abbr required">GF</span>
                 <span class="sia-416-name">Geschossfläche</span>
-                <span class="sia-416-unit">m²</span>
-                <input type="number" class="sia-416-input required" id="areaGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaGF}">
+                <div class="sia-416-input-wrapper">
+                  <input type="number" class="sia-416-input ${!salesFormData.areaGF ? 'required' : ''}" id="areaGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaGF}">
+                  <span class="sia-416-unit">m²</span>
+                </div>
                 <span class="sia-416-percent">0% GF</span>
               </div>
               <!-- Optional fields in Gebäudeflächen (only visible when expanded) -->
@@ -5683,67 +5706,85 @@
                 <div class="sia-416-row">
                   <span class="sia-416-abbr">NGF</span>
                   <span class="sia-416-name">Nettogeschossfläche</span>
-                  <span class="sia-416-unit">m²</span>
-                  <input type="number" class="sia-416-input" id="areaNGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaNGF}">
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaNGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaNGF}">
+                    <span class="sia-416-unit">m²</span>
+                  </div>
                   <span class="sia-416-percent" id="ngfPercent">0% GF</span>
                 </div>
                 <div class="sia-416-row">
                   <span class="sia-416-abbr">NF</span>
                   <span class="sia-416-name">Nutzfläche</span>
-                  <span class="sia-416-unit">m²</span>
-                  <input type="number" class="sia-416-input" id="areaNFInput" placeholder="Angabe fehlt" value="${salesFormData.areaNF}">
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaNFInput" placeholder="Angabe fehlt" value="${salesFormData.areaNF}">
+                    <span class="sia-416-unit">m²</span>
+                  </div>
                   <span class="sia-416-percent" id="nfPercent">0% GF</span>
                 </div>
               </div>
               <div class="sia-416-row">
-                <span class="sia-416-abbr">VMF*</span>
+                <span class="sia-416-abbr required">VMF</span>
                 <span class="sia-416-name">Vermietbare Fläche</span>
-                <span class="sia-416-unit">m²</span>
-                <input type="number" class="sia-416-input required" id="areaVMFInput" placeholder="Angabe fehlt" value="${salesFormData.areaVMF}">
+                <div class="sia-416-input-wrapper">
+                  <input type="number" class="sia-416-input ${!salesFormData.areaVMF ? 'required' : ''}" id="areaVMFInput" placeholder="Angabe fehlt" value="${salesFormData.areaVMF}">
+                  <span class="sia-416-unit">m²</span>
+                </div>
                 <span class="sia-416-percent" id="vmfPercent">0% GF</span>
-              </div>
-              <div class="sia-416-row">
-                <span class="sia-416-abbr">HNF</span>
-                <span class="sia-416-name">Hauptnutzfläche</span>
-                <span class="sia-416-unit">m²</span>
-                <input type="number" class="sia-416-input" id="areaHNFInput" placeholder="Angabe fehlt" value="${salesFormData.areaHNF}">
-                <span class="sia-416-percent" id="hnfPercent">0% GF</span>
               </div>
               <!-- More optional fields in Gebäudeflächen -->
               <div class="sia-416-optional ${salesFormData.sia416Expanded ? 'visible' : ''}" id="sia416GebaeudeFlaechenOptional2">
                 <div class="sia-416-row">
+                  <span class="sia-416-abbr">HNF</span>
+                  <span class="sia-416-name">Hauptnutzfläche</span>
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaHNFInput" placeholder="Angabe fehlt" value="${salesFormData.areaHNF}">
+                    <span class="sia-416-unit">m²</span>
+                  </div>
+                  <span class="sia-416-percent" id="hnfPercent">0% GF</span>
+                </div>
+                <div class="sia-416-row">
                   <span class="sia-416-abbr">NNF</span>
                   <span class="sia-416-name">Nebennutzfläche</span>
-                  <span class="sia-416-unit">m²</span>
-                  <input type="number" class="sia-416-input" id="areaNNFInput" placeholder="Angabe fehlt" value="${salesFormData.areaNNF}">
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaNNFInput" placeholder="Angabe fehlt" value="${salesFormData.areaNNF}">
+                    <span class="sia-416-unit">m²</span>
+                  </div>
                   <span class="sia-416-percent" id="nnfPercent">0% GF</span>
                 </div>
                 <div class="sia-416-row">
                   <span class="sia-416-abbr">VF</span>
                   <span class="sia-416-name">Verkehrsfläche</span>
-                  <span class="sia-416-unit">m²</span>
-                  <input type="number" class="sia-416-input" id="areaVFInput" placeholder="Angabe fehlt" value="${salesFormData.areaVF}">
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaVFInput" placeholder="Angabe fehlt" value="${salesFormData.areaVF}">
+                    <span class="sia-416-unit">m²</span>
+                  </div>
                   <span class="sia-416-percent" id="vfPercent">0% GF</span>
                 </div>
                 <div class="sia-416-row">
                   <span class="sia-416-abbr">FF</span>
                   <span class="sia-416-name">Funktionsfläche</span>
-                  <span class="sia-416-unit">m²</span>
-                  <input type="number" class="sia-416-input" id="areaFFInput" placeholder="Angabe fehlt" value="${salesFormData.areaFF}">
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaFFInput" placeholder="Angabe fehlt" value="${salesFormData.areaFF}">
+                    <span class="sia-416-unit">m²</span>
+                  </div>
                   <span class="sia-416-percent" id="ffPercent">0% GF</span>
                 </div>
                 <div class="sia-416-row">
                   <span class="sia-416-abbr">KF</span>
                   <span class="sia-416-name">Konstruktionsfläche</span>
-                  <span class="sia-416-unit">m²</span>
-                  <input type="number" class="sia-416-input" id="areaKFInput" placeholder="Angabe fehlt" value="${salesFormData.areaKF}">
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaKFInput" placeholder="Angabe fehlt" value="${salesFormData.areaKF}">
+                    <span class="sia-416-unit">m²</span>
+                  </div>
                   <span class="sia-416-percent" id="kfPercent">0% GF</span>
                 </div>
                 <div class="sia-416-row">
                   <span class="sia-416-abbr">AGF</span>
                   <span class="sia-416-name">Aussengeschossfläche</span>
-                  <span class="sia-416-unit">m²</span>
-                  <input type="number" class="sia-416-input" id="areaAGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaAGF}">
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaAGFInput" placeholder="Angabe fehlt" value="${salesFormData.areaAGF}">
+                    <span class="sia-416-unit">m²</span>
+                  </div>
                   <span class="sia-416-percent" id="agfPercent">0% GF</span>
                 </div>
               </div>
@@ -5756,8 +5797,10 @@
                 <div class="sia-416-row">
                   <span class="sia-416-abbr">GV</span>
                   <span class="sia-416-name">Gebäudevolumen</span>
-                  <span class="sia-416-unit">m³</span>
-                  <input type="number" class="sia-416-input" id="areaGVInput" placeholder="Angabe fehlt" value="${salesFormData.areaGV}">
+                  <div class="sia-416-input-wrapper">
+                    <input type="number" class="sia-416-input" id="areaGVInput" placeholder="Angabe fehlt" value="${salesFormData.areaGV}">
+                    <span class="sia-416-unit">m³</span>
+                  </div>
                   <span class="sia-416-percent">0% GV</span>
                 </div>
               </div>
@@ -5952,7 +5995,7 @@
       };
 
       // Required fields in Step 2
-      const requiredStep2Fields = ['floorsInput', 'parkingSpacesInput'];
+      const requiredStep2Fields = ['floorsInput', 'parkingSpacesInput', 'areaGFInput', 'areaVMFInput'];
 
       Object.entries(inputMappings).forEach(([id, field]) => {
         const input = document.getElementById(id);
