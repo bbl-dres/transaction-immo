@@ -64,3 +64,4 @@ transaction-immo/
 Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 ---
+*This is an unofficial mockup for demonstration purposes.*
