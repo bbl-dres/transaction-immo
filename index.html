@@ -2032,11 +2032,11 @@
     }
     .sales-form-map-container iframe {
       width: 100%;
-      height: 420px;
+      height: 460px;
       border: none;
     }
     .sales-form-map-placeholder {
-      height: 420px;
+      height: 460px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -2673,9 +2673,9 @@
     <div class="sales-form-container">
       <aside class="sales-form-sidebar">
         <div class="sales-form-sidebar-inner">
-          <div class="sales-form-sidebar-title">In 5 Schritten</div>
+          <div class="sales-form-sidebar-title">In 4 Schritten</div>
           <div class="sales-form-progress">
-            <div class="sales-form-progress-bar" id="salesFormProgressBar" style="width: 20%"></div>
+            <div class="sales-form-progress-bar" id="salesFormProgressBar" style="width: 25%"></div>
           </div>
           <div class="sales-form-steps" id="salesFormSteps">
             <div class="sales-form-step active" data-step="1" onclick="goToSalesFormStep(1)">
@@ -2684,18 +2684,14 @@
             </div>
             <div class="sales-form-step" data-step="2" onclick="goToSalesFormStep(2)">
               <span class="sales-form-step-icon">2</span>
-              <span>Identifikation Objekt</span>
+              <span>Angaben zum Objekt</span>
             </div>
             <div class="sales-form-step" data-step="3" onclick="goToSalesFormStep(3)">
               <span class="sales-form-step-icon">3</span>
-              <span>Angaben zum Objekt</span>
+              <span>Angaben zum Mieter</span>
             </div>
             <div class="sales-form-step" data-step="4" onclick="goToSalesFormStep(4)">
               <span class="sales-form-step-icon">4</span>
-              <span>Angaben zum Mieter</span>
-            </div>
-            <div class="sales-form-step" data-step="5" onclick="goToSalesFormStep(5)">
-              <span class="sales-form-step-icon">5</span>
               <span>Zusammenfassung</span>
             </div>
           </div>
@@ -4837,7 +4833,7 @@
       });
 
       // Update progress bar
-      const progress = (salesFormData.currentStep / 5) * 100;
+      const progress = (salesFormData.currentStep / 4) * 100;
       progressBar.style.width = `${progress}%`;
     }
 
@@ -4855,7 +4851,7 @@
     }
 
     function nextSalesFormStep() {
-      if (salesFormData.currentStep < 5) {
+      if (salesFormData.currentStep < 4) {
         goToSalesFormStep(salesFormData.currentStep + 1);
       }
     }
@@ -4884,15 +4880,11 @@
           break;
         case 4:
           content.innerHTML = renderStep4();
-          setupStep4Handlers();
-          break;
-        case 5:
-          content.innerHTML = renderStep5();
           break;
       }
     }
 
-    // --- Step 1: Objekt erfassen ---
+    // --- Step 1: Objekt erfassen (merged with Identifikation) ---
     function renderStep1() {
       const hasLocation = salesFormData.location.coords.E && salesFormData.location.coords.N;
 
@@ -4900,7 +4892,7 @@
         <div class="sales-form-step-header">
           <h2 class="sales-form-step-title">1. Objekt erfassen</h2>
           <p class="sales-form-step-description">
-            Suchen Sie nach der Adresse oder dem Standort des Objekts. Die Koordinaten werden automatisch ermittelt.
+            Suchen Sie nach der Adresse und geben Sie die Basisinformationen zum Objekt ein.
           </p>
         </div>
         <div class="sales-form-step-content">
@@ -4931,7 +4923,7 @@
             <label class="sales-form-label">Verortung</label>
             <div class="sales-form-map-container" id="locationMapContainer">
               ${hasLocation ? `
-                <iframe src="https://map.geo.admin.ch/embed.html?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&E=${salesFormData.location.coords.E}&N=${salesFormData.location.coords.N}&zoom=10"></iframe>
+                <iframe src="https://map.geo.admin.ch/embed.html?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&E=${salesFormData.location.coords.E}&N=${salesFormData.location.coords.N}&zoom=10&crosshair=marker"></iframe>
               ` : `
                 <div class="sales-form-map-placeholder">
                   <span class="material-icons-outlined">map</span>
@@ -4941,10 +4933,52 @@
             </div>
           </div>
 
+          <div class="sales-form-section">
+            <label class="sales-form-label">Das Objekt ist ein(e)...</label>
+            <div class="sales-form-type-grid">
+              ${propertyTypes.map(type => `
+                <label class="sales-form-type-card ${salesFormData.propertyType === type.id ? 'selected' : ''}" data-type="${type.id}">
+                  <input type="radio" name="propertyType" value="${type.id}" ${salesFormData.propertyType === type.id ? 'checked' : ''}>
+                  <span class="material-icons-outlined sales-form-type-card-icon">${type.icon}</span>
+                  <span class="sales-form-type-card-label">${type.label}</span>
+                </label>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="sales-form-input-grid" style="margin-top: 24px;">
+            <div class="sales-form-input-group">
+              <label class="sales-form-label">In welchem Geschäftsjahr soll die Liegenschaft verkauft werden?</label>
+              <select class="sales-form-select" id="saleYearSelect">
+                <option value="">Auswahl Verkaufsjahr</option>
+                ${saleYears.map(year => `
+                  <option value="${year}" ${salesFormData.saleYear === year ? 'selected' : ''}>${year}</option>
+                `).join('')}
+              </select>
+            </div>
+
+            <div class="sales-form-input-group">
+              <label class="sales-form-label">Aus welchem Grund möchten Sie die Liegenschaft verkaufen?</label>
+              <div class="sales-form-radio-group">
+                <label class="sales-form-radio">
+                  <input type="radio" name="saleReason" value="bazg" ${salesFormData.saleReason === 'bazg' ? 'checked' : ''}>
+                  Objektstrategie BAZG
+                </label>
+                <label class="sales-form-radio">
+                  <input type="radio" name="saleReason" value="eda" ${salesFormData.saleReason === 'eda' ? 'checked' : ''}>
+                  Objektstrategie EDA
+                </label>
+                <label class="sales-form-radio">
+                  <input type="radio" name="saleReason" value="sonstiges" ${salesFormData.saleReason === 'sonstiges' ? 'checked' : ''}>
+                  Sonstiges
+                </label>
+              </div>
+            </div>
+          </div>
+
           <div class="sales-form-info-box">
             <span class="material-icons-outlined">lightbulb</span>
-            <p>Die Standortsuche verwendet die offizielle Schweizer Geodateninfrastruktur (geo.admin.ch).
-               Geben Sie eine Adresse, Postleitzahl oder einen Ortsnamen ein.</p>
+            <p>Sollten bestimmte Angaben für Sie nicht zutreffen oder unbekannt sein, tragen Sie bitte eine 0 ein.</p>
           </div>
         </div>
         <div class="sales-form-nav">
@@ -4992,6 +5026,31 @@
           }
         });
       }
+
+      // Property type selection
+      document.querySelectorAll('.sales-form-type-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const type = card.dataset.type;
+          salesFormData.propertyType = type;
+          document.querySelectorAll('.sales-form-type-card').forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+        });
+      });
+
+      // Sale year
+      const saleYearSelect = document.getElementById('saleYearSelect');
+      if (saleYearSelect) {
+        saleYearSelect.addEventListener('change', (e) => {
+          salesFormData.saleYear = e.target.value ? parseInt(e.target.value) : null;
+        });
+      }
+
+      // Sale reason
+      document.querySelectorAll('input[name="saleReason"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          salesFormData.saleReason = e.target.value;
+        });
+      });
     }
 
     async function searchGeoAdmin(query) {
@@ -5037,126 +5096,15 @@
       renderSalesFormStepContent();
     }
 
-    // --- Step 2: Identifikation Objekt ---
+    // --- Step 2: Angaben zum Objekt ---
     function renderStep2() {
-      const hasLocation = salesFormData.location.coords.E && salesFormData.location.coords.N;
-
-      return `
-        <div class="sales-form-step-header">
-          <h2 class="sales-form-step-title">2. Identifikation Objekt</h2>
-          <p class="sales-form-step-description">
-            Diese Informationen stammen aus internen und externen Partner-Datenbanken. Bitte korrigieren Sie eventuelle Fehler direkt im Formular.
-          </p>
-        </div>
-        <div class="sales-form-step-content">
-          ${hasLocation ? `
-            <div class="sales-form-section">
-              <label class="sales-form-label">Verortung</label>
-              <div class="sales-form-map-container">
-                <iframe src="https://map.geo.admin.ch/embed.html?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&E=${salesFormData.location.coords.E}&N=${salesFormData.location.coords.N}&zoom=10"></iframe>
-              </div>
-            </div>
-          ` : ''}
-
-          <div class="sales-form-section">
-            <label class="sales-form-label">Das Objekt ist ein(e)...</label>
-            <div class="sales-form-type-grid">
-              ${propertyTypes.map(type => `
-                <label class="sales-form-type-card ${salesFormData.propertyType === type.id ? 'selected' : ''}" data-type="${type.id}">
-                  <input type="radio" name="propertyType" value="${type.id}" ${salesFormData.propertyType === type.id ? 'checked' : ''}>
-                  <span class="material-icons-outlined sales-form-type-card-icon">${type.icon}</span>
-                  <span class="sales-form-type-card-label">${type.label}</span>
-                </label>
-              `).join('')}
-            </div>
-          </div>
-
-          <div class="sales-form-section">
-            <div class="sales-form-info-box">
-              <span class="material-icons-outlined">lightbulb</span>
-              <p>Sollten bestimmte Angaben für Sie nicht zutreffen oder unbekannt sein, tragen Sie bitte eine 0 ein.</p>
-            </div>
-          </div>
-
-          <div class="sales-form-input-grid" style="margin-top: 24px;">
-            <div class="sales-form-input-group">
-              <label class="sales-form-label">In welchem Geschäftsjahr soll die Liegenschaft verkauft werden?</label>
-              <select class="sales-form-select" id="saleYearSelect">
-                <option value="">Auswahl Verkaufsjahr</option>
-                ${saleYears.map(year => `
-                  <option value="${year}" ${salesFormData.saleYear === year ? 'selected' : ''}>${year}</option>
-                `).join('')}
-              </select>
-            </div>
-
-            <div class="sales-form-input-group">
-              <label class="sales-form-label">Aus welchem Grund möchten Sie die Liegenschaft verkaufen?</label>
-              <div class="sales-form-radio-group">
-                <label class="sales-form-radio">
-                  <input type="radio" name="saleReason" value="bazg" ${salesFormData.saleReason === 'bazg' ? 'checked' : ''}>
-                  Objektstrategie BAZG
-                </label>
-                <label class="sales-form-radio">
-                  <input type="radio" name="saleReason" value="eda" ${salesFormData.saleReason === 'eda' ? 'checked' : ''}>
-                  Objektstrategie EDA
-                </label>
-                <label class="sales-form-radio">
-                  <input type="radio" name="saleReason" value="sonstiges" ${salesFormData.saleReason === 'sonstiges' ? 'checked' : ''}>
-                  Sonstiges
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sales-form-nav">
-          <button class="sales-form-nav-btn back" onclick="prevSalesFormStep()">
-            <span class="material-icons-outlined">chevron_left</span>
-            Zurück
-          </button>
-          <button class="sales-form-nav-btn next" onclick="nextSalesFormStep()">
-            Weiter
-            <span class="material-icons-outlined">chevron_right</span>
-          </button>
-        </div>
-      `;
-    }
-
-    function setupStep2Handlers() {
-      // Property type selection
-      document.querySelectorAll('.sales-form-type-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const type = card.dataset.type;
-          salesFormData.propertyType = type;
-          document.querySelectorAll('.sales-form-type-card').forEach(c => c.classList.remove('selected'));
-          card.classList.add('selected');
-        });
-      });
-
-      // Sale year
-      const saleYearSelect = document.getElementById('saleYearSelect');
-      if (saleYearSelect) {
-        saleYearSelect.addEventListener('change', (e) => {
-          salesFormData.saleYear = e.target.value ? parseInt(e.target.value) : null;
-        });
-      }
-
-      // Sale reason
-      document.querySelectorAll('input[name="saleReason"]').forEach(radio => {
-        radio.addEventListener('change', (e) => {
-          salesFormData.saleReason = e.target.value;
-        });
-      });
-    }
-
-    // --- Step 3: Angaben zum Objekt ---
-    function renderStep3() {
       const gfValue = parseFloat(salesFormData.areaGF) || 0;
       const vmfPercent = gfValue > 0 ? Math.round((parseFloat(salesFormData.areaVMF) || 0) / gfValue * 100) : 0;
       const hnfPercent = gfValue > 0 ? Math.round((parseFloat(salesFormData.areaHNF) || 0) / gfValue * 100) : 0;
 
       return `
         <div class="sales-form-step-header">
-          <h2 class="sales-form-step-title">3. Angaben zum Objekt</h2>
+          <h2 class="sales-form-step-title">2. Angaben zum Objekt</h2>
           <p class="sales-form-step-description">
             Diese Informationen stammen aus internen und externen Partner-Datenbanken. Bitte korrigieren Sie eventuelle Fehler direkt im Formular.
           </p>
@@ -5381,7 +5329,7 @@
       `;
     }
 
-    function setupStep3Handlers() {
+    function setupStep2Handlers() {
       // Input fields
       const inputMappings = {
         'floorsInput': 'floors',
@@ -5487,11 +5435,11 @@
       }
     }
 
-    // --- Step 4: Angaben zum Mieter ---
-    function renderStep4() {
+    // --- Step 3: Angaben zum Mieter ---
+    function renderStep3() {
       return `
         <div class="sales-form-step-header">
-          <h2 class="sales-form-step-title">4. Angaben zum Mieter</h2>
+          <h2 class="sales-form-step-title">3. Angaben zum Mieter</h2>
           <p class="sales-form-step-description">
             Fast geschafft. Für eine genauere Marktwertbewertung benötigen wir ein paar zusätzliche Angaben zum Mieter.
           </p>
@@ -5564,7 +5512,7 @@
       `;
     }
 
-    function setupStep4Handlers() {
+    function setupStep3Handlers() {
       const inputMappings = {
         'residentialLeasesInput': 'residentialLeases',
         'commercialLeasesInput': 'commercialLeases',
@@ -5590,8 +5538,8 @@
       });
     }
 
-    // --- Step 5: Zusammenfassung ---
-    function renderStep5() {
+    // --- Step 4: Zusammenfassung ---
+    function renderStep4() {
       const propertyTypeLabel = propertyTypes.find(t => t.id === salesFormData.propertyType)?.label || '-';
       const saleReasonLabels = { bazg: 'Objektstrategie BAZG', eda: 'Objektstrategie EDA', sonstiges: 'Sonstiges' };
       const conditionLabels = { 1: 'Sanierungsreif', 2: 'Sanierungsbedürftig', 3: 'Intakt', 4: 'Gut', 5: 'Neuwertig' };
@@ -5599,7 +5547,7 @@
 
       return `
         <div class="sales-form-step-header">
-          <h2 class="sales-form-step-title">5. Zusammenfassung</h2>
+          <h2 class="sales-form-step-title">4. Zusammenfassung</h2>
           <p class="sales-form-step-description">
             Bitte überprüfen Sie Ihre Angaben. Sie können die einzelnen Abschnitte bearbeiten, indem Sie auf "Bearbeiten" klicken.
           </p>
@@ -5627,11 +5575,11 @@
               </div>
             </div>
 
-            <!-- Step 2 Summary -->
+            <!-- Step 1 Summary (Part 2: Identification data) -->
             <div class="sales-form-summary-section">
               <div class="sales-form-summary-header">
-                <span class="sales-form-summary-title">2. Identifikation Objekt</span>
-                <button class="sales-form-summary-edit-btn" onclick="goToSalesFormStep(2)">
+                <span class="sales-form-summary-title">1. Objekt erfassen</span>
+                <button class="sales-form-summary-edit-btn" onclick="goToSalesFormStep(1)">
                   <span class="material-icons-outlined">edit</span>
                   Bearbeiten
                 </button>
@@ -5660,11 +5608,11 @@
               </div>
             </div>
 
-            <!-- Step 3 Summary -->
+            <!-- Step 2 Summary -->
             <div class="sales-form-summary-section">
               <div class="sales-form-summary-header">
-                <span class="sales-form-summary-title">3. Angaben zum Objekt</span>
-                <button class="sales-form-summary-edit-btn" onclick="goToSalesFormStep(3)">
+                <span class="sales-form-summary-title">2. Angaben zum Objekt</span>
+                <button class="sales-form-summary-edit-btn" onclick="goToSalesFormStep(2)">
                   <span class="material-icons-outlined">edit</span>
                   Bearbeiten
                 </button>
@@ -5753,11 +5701,11 @@
               </div>
             </div>
 
-            <!-- Step 4 Summary -->
+            <!-- Step 3 Summary -->
             <div class="sales-form-summary-section">
               <div class="sales-form-summary-header">
-                <span class="sales-form-summary-title">4. Angaben zum Mieter</span>
-                <button class="sales-form-summary-edit-btn" onclick="goToSalesFormStep(4)">
+                <span class="sales-form-summary-title">3. Angaben zum Mieter</span>
+                <button class="sales-form-summary-edit-btn" onclick="goToSalesFormStep(3)">
                   <span class="material-icons-outlined">edit</span>
                   Bearbeiten
                 </button>
