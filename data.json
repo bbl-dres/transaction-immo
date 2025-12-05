@@ -38,7 +38,23 @@
     "isHeated": null,
     "hasBuildingRights": null,
     "buildingRightsFee": null,
-    "locationRatings": null
+    "locationRatings": null,
+    "documents": [
+      {
+        "id": "doc-001-001",
+        "name": "Grundrissplan_Schopf.pdf",
+        "type": "Grundrissplan",
+        "uploadedBy": "mueller@bund.ch",
+        "uploadedAt": "2024-03-15T10:30:00Z"
+      },
+      {
+        "id": "doc-001-002",
+        "name": "OEREB_Auszug_Au.pdf",
+        "type": "Auszug ÖREB-Kataster",
+        "uploadedBy": "schmidt@bund.ch",
+        "uploadedAt": "2024-04-20T14:45:00Z"
+      }
+    ]
   },
   {
     "id": "a1b2c3d4-1001-4000-8000-000000000002",
@@ -89,7 +105,30 @@
       "publicTransport": 95,
       "roadConnection": 85,
       "noisePollution": 40
-    }
+    },
+    "documents": [
+      {
+        "id": "doc-002-001",
+        "name": "Marktwertbewertung_Freilagerstrasse.pdf",
+        "type": "Indikative Marktwertbewertung",
+        "uploadedBy": "weber@bund.ch",
+        "uploadedAt": "2024-02-10T09:15:00Z"
+      },
+      {
+        "id": "doc-002-002",
+        "name": "Grundriss_EG_OG.pdf",
+        "type": "Grundrissplan",
+        "uploadedBy": "mueller@bund.ch",
+        "uploadedAt": "2024-02-28T11:00:00Z"
+      },
+      {
+        "id": "doc-002-003",
+        "name": "Mietvertrag_2023.pdf",
+        "type": "Mietvertrag",
+        "uploadedBy": "fischer@bund.ch",
+        "uploadedAt": "2024-03-05T16:30:00Z"
+      }
+    ]
   },
   {
     "id": "a1b2c3d4-1001-4000-8000-000000000003",
@@ -140,7 +179,23 @@
       "publicTransport": 30,
       "roadConnection": 70,
       "noisePollution": 20
-    }
+    },
+    "documents": [
+      {
+        "id": "doc-003-001",
+        "name": "OEREB_Doerflingen.pdf",
+        "type": "Auszug ÖREB-Kataster",
+        "uploadedBy": "schmidt@bund.ch",
+        "uploadedAt": "2024-01-20T08:45:00Z"
+      },
+      {
+        "id": "doc-003-002",
+        "name": "Ansicht_Nord_Sued.pdf",
+        "type": "Ansichtsplan",
+        "uploadedBy": "mueller@bund.ch",
+        "uploadedAt": "2024-02-15T10:00:00Z"
+      }
+    ]
   },
   {
     "id": "a1b2c3d4-1001-4000-8000-000000000004",
@@ -191,7 +246,30 @@
       "publicTransport": 75,
       "roadConnection": 80,
       "noisePollution": 35
-    }
+    },
+    "documents": [
+      {
+        "id": "doc-004-001",
+        "name": "Kaufvertrag_Rafz_BA.pdf",
+        "type": "Kauf- Dienstbarkeitsvertrag",
+        "uploadedBy": "meier@bund.ch",
+        "uploadedAt": "2024-05-10T14:00:00Z"
+      },
+      {
+        "id": "doc-004-002",
+        "name": "Grundrissplan_Bahnhofstr8.pdf",
+        "type": "Grundrissplan",
+        "uploadedBy": "mueller@bund.ch",
+        "uploadedAt": "2024-05-12T09:30:00Z"
+      },
+      {
+        "id": "doc-004-003",
+        "name": "Schliessplan_2024.pdf",
+        "type": "Schliessplan / Sicherungsschein",
+        "uploadedBy": "weber@bund.ch",
+        "uploadedAt": "2024-06-01T11:15:00Z"
+      }
+    ]
   },
   {
     "id": "a1b2c3d4-1001-4000-8000-000000000005",
@@ -232,7 +310,23 @@
     "isHeated": null,
     "hasBuildingRights": null,
     "buildingRightsFee": null,
-    "locationRatings": null
+    "locationRatings": null,
+    "documents": [
+      {
+        "id": "doc-005-001",
+        "name": "3D_Modell_Sonderobjekt.glb",
+        "type": "3D-Modelldaten",
+        "uploadedBy": "huber@bund.ch",
+        "uploadedAt": "2024-04-05T13:20:00Z"
+      },
+      {
+        "id": "doc-005-002",
+        "name": "Unterhaltsdokumentation.pdf",
+        "type": "Akte zu Unterhalt",
+        "uploadedBy": "fischer@bund.ch",
+        "uploadedAt": "2024-04-18T15:45:00Z"
+      }
+    ]
   },
   {
     "id": "a1b2c3d4-1001-4000-8000-000000000006",
@@ -273,7 +367,30 @@
     "isHeated": null,
     "hasBuildingRights": null,
     "buildingRightsFee": null,
-    "locationRatings": null
+    "locationRatings": null,
+    "documents": [
+      {
+        "id": "doc-006-001",
+        "name": "Servicevertrag_Heizung.pdf",
+        "type": "Serviceverträge",
+        "uploadedBy": "schmidt@bund.ch",
+        "uploadedAt": "2024-03-01T10:00:00Z"
+      },
+      {
+        "id": "doc-006-002",
+        "name": "Technische_Dokumentation.pdf",
+        "type": "Sonstiges",
+        "uploadedBy": "huber@bund.ch",
+        "uploadedAt": "2024-03-15T14:30:00Z"
+      },
+      {
+        "id": "doc-006-003",
+        "name": "Ansichtsplan_Industrieweg.pdf",
+        "type": "Ansichtsplan",
+        "uploadedBy": "mueller@bund.ch",
+        "uploadedAt": "2024-04-02T11:45:00Z"
+      }
+    ]
   },
   {
     "id": "a1b2c3d4-1001-4000-8000-000000000007",
@@ -324,7 +441,30 @@
       "publicTransport": 70,
       "roadConnection": 75,
       "noisePollution": 25
-    }
+    },
+    "documents": [
+      {
+        "id": "doc-007-001",
+        "name": "Mieterdossier_Rheinweg.pdf",
+        "type": "Mieterdossier",
+        "uploadedBy": "fischer@bund.ch",
+        "uploadedAt": "2024-01-15T09:00:00Z"
+      },
+      {
+        "id": "doc-007-002",
+        "name": "Marktwertbewertung_SH.pdf",
+        "type": "Indikative Marktwertbewertung",
+        "uploadedBy": "weber@bund.ch",
+        "uploadedAt": "2024-02-20T13:30:00Z"
+      },
+      {
+        "id": "doc-007-003",
+        "name": "Grundriss_alle_Etagen.pdf",
+        "type": "Grundrissplan",
+        "uploadedBy": "mueller@bund.ch",
+        "uploadedAt": "2024-03-10T10:15:00Z"
+      }
+    ]
   },
   {
     "id": "a1b2c3d4-1001-4000-8000-000000000008",
@@ -375,7 +515,23 @@
       "publicTransport": 25,
       "roadConnection": 80,
       "noisePollution": 30
-    }
+    },
+    "documents": [
+      {
+        "id": "doc-008-001",
+        "name": "OEREB_Wasterkingen.pdf",
+        "type": "Auszug ÖREB-Kataster",
+        "uploadedBy": "schmidt@bund.ch",
+        "uploadedAt": "2024-06-10T08:30:00Z"
+      },
+      {
+        "id": "doc-008-002",
+        "name": "Foto_Fassade.jpg",
+        "type": "Sonstiges",
+        "uploadedBy": "huber@bund.ch",
+        "uploadedAt": "2024-06-15T16:00:00Z"
+      }
+    ]
   },
   {
     "id": "a1b2c3d4-1001-4000-8000-000000000009",
@@ -426,7 +582,30 @@
       "publicTransport": 95,
       "roadConnection": 90,
       "noisePollution": 50
-    }
+    },
+    "documents": [
+      {
+        "id": "doc-009-001",
+        "name": "Mietvertraege_Bueroflaechen.xlsx",
+        "type": "Mietvertrag",
+        "uploadedBy": "meier@bund.ch",
+        "uploadedAt": "2024-07-01T09:00:00Z"
+      },
+      {
+        "id": "doc-009-002",
+        "name": "Grundriss_Buerogebaeude.pdf",
+        "type": "Grundrissplan",
+        "uploadedBy": "mueller@bund.ch",
+        "uploadedAt": "2024-07-05T11:30:00Z"
+      },
+      {
+        "id": "doc-009-003",
+        "name": "Servicevertrag_Lift.pdf",
+        "type": "Serviceverträge",
+        "uploadedBy": "weber@bund.ch",
+        "uploadedAt": "2024-07-10T14:15:00Z"
+      }
+    ]
   },
   {
     "id": "a1b2c3d4-1001-4000-8000-000000000010",
@@ -477,7 +656,30 @@
       "publicTransport": 100,
       "roadConnection": 85,
       "noisePollution": 45
-    }
+    },
+    "documents": [
+      {
+        "id": "doc-010-001",
+        "name": "Mieterdossier_komplett.pdf",
+        "type": "Mieterdossier",
+        "uploadedBy": "fischer@bund.ch",
+        "uploadedAt": "2024-08-01T10:00:00Z"
+      },
+      {
+        "id": "doc-010-002",
+        "name": "Marktwertbewertung_Bern.pdf",
+        "type": "Indikative Marktwertbewertung",
+        "uploadedBy": "weber@bund.ch",
+        "uploadedAt": "2024-08-10T15:45:00Z"
+      },
+      {
+        "id": "doc-010-003",
+        "name": "3D_Modell_MFH.glb",
+        "type": "3D-Modelldaten",
+        "uploadedBy": "huber@bund.ch",
+        "uploadedAt": "2024-08-20T09:30:00Z"
+      }
+    ]
   },
   {
     "id": "a1b2c3d4-1001-4000-8000-000000000011",
@@ -528,6 +730,22 @@
       "publicTransport": 90,
       "roadConnection": 80,
       "noisePollution": 40
-    }
+    },
+    "documents": [
+      {
+        "id": "doc-011-001",
+        "name": "Kaufvertrag_Luzern.pdf",
+        "type": "Kauf- Dienstbarkeitsvertrag",
+        "uploadedBy": "meier@bund.ch",
+        "uploadedAt": "2024-09-01T10:30:00Z"
+      },
+      {
+        "id": "doc-011-002",
+        "name": "OEREB_Pilatusstrasse.pdf",
+        "type": "Auszug ÖREB-Kataster",
+        "uploadedBy": "schmidt@bund.ch",
+        "uploadedAt": "2024-09-05T14:00:00Z"
+      }
+    ]
   }
 ]
