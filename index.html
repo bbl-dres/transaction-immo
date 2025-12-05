@@ -1126,6 +1126,280 @@
         height: 36px;
       }
     }
+
+    /* --- Tab Content Visibility --- */
+    .tab-content-uebersicht,
+    .tab-content-dokumente {
+      display: none;
+    }
+    .tab-content-uebersicht.active,
+    .tab-content-dokumente.active {
+      display: block;
+    }
+
+    /* --- Documents Tab Styles --- */
+    .documents-container {
+      padding: 0;
+    }
+    .documents-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .documents-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin: 0;
+    }
+    .doc-add-btn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: var(--accent-600);
+      color: var(--neutral-50);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .doc-add-btn:hover {
+      background: var(--accent-500);
+    }
+    .documents-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .documents-table th,
+    .documents-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--neutral-200);
+    }
+    .documents-table th {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--neutral-500);
+      text-transform: uppercase;
+      background: var(--neutral-100);
+    }
+    .documents-table td {
+      font-size: 14px;
+      color: var(--neutral-700);
+    }
+    .doc-checkbox {
+      width: 40px;
+    }
+    .doc-name {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .doc-name .material-icons-outlined {
+      color: var(--accent-600);
+      font-size: 20px;
+    }
+    .doc-type {
+      color: var(--neutral-500);
+    }
+    .doc-uploaded {
+      color: var(--neutral-500);
+      font-size: 13px;
+    }
+    .doc-actions {
+      width: 50px;
+      text-align: center;
+    }
+    .doc-menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--neutral-500);
+      padding: 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .doc-menu-btn:hover {
+      background: var(--neutral-100);
+    }
+    .documents-empty {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--neutral-500);
+    }
+    .documents-empty .material-icons-outlined {
+      font-size: 48px;
+      color: var(--neutral-300);
+      margin-bottom: 16px;
+    }
+
+    /* --- Upload Dialog Overlay --- */
+    .upload-dialog-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .upload-dialog-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .upload-dialog {
+      background: var(--neutral-50);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    .upload-dialog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--neutral-200);
+    }
+    .upload-dialog-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin: 0;
+    }
+    .upload-dialog-close {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--neutral-500);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .upload-dialog-close:hover {
+      background: var(--neutral-100);
+    }
+    .upload-step {
+      padding: 16px 24px;
+    }
+    .upload-step:first-of-type {
+      padding-top: 24px;
+    }
+    .upload-step-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      margin-bottom: 8px;
+    }
+    .upload-dropzone {
+      border: 2px dashed var(--neutral-300);
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .upload-dropzone:hover {
+      border-color: var(--accent-600);
+      background: var(--accent-100);
+    }
+    .upload-dropzone.dragover {
+      border-color: var(--accent-600);
+      background: var(--accent-100);
+    }
+    .upload-dropzone.has-file {
+      border-color: var(--accent-600);
+      border-style: solid;
+      background: var(--accent-100);
+    }
+    .upload-dropzone-text {
+      color: var(--neutral-500);
+      font-size: 14px;
+    }
+    .upload-dropzone-filename {
+      color: var(--accent-600);
+      font-weight: 500;
+    }
+    .upload-select {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      border: 1px solid var(--neutral-300);
+      border-radius: 6px;
+      background: var(--neutral-50);
+      color: var(--neutral-700);
+      cursor: pointer;
+    }
+    .upload-select:focus {
+      outline: none;
+      border-color: var(--accent-600);
+    }
+    .upload-input {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      border: 1px solid var(--neutral-300);
+      border-radius: 6px;
+      background: var(--neutral-50);
+      color: var(--neutral-700);
+      box-sizing: border-box;
+    }
+    .upload-input:focus {
+      outline: none;
+      border-color: var(--accent-600);
+    }
+    .upload-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      padding: 20px 24px;
+      border-top: 1px solid var(--neutral-200);
+    }
+    .upload-btn-cancel {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid var(--neutral-300);
+      background: var(--neutral-50);
+      color: var(--neutral-700);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .upload-btn-cancel:hover {
+      background: var(--neutral-100);
+    }
+    .upload-btn-submit {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      background: var(--accent-600);
+      color: var(--neutral-50);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .upload-btn-submit:hover:not(:disabled) {
+      background: var(--accent-500);
+    }
+    .upload-btn-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
