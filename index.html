@@ -1188,29 +1188,30 @@
     .documents-actions {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 8px;
     }
-    .doc-action-icon {
+    .doc-action-btn {
       display: flex;
       align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
+      gap: 6px;
+      padding: 8px 14px;
       border: none;
       background: transparent;
       color: var(--neutral-300);
+      font-size: 14px;
+      font-weight: 500;
       border-radius: 6px;
       cursor: not-allowed;
       transition: all 0.2s;
     }
-    .doc-action-icon .material-icons-outlined {
-      font-size: 20px;
+    .doc-action-btn .material-icons-outlined {
+      font-size: 18px;
     }
-    .doc-action-icon.active {
+    .doc-action-btn.active {
       color: var(--neutral-600);
       cursor: pointer;
     }
-    .doc-action-icon.active:hover {
+    .doc-action-btn.active:hover {
       background: var(--neutral-100);
       color: var(--neutral-900);
     }
@@ -1250,7 +1251,7 @@
       font-weight: 600;
       color: var(--neutral-500);
       text-transform: none;
-      background: var(--neutral-50);
+      background: var(--neutral-100);
       white-space: nowrap;
     }
     .documents-table th.sortable {
@@ -1290,7 +1291,15 @@
     }
     .doc-title {
       font-weight: 500;
+    }
+    .doc-title a {
       color: var(--neutral-900);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .doc-title a:hover {
+      color: var(--accent-600);
+      text-decoration: underline;
     }
     .doc-type {
       color: var(--neutral-600);
@@ -2783,11 +2792,13 @@
                   <input type="text" id="documentSearchInput" placeholder="Alle Spalten filtern" onkeyup="filterDocuments(this.value)">
                 </div>
                 <div class="documents-actions">
-                  <button class="doc-action-icon" id="docDeleteBtn" onclick="deleteSelectedDocuments()" title="Löschen">
+                  <button class="doc-action-btn" id="docDeleteBtn" onclick="deleteSelectedDocuments()" title="Löschen">
                     <span class="material-icons-outlined">delete</span>
+                    <span>Löschen</span>
                   </button>
-                  <button class="doc-action-icon" id="docDownloadBtn" onclick="downloadSelectedDocuments()" title="Herunterladen">
+                  <button class="doc-action-btn" id="docDownloadBtn" onclick="downloadSelectedDocuments()" title="Herunterladen">
                     <span class="material-icons-outlined">download</span>
+                    <span>Herunterladen</span>
                   </button>
                   <button class="doc-toolbar-btn-outline" onclick="openUploadDialog()" title="Hinzufügen">
                     <span class="material-icons-outlined">add</span>
@@ -2987,7 +2998,7 @@
             <td class="doc-checkbox">
               <input type="checkbox" aria-label="Dokument auswählen" onchange="updateDocumentSelection()">
             </td>
-            <td class="doc-title">${doc.title || doc.name}</td>
+            <td class="doc-title"><a href="#" onclick="event.preventDefault()">${doc.title || doc.name}</a></td>
             <td class="doc-type">${doc.type}</td>
             <td class="doc-format">${format}</td>
             <td class="doc-uploaded">${uploadedInfo}</td>
