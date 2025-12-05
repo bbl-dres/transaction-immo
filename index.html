@@ -1511,6 +1511,111 @@
     .tab-content-ereignisse { display: none; }
     .tab-content-ereignisse.active { display: block; }
 
+    /* --- Meilensteine Tab Specific --- */
+    .tab-content-meilensteine { display: none; }
+    .tab-content-meilensteine.active { display: block; }
+
+    .milestone-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .milestone-item {
+      display: flex;
+      align-items: flex-start;
+      padding: var(--space-6) 0;
+      border-bottom: 1px solid var(--neutral-200);
+    }
+
+    .milestone-item:last-child {
+      border-bottom: none;
+    }
+
+    .milestone-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .milestone-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin-bottom: var(--space-2);
+    }
+
+    .milestone-status {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+
+    .milestone-status-icon {
+      font-size: 20px;
+    }
+
+    .milestone-status-icon.completed {
+      color: var(--priority-normal);
+    }
+
+    .milestone-status-icon.pending {
+      color: var(--neutral-300);
+    }
+
+    .milestone-status-text {
+      font-size: 14px;
+      color: var(--neutral-600);
+    }
+
+    .milestone-responsibility {
+      display: inline-block;
+      padding: var(--space-1) var(--space-3);
+      border: 1px solid var(--neutral-300);
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      color: var(--neutral-600);
+      background: var(--neutral-50);
+    }
+
+    .milestone-action {
+      flex-shrink: 0;
+      margin-left: var(--space-6);
+    }
+
+    .milestone-btn {
+      padding: var(--space-2) var(--space-5);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .milestone-btn-complete {
+      background: var(--accent-600);
+      color: var(--neutral-50);
+      border: 1px solid var(--accent-600);
+    }
+
+    .milestone-btn-complete:hover {
+      background: var(--accent-500);
+      border-color: var(--accent-500);
+    }
+
+    .milestone-btn-completed {
+      background: var(--neutral-50);
+      color: var(--neutral-500);
+      border: 1px solid var(--neutral-300);
+      cursor: default;
+    }
+
+    .milestone-btn-pending {
+      background: var(--neutral-100);
+      color: var(--neutral-400);
+      border: 1px solid var(--neutral-200);
+      cursor: not-allowed;
+    }
+
     /* --- Upload Dialog Overlay --- */
     .upload-dialog-overlay {
       position: fixed;
@@ -4116,7 +4221,7 @@
         <!-- Tabs -->
         <div class="detail-tabs">
           <button class="detail-tab active" onclick="switchTab('ÜBERSICHT')">ÜBERSICHT</button>
-          <button class="detail-tab disabled">MEILENSTEINE</button>
+          <button class="detail-tab" onclick="switchTab('MEILENSTEINE')">MEILENSTEINE</button>
           <button class="detail-tab" onclick="switchTab('EREIGNISSE')">EREIGNISSE</button>
           <button class="detail-tab" onclick="switchTab('DOKUMENTE')">DOKUMENTE</button>
         </div>
@@ -4405,6 +4510,18 @@
             </div>
           </div>
 
+          <!-- MEILENSTEINE Tab -->
+          <div class="tab-content-meilensteine">
+            <div class="tab-container">
+              <div class="tab-header">
+                <h2 class="tab-title">Meilensteine</h2>
+              </div>
+              <div class="milestone-list">
+                ${renderMilestones(prop)}
+              </div>
+            </div>
+          </div>
+
           <!-- DOKUMENTE Tab -->
           <div class="tab-content-dokumente">
             <div class="tab-container">
@@ -4548,17 +4665,21 @@
 
       // Update tab content
       const uebersichtContent = document.querySelector('.tab-content-uebersicht');
+      const meilensteineContent = document.querySelector('.tab-content-meilensteine');
       const ereignisseContent = document.querySelector('.tab-content-ereignisse');
       const dokumenteContent = document.querySelector('.tab-content-dokumente');
 
       // Hide all tabs first
       uebersichtContent.classList.remove('active');
+      meilensteineContent.classList.remove('active');
       ereignisseContent.classList.remove('active');
       dokumenteContent.classList.remove('active');
 
       // Show the selected tab
       if (tabName === 'ÜBERSICHT') {
         uebersichtContent.classList.add('active');
+      } else if (tabName === 'MEILENSTEINE') {
+        meilensteineContent.classList.add('active');
       } else if (tabName === 'EREIGNISSE') {
         ereignisseContent.classList.add('active');
       } else if (tabName === 'DOKUMENTE') {
@@ -4607,6 +4728,72 @@
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const year = date.getFullYear();
       return `${day}.${month}.${year}`;
+    }
+
+    // Milestone definitions
+    const milestoneDefinitions = [
+      { num: 1, label: 'Neuer Auftrag', responsibility: 'BBL Portfolio Management' },
+      { num: 2, label: 'Auftrag geprüft', responsibility: 'BBL Portfolio Management' },
+      { num: 3, label: 'Repriorisiert', responsibility: 'BBL Portfolio Management' },
+      { num: 4, label: 'Zum Verkauf freigegeben', responsibility: 'BBL Portfolio Management' },
+      { num: 5, label: 'Vermarktung gestartet', responsibility: 'Externer Makler' },
+      { num: 6, label: 'Bieterverfahren beendet', responsibility: 'Externer Makler' },
+      { num: 7, label: 'Objekt verkauft', responsibility: 'BBL Portfolio Management' }
+    ];
+
+    // Render milestones list
+    function renderMilestones(prop) {
+      const currentMilestone = prop.milestone?.current || 0;
+      const events = prop.events || [];
+
+      return milestoneDefinitions.map(ms => {
+        const isCompleted = ms.num <= currentMilestone;
+        const isNext = ms.num === currentMilestone + 1;
+
+        // Find matching event for completed milestones
+        const matchingEvent = events.find(e => e.milestone && e.milestone.includes(`${ms.num}/7`));
+
+        let statusText = 'Zu erledigen.';
+        if (isCompleted && matchingEvent) {
+          statusText = `Abgeschlossen am: ${formatDocumentDateOnly(matchingEvent.timestamp)}`;
+        }
+
+        // Determine button state
+        let buttonClass = 'milestone-btn ';
+        let buttonText = '';
+        let buttonDisabled = '';
+
+        if (isCompleted) {
+          buttonClass += 'milestone-btn-completed';
+          buttonText = 'Erledigt';
+          buttonDisabled = 'disabled';
+        } else if (isNext) {
+          buttonClass += 'milestone-btn-complete';
+          buttonText = 'Abschliessen';
+        } else {
+          buttonClass += 'milestone-btn-pending';
+          buttonText = 'Abschliessen';
+          buttonDisabled = 'disabled';
+        }
+
+        return `
+          <div class="milestone-item">
+            <div class="milestone-content">
+              <div class="milestone-title">Meilenstein ${ms.num}/7 ${ms.label}</div>
+              <div class="milestone-status">
+                <span class="material-icons-outlined milestone-status-icon ${isCompleted ? 'completed' : 'pending'}">
+                  ${isCompleted ? 'check_circle' : 'radio_button_unchecked'}
+                </span>
+                <span class="milestone-status-text">${statusText}</span>
+              </div>
+              <span class="milestone-responsibility">${ms.responsibility}</span>
+            </div>
+            <div class="milestone-action">
+              <button class="${buttonClass}" ${buttonDisabled}>${buttonText}</button>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     // Render events table
