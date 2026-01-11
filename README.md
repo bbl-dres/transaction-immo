@@ -4,12 +4,12 @@ A web-based real estate portfolio management platform for the Swiss Federal Offi
 - Deployed: [davras5.github.io/transaction-immo/](davras5.github.io/transaction-immo/)
 
 <p align="center">
-  <img src="images/Preview1.jpg" width="90%"/>
+  <img src="assets/images/Preview1.jpg" width="90%"/>
 </p>
 
 <p align="center">
-  <img src="images/Preview2.jpg" width="45%" style="vertical-align: top;"/>
-  <img src="images/Preview3.jpg" width="45%" style="vertical-align: top;"/>
+  <img src="assets/images/Preview2.jpg" width="45%" style="vertical-align: top;"/>
+  <img src="assets/images/Preview3.jpg" width="45%" style="vertical-align: top;"/>
 </p>
 
 ## Features
@@ -53,9 +53,17 @@ Zero dependencies - no build process required.
 
 ```
 transaction-immo/
-├── index.html        # Complete SPA (HTML, CSS, JS embedded)
-├── data.json         # Property data
-├── switzerland.svg   # Map background asset
+├── index.html            # Main HTML structure
+├── css/
+│   ├── tokens.css        # Design tokens (CSS custom properties)
+│   └── styles.css        # Component styles
+├── js/
+│   └── main.js           # Application JavaScript
+├── assets/
+│   ├── switzerland.svg   # Map background asset
+│   └── images/           # Image assets
+├── data/
+│   └── data.json         # Property data
 └── README.md
 ```
 
