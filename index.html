@@ -89,8 +89,8 @@
       <div class="detail-header-inner">
         <span class="detail-breadcrumb" id="detailBreadcrumb"></span>
         <div class="detail-header-actions">
-          <button class="detail-pdf-btn" onclick="exportToPdf()">Als PDF exportieren</button>
-          <button class="detail-back-btn" onclick="closeDetailPage()">
+          <button class="btn btn-primary" onclick="exportToPdf()">Als PDF exportieren</button>
+          <button class="btn btn-secondary detail-back-btn" onclick="closeDetailPage()">
             <span class="material-icons-outlined">arrow_back</span>
             Zurück zur Übersicht
           </button>
@@ -107,7 +107,7 @@
     <div class="sales-form-header">
       <div class="sales-form-header-inner">
         <h1 class="sales-form-title">Auftrag erstellen</h1>
-        <button class="sales-form-cancel-btn" onclick="closeSalesForm()">Abbrechen</button>
+        <button class="btn btn-secondary" onclick="closeSalesForm()">Abbrechen</button>
       </div>
     </div>
     <div class="sales-form-container">
@@ -208,11 +208,11 @@
   </div>
 
   <!-- Upload Document Dialog -->
-  <div class="upload-dialog-overlay" id="uploadDialogOverlay" role="dialog" aria-modal="true" aria-labelledby="uploadDialogTitle" onclick="if(event.target === this) closeUploadDialog()">
+  <div class="dialog-overlay" id="uploadDialogOverlay" role="dialog" aria-modal="true" aria-labelledby="uploadDialogTitle" onclick="if(event.target === this) closeUploadDialog()">
     <div class="upload-dialog">
-      <div class="upload-dialog-header">
-        <h3 class="upload-dialog-title" id="uploadDialogTitle">Dokument hochladen</h3>
-        <button class="upload-dialog-close" onclick="closeUploadDialog()" aria-label="Schliessen">
+      <div class="dialog-header">
+        <h3 class="dialog-title" id="uploadDialogTitle">Dokument hochladen</h3>
+        <button class="dialog-close-btn" onclick="closeUploadDialog()" aria-label="Schliessen">
           <span class="material-icons-outlined">close</span>
         </button>
       </div>
@@ -246,22 +246,22 @@
 
       <div class="upload-step">
         <div class="upload-step-label">3. Dateiname</div>
-        <input type="text" class="upload-input" id="uploadNameInput" placeholder="Dateiname eingeben" oninput="validateUploadForm()">
+        <input type="text" class="form-input" id="uploadNameInput" placeholder="Dateiname eingeben" oninput="validateUploadForm()">
       </div>
 
-      <div class="upload-actions">
-        <button class="upload-btn-cancel" onclick="closeUploadDialog()">Abbrechen</button>
-        <button class="upload-btn-submit" id="uploadSubmitBtn" onclick="submitDocumentUpload()" disabled>Hochladen</button>
+      <div class="dialog-actions">
+        <button class="btn btn-secondary" onclick="closeUploadDialog()">Abbrechen</button>
+        <button class="btn btn-primary" id="uploadSubmitBtn" onclick="submitDocumentUpload()" disabled>Hochladen</button>
       </div>
     </div>
   </div>
 
   <!-- Login Dialog -->
-  <div class="login-dialog-overlay" id="loginDialogOverlay" role="dialog" aria-modal="true" aria-labelledby="loginDialogTitle" onclick="if(event.target === this) closeLoginDialog()">
+  <div class="dialog-overlay" id="loginDialogOverlay" role="dialog" aria-modal="true" aria-labelledby="loginDialogTitle" onclick="if(event.target === this) closeLoginDialog()">
     <div class="login-dialog">
-      <div class="login-dialog-header">
-        <h3 class="login-dialog-title" id="loginDialogTitle">Anmelden</h3>
-        <button class="login-dialog-close" onclick="closeLoginDialog()" aria-label="Schliessen">
+      <div class="dialog-header">
+        <h3 class="dialog-title" id="loginDialogTitle">Anmelden</h3>
+        <button class="dialog-close-btn" onclick="closeLoginDialog()" aria-label="Schliessen">
           <span class="material-icons-outlined">close</span>
         </button>
       </div>
@@ -269,12 +269,12 @@
       <div class="login-form">
         <div class="login-field">
           <label class="login-label" for="loginEmail">E-Mail</label>
-          <input type="email" class="login-input" id="loginEmail" placeholder="name@beispiel.ch">
+          <input type="email" class="form-input" id="loginEmail" placeholder="name@beispiel.ch">
         </div>
 
         <div class="login-field">
           <label class="login-label" for="loginPassword">Passwort</label>
-          <input type="password" class="login-input" id="loginPassword" placeholder="Passwort eingeben">
+          <input type="password" class="form-input" id="loginPassword" placeholder="Passwort eingeben">
         </div>
       </div>
 
@@ -283,16 +283,20 @@
         <a class="login-link" onclick="alert('Funktion noch nicht verfügbar')">Neu registrieren</a>
       </div>
 
-      <div class="login-actions">
-        <button class="login-btn-cancel" onclick="closeLoginDialog()">Abbrechen</button>
-        <button class="login-btn-submit" onclick="submitLogin()">Anmelden</button>
+      <div class="dialog-actions">
+        <button class="btn btn-secondary" onclick="closeLoginDialog()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="submitLogin()">Anmelden</button>
       </div>
     </div>
   </div>
 
   <footer class="footer">
-    <a href="https://github.com/davras5/transaction-immo" class="footer-link" target="_blank" rel="noopener noreferrer">Quellcode</a>
-    <a href="https://www.admin.ch/gov/de/start/rechtliches.html" class="footer-link" target="_blank" rel="noopener noreferrer">Rechtliches</a>
+    <div class="footer-left">
+      <a href="https://github.com/davras5/transaction-immo" class="footer-link" target="_blank" rel="noopener noreferrer">Quellcode</a>
+      <a href="" class="footer-link" target="_blank" rel="noopener noreferrer">API</a>
+      <a href="https://www.admin.ch/gov/de/start/rechtliches.html" class="footer-link" target="_blank" rel="noopener noreferrer">Rechtliches</a>
+    </div>
+    <span class="footer-version">v1.0.0</span>
   </footer>
 
   <script src="js/main.js"></script>

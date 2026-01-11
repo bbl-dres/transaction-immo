@@ -739,7 +739,7 @@
 
       // Load SVG map
       const svgMap = await loadSvgMap();
-      const svgMapHtml = svgMap || '<div style="padding: var(--space-10); text-align: center; color: var(--neutral-500);">Karte nicht verfügbar</div>';
+      const svgMapHtml = svgMap || '<div class="map-fallback">Karte nicht verfügbar</div>';
 
       // Render content
       document.getElementById('detailContent').innerHTML = `
@@ -818,7 +818,7 @@
         <div class="detail-tab-content">
           <!-- ÜBERSICHT Tab -->
           <div class="tab-content-uebersicht active">
-            <h2 style="font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-5); color: var(--neutral-900);">Identifikation Objekt</h2>
+            <h2 class="section-title">Identifikation Objekt</h2>
             <div class="detail-data-section">
               <div class="detail-data-column">
                 <div class="detail-data-grid">
@@ -890,7 +890,7 @@
           <div class="detail-section-separator"></div>
 
           <!-- Angaben zum Objekt -->
-          <h2 style="font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-5); color: var(--neutral-900);">Angaben zum Objekt</h2>
+          <h2 class="section-title">Angaben zum Objekt</h2>
           <div class="detail-object-section">
             <div class="detail-object-left">
               <div class="detail-data-item">
@@ -2422,7 +2422,7 @@
                 </label>
               </div>
               ${salesFormData.hasBuildingRights === true ? `
-                <div style="margin-top: var(--space-2);">
+                <div class="mt-2">
                   <input type="number" class="sales-form-input" id="buildingRightsFeeInput"
                          placeholder="Baurechtszins in CHF" value="${salesFormData.buildingRightsFee}">
                 </div>
@@ -2645,7 +2645,7 @@
 
           <div class="sales-form-info-box">
             <span class="material-icons-outlined">lightbulb</span>
-            <p>Für eine präzise Bewertung sind Fotos von <a href="#" style="color: var(--accent-600);">aussen</a> und <a href="#" style="color: var(--accent-600);">innen erforderlich</a>. Sollten keine Bilder verfügbar sein, lassen Sie das Feld bitte leer. Achten Sie darauf, keine urheberrechtlich geschützten Bilder hochzuladen.</p>
+            <p>Für eine präzise Bewertung sind Fotos von <a href="#" class="link-accent">aussen</a> und <a href="#" class="link-accent">innen erforderlich</a>. Sollten keine Bilder verfügbar sein, lassen Sie das Feld bitte leer. Achten Sie darauf, keine urheberrechtlich geschützten Bilder hochzuladen.</p>
           </div>
 
           <div class="sales-form-rating-section">
@@ -2703,7 +2703,7 @@
               <p>In der Schweiz befinden sich die meisten Immobilien in gutem Zustand. Als sanierungsbedürftig gelten solche, die erhebliche Nutzungseinschränkungen aufzeigen. Immobilien gelten als neuwertig, wenn sie nicht älter als 5 Jahre sind.</p>
             </div>
 
-            <div class="sales-form-rating" style="margin-top: var(--space-8);">
+            <div class="sales-form-rating mt-8">
               <div class="sales-form-rating-label">Ausbaustandard</div>
               <div class="sales-form-rating-grid" id="standardRating">
                 <div class="sales-form-rating-track-line"></div>
@@ -3317,5 +3317,5 @@
       })
       .catch(err => {
         console.error('Error loading data:', err);
-        document.getElementById('objectGrid').innerHTML = `<div style="grid-column: 1/-1; padding: var(--space-5); text-align: center; background: var(--neutral-50);">Fehler beim Laden. Starte via Live Server.</div>`;
+        document.getElementById('objectGrid').innerHTML = `<div class="empty-state">Fehler beim Laden. Starte via Live Server.</div>`;
       });

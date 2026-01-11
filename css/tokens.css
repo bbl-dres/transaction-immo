@@ -94,6 +94,8 @@
   --space-9: 36px;
   --space-10: 40px;
   --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
 
   /* Semantic Spacing Aliases */
   --spacing-section: var(--space-8);      /* 32px - Major section separation */
@@ -110,6 +112,7 @@
   --radius-full: 9999px;
 
   /* Typography Scale */
+  --font-size-2xs: 11px;
   --font-size-xs: 12px;
   --font-size-sm: 13px;
   --font-size-base: 14px;
@@ -119,6 +122,9 @@
   --font-size-2xl: 20px;
   --font-size-3xl: 24px;
   --font-size-4xl: 32px;
+  --font-size-5xl: 36px;
+  --font-size-6xl: 40px;
+  --font-size-7xl: 48px;
 
   /* Font Weights */
   --font-weight-normal: 400;
