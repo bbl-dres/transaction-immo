@@ -64,7 +64,7 @@
     .header-title-sub { font-size: var(--font-size-xs); opacity: 0.9; }
     .header-right { display: flex; gap: var(--space-4); }
     .btn {
-      padding: var(--space-3) var(--space-4);
+      padding: var(--space-3) var(--space-5);
       border-radius: var(--radius-md);
       font-size: var(--font-size-base);
       font-weight: var(--font-weight-medium);
