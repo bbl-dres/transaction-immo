@@ -1,6 +1,8 @@
 # Transaction Immo
 
-A web-based real estate portfolio management platform for the Swiss Federal Office for Buildings and Logistics (Bundesamt für Bauten und Logistik - BBL). This platform enables visualization, filtering, and management of federal government properties available for sale across Switzerland.
+**This is a prototype for demonstration purposes.**
+
+A prototype for web-based real estate transaction management platform for the Swiss Federal Office for Buildings and Logistics (Bundesamt für Bauten und Logistik - BBL). This platform enables visualization, filtering, and management of federal government properties available for sale across Switzerland.
 - Deployed: [davras5.github.io/transaction-immo/](davras5.github.io/transaction-immo/)
 
 <p align="center">
