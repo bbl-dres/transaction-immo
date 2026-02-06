@@ -4,7 +4,7 @@
 > **This is an unofficial mockup for demonstration purposes only.**
 > All data is fictional. Not all features are fully functional. This project serves as a visual and conceptual prototype — it is not intended for production use.
 
-A prototype for web-based real estate transaction management platform for the Swiss Federal Office for Buildings and Logistics (Bundesamt für Bauten und Logistik - BBL). This platform enables visualization, filtering, and management of federal government properties available for sale across Switzerland.
+A prototype for web-based real estate transaction management platform. This platform enables visualization, filtering, and management of federal government properties available for sale across Switzerland.
 
 **LIve Demo:** https://bbl-dres.github.io/transaction-immo/
 
