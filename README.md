@@ -6,7 +6,7 @@
 
 A prototype for web-based real estate transaction management platform for the Swiss Federal Office for Buildings and Logistics (Bundesamt für Bauten und Logistik - BBL). This platform enables visualization, filtering, and management of federal government properties available for sale across Switzerland.
 
-- **LIve Demo:** https://bbl-dres.github.io/transaction-immo/
+**LIve Demo:** https://bbl-dres.github.io/transaction-immo/
 
 <p align="center">
   <img src="assets/images/Preview1.jpg" width="90%"/>
