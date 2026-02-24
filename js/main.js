@@ -1,6 +1,4 @@
-﻿    mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2aWRyYXNuZXI1IiwiYSI6ImNtMm5yamVkdjA5MDcycXMyZ2I2MHRhamgifQ.m651j7WIX7MyxNh8KIQ1Gg';
-
-    let properties = [];
+﻿    let properties = [];
     let filteredProperties = [];
     let searchQuery = '';
     let currentView = 'gallery';
@@ -67,6 +65,7 @@
       if (params.q) {
         searchQuery = params.q;
         document.getElementById('searchInput').value = searchQuery;
+        document.getElementById('searchInputClear').classList.add('visible');
       }
 
       // Load all advanced filters from URL
@@ -231,6 +230,7 @@
       Object.keys(advancedFilters).forEach(key => advancedFilters[key].clear());
       searchQuery = '';
       document.getElementById('searchInput').value = '';
+      document.getElementById('searchInputClear').classList.remove('visible');
       applyFilters();
       if (document.getElementById('filterModalOverlay').classList.contains('active')) {
         renderFilterModal();
@@ -663,13 +663,22 @@
 
     function setupSearch() {
       const searchInput = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('searchInputClear');
       let debounceTimer;
       searchInput.addEventListener('input', (e) => {
         clearTimeout(debounceTimer);
+        clearBtn.classList.toggle('visible', e.target.value.length > 0);
         debounceTimer = setTimeout(() => {
           searchQuery = e.target.value.trim();
           applyFilters();
         }, 300);
+      });
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        clearBtn.classList.remove('visible');
+        applyFilters();
+        searchInput.focus();
       });
     }
 
