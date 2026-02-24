@@ -293,13 +293,29 @@
     </div>
   </div>
 
+  <!-- API Docs View -->
+  <div class="api-docs-view" id="apiDocsView">
+    <div class="detail-header">
+      <div class="detail-header-inner">
+        <span class="detail-breadcrumb">API Dokumentation</span>
+        <div class="detail-header-actions">
+          <button class="btn btn-secondary detail-back-btn" onclick="closeApiDocsPage()">
+            <span class="material-icons-outlined">arrow_back</span>
+            Zurück zur Übersicht
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="detail-content" id="apiDocsContent"></div>
+  </div>
+
   <footer class="footer">
-    <div class="footer-left">
+    <span class="footer-version">v1.0.0</span>
+    <div class="footer-right">
       <a href="https://github.com/bbl-dres/transaction-immo" class="footer-link" target="_blank" rel="noopener noreferrer">Quellcode</a>
-      <a href="" class="footer-link" target="_blank" rel="noopener noreferrer">API</a>
+      <a href="?view=api" class="footer-link" onclick="event.preventDefault(); openApiDocsPage();">API</a>
       <a href="https://www.admin.ch/gov/de/start/rechtliches.html" class="footer-link" target="_blank" rel="noopener noreferrer">Rechtliches</a>
     </div>
-    <span class="footer-version">v1.0.0</span>
   </footer>
 
   <script src="js/main.js"></script>
