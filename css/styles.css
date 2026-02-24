@@ -107,7 +107,7 @@
     .search-section-inner { max-width: 1440px; margin: 0 auto; padding: 0 var(--space-6); }
     .search-row { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-4); }
     .search-input-wrapper { flex: 1; position: relative; }
-    .search-input-wrapper .material-icons-outlined {
+    .search-input-wrapper > .material-icons-outlined {
       position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
       color: var(--neutral-500); font-size: var(--font-size-2xl);
     }

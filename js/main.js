@@ -565,7 +565,7 @@
               <div class="popup-link" onclick="openDetailPage('${prop.id}')">Details anzeigen</div>
             </div>`);
 
-          const marker = new maplibregl.Marker(el).setLngLat([prop.lng, prop.lat]).setPopup(popup).addTo(map);
+          const marker = new maplibregl.Marker({ element: el }).setLngLat([prop.lng, prop.lat]).setPopup(popup).addTo(map);
           markers.push(marker);
           markersMap.set(prop.id, { marker, prop });
           bounds.extend([prop.lng, prop.lat]);
