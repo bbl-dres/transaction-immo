@@ -19,7 +19,7 @@ A prototype for web-based real estate transaction management platform. This plat
 
 ## Features
 
-- **Three View Modes**: Gallery grid, sortable list table, and interactive Mapbox map
+- **Three View Modes**: Gallery grid, sortable list table, and interactive map
 - **Advanced Filtering**: Multi-criteria filtering by priority, canton, property type, year, condition, and more
 - **Property Details**: Comprehensive information including specifications, pricing, location ratings, milestone tracking, and document management
 - **Real-time Search**: Instant text search across property titles and addresses
@@ -29,7 +29,7 @@ A prototype for web-based real estate transaction management platform. This plat
 ## Tech Stack
 
 - **Frontend**: Vanilla HTML5, CSS3, JavaScript (ES6+)
-- **Mapping**: Mapbox GL JS v3.0.1
+- **Mapping**: MapLibre GL JS with Carto Positron basemap
 - **Icons**: Material Design Icons
 - **Data**: JSON
 

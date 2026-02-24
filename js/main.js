@@ -529,12 +529,12 @@
     }
 
     function initializeMap() {
-      map = new mapboxgl.Map({
+      map = new maplibregl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/light-v11',
+        style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
         center: [8.2275, 46.8182], zoom: 7
       });
-      map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+      map.addControl(new maplibregl.NavigationControl(), 'top-right');
       map.on('load', () => {
         mapLoaded = true;
         updateMapMarkers(getDataToRender());
@@ -544,7 +544,7 @@
     function updateMapMarkers(data) {
       markers.forEach(marker => marker.remove());
       markers = []; markersMap.clear();
-      const bounds = new mapboxgl.LngLatBounds();
+      const bounds = new maplibregl.LngLatBounds();
       data.forEach(prop => {
         if (prop.lat && prop.lng) {
           const el = document.createElement('div');
@@ -556,7 +556,7 @@
             flyToProperty(prop.id);
           });
 
-          const popup = new mapboxgl.Popup({ offset: 25, maxWidth: '280px' }).setHTML(`
+          const popup = new maplibregl.Popup({ offset: 25, maxWidth: '280px' }).setHTML(`
             <div class="popup-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')"></div>
             <div class="popup-content">
               <div class="popup-title">${prop.type}</div>
@@ -565,7 +565,7 @@
               <div class="popup-link" onclick="openDetailPage('${prop.id}')">Details anzeigen</div>
             </div>`);
 
-          const marker = new mapboxgl.Marker(el).setLngLat([prop.lng, prop.lat]).setPopup(popup).addTo(map);
+          const marker = new maplibregl.Marker(el).setLngLat([prop.lng, prop.lat]).setPopup(popup).addTo(map);
           markers.push(marker);
           markersMap.set(prop.id, { marker, prop });
           bounds.extend([prop.lng, prop.lat]);

@@ -397,7 +397,7 @@
           0 4px 16px rgba(0,0,0,0.3);
     }
 
-    .mapboxgl-popup-content { padding: 0; border-radius: var(--radius-lg); overflow: hidden; min-width: 250px; }
+    .maplibregl-popup-content { padding: 0; border-radius: var(--radius-lg); overflow: hidden; min-width: 250px; }
     .popup-image { height: 120px; background-size: cover; background-position: center; }
     .popup-content { padding: var(--space-3); }
     .popup-title { font-weight: var(--font-weight-semibold); margin-bottom: var(--space-1); }
