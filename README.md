@@ -39,7 +39,7 @@ Zero dependencies - no build process required.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/davras5/transaction-immo.git
+   git clone https://github.com/bbl-dres/transaction-immo.git
    cd transaction-immo
    ```
 
