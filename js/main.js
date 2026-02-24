@@ -529,12 +529,12 @@
     }
 
     function initializeMap() {
-      map = new mapboxgl.Map({
+      map = new maplibregl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/light-v11',
+        style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
         center: [8.2275, 46.8182], zoom: 7
       });
-      map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+      map.addControl(new maplibregl.NavigationControl(), 'top-right');
       map.on('load', () => {
         mapLoaded = true;
         updateMapMarkers(getDataToRender());
@@ -544,7 +544,7 @@
     function updateMapMarkers(data) {
       markers.forEach(marker => marker.remove());
       markers = []; markersMap.clear();
-      const bounds = new mapboxgl.LngLatBounds();
+      const bounds = new maplibregl.LngLatBounds();
       data.forEach(prop => {
         if (prop.lat && prop.lng) {
           const el = document.createElement('div');
@@ -556,7 +556,7 @@
             flyToProperty(prop.id);
           });
 
-          const popup = new mapboxgl.Popup({ offset: 25, maxWidth: '280px' }).setHTML(`
+          const popup = new maplibregl.Popup({ offset: 25, maxWidth: '280px' }).setHTML(`
             <div class="popup-image" style="background-image: url('${getPlaceholderImage(prop.type, prop.id)}')"></div>
             <div class="popup-content">
               <div class="popup-title">${prop.type}</div>
@@ -565,7 +565,7 @@
               <div class="popup-link" onclick="openDetailPage('${prop.id}')">Details anzeigen</div>
             </div>`);
 
-          const marker = new mapboxgl.Marker(el).setLngLat([prop.lng, prop.lat]).setPopup(popup).addTo(map);
+          const marker = new maplibregl.Marker(el).setLngLat([prop.lng, prop.lat]).setPopup(popup).addTo(map);
           markers.push(marker);
           markersMap.set(prop.id, { marker, prop });
           bounds.extend([prop.lng, prop.lat]);
@@ -1227,6 +1227,218 @@
 
     function exportToPdf() {
       window.print();
+    }
+
+    // --- API Docs View ---
+    function openApiDocsPage() {
+      window.history.pushState({ view: 'api' }, '', '?view=api');
+      renderApiDocsView();
+    }
+
+    function closeApiDocsPage() {
+      document.body.classList.remove('api-docs-active');
+      document.getElementById('apiDocsView').classList.remove('active');
+      const params = new URLSearchParams(window.location.search);
+      params.delete('view');
+      const newUrl = params.toString() ? `?${params.toString()}` : window.location.pathname;
+      window.history.pushState({ view: currentView }, '', newUrl);
+    }
+
+    function renderApiDocsView() {
+      document.body.classList.add('api-docs-active');
+      document.getElementById('apiDocsView').classList.add('active');
+
+      const endpoints = [
+        {
+          group: 'Verkaufsobjekte',
+          items: [
+            { method: 'get', path: '/api/v1/properties', desc: 'Alle Verkaufsobjekte abrufen',
+              params: [
+                { name: 'type', type: 'string', req: false, desc: 'Objekttyp filtern (z.B. Bürogebäude, Wohnliegenschaft)' },
+                { name: 'priority', type: 'integer', req: false, desc: 'Priorität filtern (0=Hoch, 1=Mittel, 2=Tief, 3=Keine)' },
+                { name: 'year', type: 'string', req: false, desc: 'Verkaufsjahr filtern (z.B. 2025)' },
+                { name: 'canton', type: 'string', req: false, desc: 'Kanton filtern (z.B. BE, ZH)' },
+                { name: 'limit', type: 'integer', req: false, desc: 'Maximale Anzahl Ergebnisse (Standard: 50)' },
+                { name: 'offset', type: 'integer', req: false, desc: 'Offset für Paginierung (Standard: 0)' },
+              ],
+              response: `{
+  "data": [
+    {
+      "id": "OBJ-2025-001",
+      "type": "Bürogebäude",
+      "address": "Bundesgasse 32",
+      "zip": "3003",
+      "city": "Bern",
+      "canton": "BE",
+      "year": "2025",
+      "priority": 0,
+      "valueMin": 5200000,
+      "valueMax": 6800000,
+      "areaGF": 4200,
+      "lat": 46.9480,
+      "lng": 7.4474
+    }
+  ],
+  "total": 42,
+  "limit": 50,
+  "offset": 0
+}` },
+            { method: 'get', path: '/api/v1/properties/{id}', desc: 'Einzelnes Verkaufsobjekt abrufen',
+              params: [
+                { name: 'id', type: 'string', req: true, desc: 'Eindeutige Objekt-ID (z.B. OBJ-2025-001)' },
+              ],
+              response: `{
+  "id": "OBJ-2025-001",
+  "type": "Bürogebäude",
+  "address": "Bundesgasse 32",
+  "zip": "3003",
+  "city": "Bern",
+  "canton": "BE",
+  "year": "2025",
+  "priority": 0,
+  "milestone": "In Vorbereitung",
+  "econUnit": "WE-1234",
+  "bldgNum": "BG-5678",
+  "portfolio": "zivil",
+  "valueMin": 5200000,
+  "valueMax": 6800000,
+  "areaGF": 4200,
+  "areaHNF": 3100,
+  "areaVMF": 800,
+  "lat": 46.9480,
+  "lng": 7.4474,
+  "condition": "Gut",
+  "yearBuilt": 1985,
+  "floors": 5,
+  "parkingSpaces": 24,
+  "energyRating": "C",
+  "documents": [
+    { "name": "Grundbuchauszug.pdf", "size": "2.4 MB" }
+  ]
+}` },
+            { method: 'post', path: '/api/v1/properties', desc: 'Neues Verkaufsobjekt erstellen',
+              params: [
+                { name: 'type', type: 'string', req: true, desc: 'Objekttyp' },
+                { name: 'address', type: 'string', req: true, desc: 'Adresse des Objekts' },
+                { name: 'zip', type: 'string', req: true, desc: 'Postleitzahl' },
+                { name: 'city', type: 'string', req: true, desc: 'Ort' },
+                { name: 'canton', type: 'string', req: true, desc: 'Kanton (2-Buchstaben-Code)' },
+                { name: 'year', type: 'string', req: true, desc: 'Verkaufsjahr' },
+                { name: 'valueMin', type: 'number', req: false, desc: 'Minimaler Schätzwert in CHF' },
+                { name: 'valueMax', type: 'number', req: false, desc: 'Maximaler Schätzwert in CHF' },
+              ],
+              response: `{
+  "id": "OBJ-2025-043",
+  "message": "Verkaufsobjekt erfolgreich erstellt."
+}` },
+            { method: 'put', path: '/api/v1/properties/{id}', desc: 'Verkaufsobjekt aktualisieren',
+              params: [
+                { name: 'id', type: 'string', req: true, desc: 'Eindeutige Objekt-ID' },
+                { name: '...', type: 'object', req: false, desc: 'Beliebige Felder zum Aktualisieren (gleiche Struktur wie POST)' },
+              ],
+              response: `{
+  "id": "OBJ-2025-001",
+  "message": "Verkaufsobjekt erfolgreich aktualisiert."
+}` },
+            { method: 'delete', path: '/api/v1/properties/{id}', desc: 'Verkaufsobjekt löschen',
+              params: [
+                { name: 'id', type: 'string', req: true, desc: 'Eindeutige Objekt-ID' },
+              ],
+              response: `{
+  "message": "Verkaufsobjekt erfolgreich gelöscht."
+}` },
+          ]
+        },
+        {
+          group: 'Dokumente',
+          items: [
+            { method: 'get', path: '/api/v1/properties/{id}/documents', desc: 'Dokumente eines Objekts abrufen',
+              params: [
+                { name: 'id', type: 'string', req: true, desc: 'Eindeutige Objekt-ID' },
+              ],
+              response: `{
+  "data": [
+    {
+      "id": "DOC-001",
+      "name": "Grundbuchauszug.pdf",
+      "size": "2.4 MB",
+      "uploadedAt": "2025-01-15T10:30:00Z"
+    },
+    {
+      "id": "DOC-002",
+      "name": "Gebäudeversicherung.pdf",
+      "size": "1.1 MB",
+      "uploadedAt": "2025-01-16T14:00:00Z"
+    }
+  ]
+}` },
+            { method: 'post', path: '/api/v1/properties/{id}/documents', desc: 'Dokument hochladen',
+              params: [
+                { name: 'id', type: 'string', req: true, desc: 'Eindeutige Objekt-ID' },
+                { name: 'file', type: 'binary', req: true, desc: 'Datei (multipart/form-data)' },
+              ],
+              response: `{
+  "id": "DOC-003",
+  "name": "Energieausweis.pdf",
+  "message": "Dokument erfolgreich hochgeladen."
+}` },
+          ]
+        },
+        {
+          group: 'Statistiken',
+          items: [
+            { method: 'get', path: '/api/v1/stats', desc: 'Gesamtstatistiken abrufen',
+              params: [],
+              response: `{
+  "totalProperties": 42,
+  "totalValue": { "min": 185000000, "max": 245000000 },
+  "byPriority": { "high": 8, "medium": 15, "low": 12, "none": 7 },
+  "byCanton": { "BE": 12, "ZH": 8, "VD": 5, "GE": 4 },
+  "byYear": { "2025": 18, "2026": 14, "2027": 10 }
+}` },
+          ]
+        }
+      ];
+
+      document.getElementById('apiDocsContent').innerHTML = `
+        <div style="margin-bottom: var(--space-6);">
+          <h2 style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-2);">Verkaufsplattform API</h2>
+          <p style="color: var(--neutral-500); margin-bottom: var(--space-2);">Version 1.0.0 &middot; Base URL: <code style="background: var(--neutral-100); padding: 2px 8px; border-radius: var(--radius-sm);">https://api.verkaufsplattform.admin.ch</code></p>
+          <p style="color: var(--neutral-500); font-size: var(--font-size-sm);">REST API für den Zugriff auf Verkaufsobjekte des Bundesamts für Bauten und Logistik. Authentifizierung via API-Key im Header <code style="background: var(--neutral-100); padding: 2px 8px; border-radius: var(--radius-sm);">X-API-Key</code>.</p>
+        </div>
+        ${endpoints.map(group => `
+          <div class="api-endpoint-group">
+            <div class="api-endpoint-group-title">${group.group}</div>
+            ${group.items.map(ep => `
+              <div class="api-endpoint" onclick="this.classList.toggle('open')">
+                <div class="api-endpoint-header">
+                  <span class="api-method ${ep.method}">${ep.method}</span>
+                  <span class="api-endpoint-path">${ep.path}</span>
+                  <span class="api-endpoint-desc">${ep.desc}</span>
+                </div>
+                <div class="api-endpoint-body" onclick="event.stopPropagation()">
+                  ${ep.params.length > 0 ? `
+                    <div class="api-section-label">Parameter</div>
+                    <table class="api-param-table">
+                      <thead><tr><th>Name</th><th>Typ</th><th>Pflicht</th><th>Beschreibung</th></tr></thead>
+                      <tbody>
+                        ${ep.params.map(p => `<tr>
+                          <td><code>${p.name}</code></td>
+                          <td><code>${p.type}</code></td>
+                          <td><span class="api-badge ${p.req ? 'required' : 'optional'}">${p.req ? 'Pflicht' : 'Optional'}</span></td>
+                          <td>${p.desc}</td>
+                        </tr>`).join('')}
+                      </tbody>
+                    </table>
+                  ` : '<p style="color: var(--neutral-500); font-size: var(--font-size-sm);">Keine Parameter erforderlich.</p>'}
+                  <div class="api-section-label">Antwort-Beispiel</div>
+                  <div class="api-response-example">${ep.response}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      `;
     }
 
     // Document types for upload dialog
@@ -1902,7 +2114,9 @@
       const view = params.get('view');
       const id = params.get('id');
 
-      if (view === 'sales-form') {
+      if (view === 'api') {
+        renderApiDocsView();
+      } else if (view === 'sales-form') {
         const step = parseInt(params.get('step')) || 1;
         salesFormData.currentStep = step;
         renderSalesFormView();
@@ -1915,6 +2129,8 @@
       } else {
         document.body.classList.remove('detail-active');
         document.getElementById('detailView').classList.remove('active');
+        document.body.classList.remove('api-docs-active');
+        document.getElementById('apiDocsView').classList.remove('active');
         closeSalesForm(true);
         if (view && ['gallery', 'list', 'map'].includes(view)) {
           setView(view);
@@ -3302,6 +3518,10 @@
     setupViewToggle();
     loadFiltersFromUrl();
     setView(currentView);
+
+    if (initialParams.view === 'api') {
+      renderApiDocsView();
+    }
 
     fetch('data/data.json')
       .then(res => res.json())
